@@ -213,6 +213,9 @@ function uploadLink() {
 
     document.getElementById("audio").src = url;
     document.getElementById("audio").play();
+
+    document.getElementById("title").innerText = "Music Player";
+    document.title = "Music Player";
 }
 
 function applyColour() {
