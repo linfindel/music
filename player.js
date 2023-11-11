@@ -127,6 +127,7 @@ function analyse() {
         document.getElementById("upload1").style.backgroundColor = rgba;
         document.getElementById("upload2").style.backgroundColor = rgba;
         document.getElementById("settings").style.backgroundColor = rgba;
+        document.getElementById("about").style.backgroundColor = rgba;
 
         document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume * 75}px ${generalVolume}px ${rgba}`;
     }, 0);
