@@ -228,7 +228,7 @@ function applyColour() {
                 background-color: ${colour.replace("0.25", "0.5")};
             }
 
-            #settings:hover, #upload1:hover, #upload2:hover {
+            #settings:hover, #upload1:hover, #upload2:hover, #about:hover {
                 background-color: ${colour.replace("0.25", "0.5")};
             }
 

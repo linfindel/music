@@ -25,20 +25,27 @@
             <h1>Music Player</h1>
         </div>
         
-        <div class="row">
-            <button onclick="location.href = 'settings.html'" id="settings">
-                <span class="material-symbols-rounded">settings</span>
-                Settings
-            </button>
+        <div class="row" style="justify-content: space-between; width: 100%;">
+            <div class="row">
+                <button onclick="location.href = 'settings.html'" id="settings">
+                    <span class="material-symbols-rounded">settings</span>
+                    Settings
+                </button>
 
-            <button onclick="uploadFile()" id="upload1">
-                <span class="material-symbols-rounded">upload_file</span>
-                Upload file
-            </button>
+                <button onclick="uploadFile()" id="upload1">
+                    <span class="material-symbols-rounded">upload_file</span>
+                    Upload file
+                </button>
 
-            <button onclick="uploadLink()" id="upload2">
-                <span class="material-symbols-rounded">add_link</span>
-                Upload from URL
+                <button onclick="uploadLink()" id="upload2">
+                    <span class="material-symbols-rounded">add_link</span>
+                    Upload from URL
+                </button>
+            </div>
+
+            <button id="about" onclick="window.open(`https://www.github.com/Nadir-Software/kandinsky`, '_blank')">
+                <span class="material-symbols-rounded">code</span>
+                Kandinsky Engine
             </button>
         </div>
     </div>
