@@ -211,11 +211,17 @@ function uploadFile() {
 function uploadLink() {
     var url = prompt("URL:");
 
-    document.getElementById("audio").src = url;
-    document.getElementById("audio").play();
+    if (url.includes("https://www.youtube.com") || url.includes("https://music.youtube.com")) {
+        alert("Downloading or streaming from YouTube URLs is against YouTube Terms of Service");
+    }
 
-    document.getElementById("title").innerText = "Music Player";
-    document.title = "Music Player";
+    else {
+        document.getElementById("audio").src = url;
+        document.getElementById("audio").play();
+
+        document.getElementById("title").innerText = "Music Player";
+        document.title = "Music Player";
+    }
 }
 
 function applyColour() {
