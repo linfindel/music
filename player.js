@@ -271,3 +271,7 @@ if (localStorage.getItem("colour") == null) {
     localStorage.setItem("colour", "rgba(255, 0, 0, 0.25)");
     location.reload();
 }
+
+if (screen.width < screen.height) {
+    document.getElementById("action-row").style.justifyContent = "center";
+}
