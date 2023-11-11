@@ -180,6 +180,16 @@ function uploadFile() {
     input.onchange = () => {
         let file = input.files[0]; // Get the first selected file
         if (file) {
+            var fileName = file.name;
+            fileName = fileName.split('.').slice(0, -1).join('.');
+            
+            while (fileName.includes("_")) {
+                fileName = fileName.replace("_", " ");
+            }
+
+            document.getElementById("title").innerText = fileName;
+            document.title = `${fileName} | Music Player`;
+
             let reader = new FileReader();
             reader.onload = function (e) {
                 let fileURL = e.target.result;
