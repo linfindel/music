@@ -181,7 +181,11 @@ function uploadFile() {
         let file = input.files[0]; // Get the first selected file
         if (file) {
             var fileName = file.name;
-            fileName = fileName.split('.').slice(0, -1).join('.');
+            let parts = fileName.split('.');
+
+            if (parts.length < 3) {
+                fileName = fileName.split('.').slice(0, -1).join('.');
+            }
             
             while (fileName.includes("_")) {
                 fileName = fileName.replace("_", " ");
