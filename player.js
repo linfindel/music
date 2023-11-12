@@ -99,12 +99,6 @@ function analyse() {
             midVolume = 89;
             highVolume = 255;
         }
-	
-	    console.log('Low Frequency Volume:', lowVolume);
-	    console.log('Mid Frequency Volume:', midVolume);
-	    console.log('High Frequency Volume:', highVolume);
-        console.log('General Volume:', generalVolume);
-        console.log('Skew:', skew);
 
         var rgba;
 
@@ -119,8 +113,6 @@ function analyse() {
         else if (skew == "red") {
             rgba = `rgba(${lowVolume}, ${midVolume}, ${highVolume}, ${alpha})`;
         }
-
-        console.log("RGBA:", rgba);
 
         document.getElementById("navbar").style.backgroundColor = rgba;
 
@@ -197,7 +189,6 @@ function uploadFile() {
             let reader = new FileReader();
             reader.onload = function (e) {
                 let fileURL = e.target.result;
-                console.log(fileURL);
 
                 document.getElementById("audio").src = fileURL;
                 document.getElementById("audio").play();
@@ -261,8 +252,6 @@ function applyColour() {
             }
         `;
     }
-
-    console.log("Colour:", colour);
 }
 
 applyColour();
