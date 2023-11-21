@@ -362,3 +362,7 @@ function updateProgressClick(event) {
 }
 
 document.getElementById("progress-container").addEventListener("click", updateProgressClick);
+
+if (localStorage.getItem("warn") != "true") {
+    location.href = "warning.html";
+}
