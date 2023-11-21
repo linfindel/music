@@ -2,14 +2,23 @@ let skew = localStorage.getItem("colour");
 
 if (skew == "rgba(0, 89, 255, 0.25)") {
     skew = "blue";
+
+    document.getElementById("progress-container").style.backgroundColor = "rgba(0, 89, 255, 0.25)";
+    document.getElementById("progress-bar").style.backgroundColor = "rgba(0, 89, 255, 1)";
 }
 
 else if (skew == "rgba(255, 0, 0, 0.25)") {
     skew = "red";
+
+    document.getElementById("progress-container").style.backgroundColor = "rgba(255, 0, 0, 0.25)";
+    document.getElementById("progress-bar").style.backgroundColor = "rgba(255, 0, 0, 1)";
 }
 
 else if (skew == "rgba(0, 255, 0, 0.25)") {
     skew = "green";
+
+    document.getElementById("progress-container").style.backgroundColor = "rgba(0, 255, 0, 0.25)";
+    document.getElementById("progress-bar").style.backgroundColor = "rgba(0, 255, 0, 1)";
 }
 
 let analysisInterval;
@@ -121,6 +130,12 @@ function analyse() {
         document.getElementById("settings").style.backgroundColor = rgba;
         document.getElementById("about").style.backgroundColor = rgba;
 
+        document.getElementById("play").style.backgroundColor = rgba;
+        document.getElementById("repeat").style.backgroundColor = rgba;
+
+        document.getElementById("progress-container").style.backgroundColor = rgba;
+        document.getElementById("progress-bar").style.backgroundColor = rgba.replace("0.25", "1");
+
         document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume * 75}px ${generalVolume}px ${rgba}`;
     }, 0);
 }
@@ -183,8 +198,8 @@ function uploadFile() {
                 fileName = fileName.replace("_", " ");
             }
 
-            document.getElementById("title").innerText = fileName;
-            document.title = `${fileName} | Music Player`;
+            document.getElementById("title").innerText = "Loading...";
+            document.title = `Loading... | Music Player`;
 
             let reader = new FileReader();
             reader.onload = function (e) {
@@ -192,6 +207,11 @@ function uploadFile() {
 
                 document.getElementById("audio").src = fileURL;
                 document.getElementById("audio").play();
+
+                document.getElementById("audio").addEventListener("loadedmetadata", () => {
+                    document.getElementById("title").innerText = fileName;
+                    document.title = `${fileName} | Music Player`;
+                });
             };
             reader.readAsDataURL(file); // Read the file as a data URL
         }
@@ -210,8 +230,13 @@ function uploadLink() {
         document.getElementById("audio").src = url;
         document.getElementById("audio").play();
 
-        document.getElementById("title").innerText = "Music Player";
-        document.title = "Music Player";
+        document.getElementById("title").innerText = "Loading...";
+        document.title = `Loading... | Music Player`;
+
+        document.getElementById("audio").addEventListener("loadedmetadata", () => {
+            document.getElementById("title").innerText = "Music Player";
+            document.title = "Music Player";
+        });
     }
 }
 
@@ -243,7 +268,7 @@ function applyColour() {
                 background-color: ${colour.replace("0.25", "0.5")};
             }
 
-            #settings:hover, #upload1:hover, #upload2:hover, #about:hover {
+            #settings:hover, #upload1:hover, #upload2:hover, #about:hover, #play:hover, #repeat:hover {
                 background-color: ${colour.replace("0.25", "0.5")};
             }
 
@@ -270,3 +295,70 @@ if (localStorage.getItem("colour") == null) {
 if (screen.width < screen.height) {
     document.getElementById("action-row").style.justifyContent = "center";
 }
+
+function play() {
+    if (audioElement.paused) {
+        audioElement.play();
+
+        document.getElementById("play-icon").innerText = "pause_circle";
+        document.getElementById("play-text").innerText = "Pause";
+
+        document.getElementById("play").style.width = "";
+    }
+
+    else {
+        audioElement.pause();
+
+        document.getElementById("play-icon").innerText = "play_circle";
+        document.getElementById("play-text").innerText = "Play";
+
+        document.getElementById("play").style.width = "6.75rem";
+    }
+}
+
+function repeat() {
+    if (document.getElementById("audio").loop == true) {
+        document.getElementById("audio").loop = false;
+
+        document.getElementById("repeat-text").innerText = "Repeat off";
+    }
+
+    else {
+        document.getElementById("audio").loop = true;
+
+        document.getElementById("repeat-text").innerText = "Repeat on";
+    }
+}
+
+const durationInterval = setInterval(() => {
+    var duration = document.getElementById("audio").duration;
+
+    if (duration) {
+        var currentTime = document.getElementById("audio").currentTime;
+        
+        var percent = `${(currentTime / duration) * 100}%`;
+
+        document.getElementById("progress-bar").style.width = percent;
+    }
+});
+
+document.getElementById("audio").addEventListener("play", () => {
+    document.getElementById("controls").style.opacity = "1";
+    document.getElementById("controls").style.pointerEvents = "all";
+});
+
+
+let isDragging = false;
+
+function updateProgressClick(event) {
+    const progressBar = document.getElementById("progress-bar");
+    const progressContainer = document.getElementById("progress-container");
+    const offsetX = event.clientX - progressContainer.getBoundingClientRect().left;
+    const percentage = (offsetX / progressContainer.offsetWidth) * 100;
+
+    progressBar.style.width = `${percentage}%`;
+    const newTime = (percentage / 100) * document.getElementById("audio").duration;
+    document.getElementById("audio").currentTime = newTime;
+}
+
+document.getElementById("progress-container").addEventListener("click", updateProgressClick);

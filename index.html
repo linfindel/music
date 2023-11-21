@@ -17,6 +17,22 @@
         .glow {
             width: 50vw;
         }
+
+        #progress-container {
+            --progress-height: 100%;
+
+            cursor: url("https://nadir-software.github.io/nadircss/Cursors/link-select.cur"), auto;
+        }
+
+        #progress-container:hover {
+            --progress-height: 1rem;
+
+            height: 1rem;
+        }
+
+        #progress-bar {
+            height: var(--progress-height);
+        }
     </style>
 </head>
 <body>
@@ -52,7 +68,25 @@
 
     <div class="absolute-centre glow" id="glow"></div>
 
-    <audio onplay="analyse()" onpause="stopAnalysis()" id="audio" controls class="bottom" crossorigin="anonymous"></audio>
+    <audio onplay="analyse()" onpause="stopAnalysis()" id="audio" crossorigin="anonymous"></audio>
+
+    <div id="controls" style="opacity: 0; pointer-events: none;" class="bottom column">
+        <div id="progress-container" class="progress" style="background-color: rgba(100, 100, 100, 0.25); width: 100%;">
+            <div id="progress-bar" class="progress" style="background-color: rgba(100, 100, 100, 1); width: 0;"></div>
+        </div>
+
+        <div class="row">
+            <button onclick="play()" id="play">
+                <span id="play-icon" class="material-symbols-rounded">pause_circle</span>
+                <span id="play-text">Pause</span>
+            </button>
+
+            <button onclick="repeat()" id="repeat">
+                <span class="material-symbols-rounded">repeat</span>
+                <span id="repeat-text">Repeat off</span>
+            </button>
+        </div>
+    </div>
 
     <script src="player.js"></script>
 </body>
