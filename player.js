@@ -366,3 +366,19 @@ document.getElementById("progress-container").addEventListener("click", updatePr
 if (localStorage.getItem("warn") != "true") {
     location.href = "warning.html";
 }
+
+setInterval(() => {
+    if (audioElement.paused) {
+        document.getElementById("play-icon").innerText = "play_circle";
+        document.getElementById("play-text").innerText = "Play";
+
+        document.getElementById("play").style.width = "6.75rem";
+    }
+
+    else {
+        document.getElementById("play-icon").innerText = "pause_circle";
+        document.getElementById("play-text").innerText = "Pause";
+
+        document.getElementById("play").style.width = "";
+    }
+}, 100);
