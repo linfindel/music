@@ -62,7 +62,7 @@ function analyse() {
 	        }
 	        return sum / (endIndex - startIndex + 1);
 	    }
-	
+        
 	    // Get volume for low, mid, and high frequencies
 	    var lowFrequencyVolume = getAverageValue(0, 30);
 	    var midFrequencyVolume = getAverageValue(31, 120);
@@ -224,7 +224,7 @@ function uploadLink() {
     var url = prompt("URL:");
 
     if (url.includes("https://www.youtube.com") || url.includes("https://music.youtube.com")) {
-        alert("Downloading or streaming from YouTube URLs is against YouTube Terms of Service");
+        alert("Downloading or streaming from YouTube is against YouTube Terms of Service");
     }
 
     else {
@@ -368,17 +368,23 @@ if (localStorage.getItem("warn") != "true") {
 }
 
 setInterval(() => {
-    if (audioElement.paused) {
-        document.getElementById("play-icon").innerText = "play_circle";
-        document.getElementById("play-text").innerText = "Play";
+    try {
+        if (audioElement.paused) {
+            document.getElementById("play-icon").innerText = "play_circle";
+            document.getElementById("play-text").innerText = "Play";
 
-        document.getElementById("play").style.width = "6.75rem";
+            document.getElementById("play").style.width = "6.75rem";
+        }
+
+        else {
+            document.getElementById("play-icon").innerText = "pause_circle";
+            document.getElementById("play-text").innerText = "Pause";
+
+            document.getElementById("play").style.width = "";
+        }
     }
 
-    else {
-        document.getElementById("play-icon").innerText = "pause_circle";
-        document.getElementById("play-text").innerText = "Pause";
-
-        document.getElementById("play").style.width = "";
+    catch {
+        // Audio playback has not started
     }
 }, 100);
