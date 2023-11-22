@@ -184,6 +184,7 @@ function changeSkew(newSkew) {
 function uploadFile() {
     let input = document.createElement('input');
     input.type = 'file';
+    input.accept = 'audio/*';
     input.onchange = () => {
         let file = input.files[0]; // Get the first selected file
         if (file) {
@@ -346,7 +347,6 @@ document.getElementById("audio").addEventListener("play", () => {
     document.getElementById("controls").style.opacity = "1";
     document.getElementById("controls").style.pointerEvents = "all";
 });
-
 
 let isDragging = false;
 
