@@ -191,7 +191,7 @@ function uploadFile() {
             var fileName = file.name;
             let parts = fileName.split('.');
 
-            if (parts.length < 3) {
+            if (parts.length < 3 || fileName.includes("feat.")) {
                 fileName = fileName.split('.').slice(0, -1).join('.');
             }
             
