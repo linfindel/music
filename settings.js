@@ -1,53 +1,53 @@
 function setOption(option, value) {
-    localStorage.setItem(option, value);
+  localStorage.setItem(option, value);
 
-    if (option == "kandinsky" && value == "enabled") {
-        document.getElementById("kandinsky-title").innerText = "Kandinsky Engine enabled";
+  if (option == "kandinsky" && value == "enabled") {
+    document.getElementById("kandinsky-title").innerText =
+      "Kandinsky Engine enabled";
 
-        document.getElementById("kandinsky").onclick = () => {
-            setOption("kandinsky", "disabled");
-        }
-    }
+    document.getElementById("kandinsky").onclick = () => {
+      setOption("kandinsky", "disabled");
+    };
+  } else if (option == "kandinsky" && value == "disabled") {
+    document.getElementById("kandinsky-title").innerText =
+      "Kandinsky Engine disabled";
 
-    else if (option == "kandinsky" && value == "disabled") {
-        document.getElementById("kandinsky-title").innerText = "Kandinsky Engine disabled";
+    document.getElementById("kandinsky").onclick = () => {
+      setOption("kandinsky", "enabled");
+    };
+  }
 
-        document.getElementById("kandinsky").onclick = () => {
-            setOption("kandinsky", "enabled");
-        }
-    }
-
-    if (option == "colour") {
-        applyColour();
-    }
+  if (option == "colour") {
+    applyColour();
+  }
 }
 
 function importSettings() {
-    if (localStorage.getItem("kandinsky") == "enabled") {
-        document.getElementById("kandinsky-title").innerText = "Kandinsky Engine enabled";
+  if (localStorage.getItem("kandinsky") == "enabled") {
+    document.getElementById("kandinsky-title").innerText =
+      "Kandinsky Engine enabled";
 
-        document.getElementById("kandinsky").onclick = () => {
-            setOption("kandinsky", "disabled");
-        }
-    }
+    document.getElementById("kandinsky").onclick = () => {
+      setOption("kandinsky", "disabled");
+    };
+  } else if (localStorage.getItem("kandinsky") == "disabled") {
+    document.getElementById("kandinsky-title").innerText =
+      "Kandinsky Engine disabled";
 
-    else if (localStorage.getItem("kandinsky") == "disabled") {
-        document.getElementById("kandinsky-title").innerText = "Kandinsky Engine disabled";
-
-        document.getElementById("kandinsky").onclick = () => {
-            setOption("kandinsky", "enabled");
-        }
-    }
+    document.getElementById("kandinsky").onclick = () => {
+      setOption("kandinsky", "enabled");
+    };
+  }
 }
 
 function applyColour() {
-    var colour = localStorage.getItem("colour");
+  var colour = localStorage.getItem("colour");
 
-    if (colour) {
-        var styleElement = document.getElementsByTagName("style")[0];
+  if (colour) {
+    var styleElement = document.getElementsByTagName("style")[0];
 
-        // Add styles to change background color based on the retrieved color
-        styleElement.innerHTML += `
+    // Add styles to change background color based on the retrieved color
+    styleElement.innerHTML += `
             .navbar {
                 background-color: ${colour};
             }
@@ -72,11 +72,10 @@ function applyColour() {
                 background-color: ${colour.replace("0.25", "0.5")};
             }
         `;
-    }
+  }
 
-    console.log("Colour:", colour);
+  console.log("Colour:", colour);
 }
-
 
 importSettings();
 applyColour();
