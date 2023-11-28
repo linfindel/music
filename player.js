@@ -190,12 +190,12 @@ function uploadFile() {
         let file = input.files[0]; // Get the first selected file
         if (file) {
             var fileName = file.name;
-            let parts = fileName.split('.');
 
-            if (parts.length < 3 || fileName.includes("feat.")) {
-                fileName = fileName.split('.').slice(0, -1).join('.');
+            let lastDotIndex = fileName.lastIndexOf('.');
+            if (lastDotIndex !== -1) {
+                fileName = fileName.substring(0, lastDotIndex); // Extract the string before the last '.'
             }
-            
+
             while (fileName.includes("_")) {
                 fileName = fileName.replace("_", " ");
             }
