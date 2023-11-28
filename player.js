@@ -215,6 +215,21 @@ function uploadFile() {
                     document.title = `${fileName} | Music Player`;
                 });
             };
+
+            reader.onprogress = function (e) {
+                if (e.lengthComputable) {
+                    let percentLoaded = (e.loaded / e.total) * 100;
+                    // Update the progress element with the percentage loaded
+                    document.getElementById("title").innerText = `${percentLoaded.toFixed(2)}%`;
+                    document.title = `${percentLoaded} | Music Player`;
+
+                    if (percentLoaded == 100) {
+                        document.getElementById("title").innerText = "Analysing...";
+                        document.title = "Analysing... | Music Player";
+                    }
+                }
+            };
+
             reader.readAsDataURL(file); // Read the file as a data URL
         }
     };
