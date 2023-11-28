@@ -56,7 +56,11 @@ function applyColour() {
                 background-color: ${colour};
             }
 
-            .interactive:hover {
+            .card-flat-bottom {
+                background-color: ${colour};
+            }
+
+            .card-interactive:hover {
                 background-color: ${colour.replace("0.25", "0.5")};
             }
 

@@ -10,14 +10,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 
     <style>
-        .interactive {
-            cursor: url("https://nadir-software.github.io/nadircss/Cursors/link-select.cur"), auto;
-        }
-
-        .interactive:hover {
-            background-color: rgba(0, 89, 255, 0.5);
-        }
-
         button:not(#settings) {
             padding: 2.5rem;
         }
@@ -36,7 +28,7 @@
     </div>
 
     <div class="column">
-        <div id="kandinsky" onclick="setOption('kandinsky', 'disabled')" class="card interactive row" style="gap: 5rem; width: 100%;">
+        <div id="kandinsky" onclick="setOption('kandinsky', 'disabled')" class="card card-interactive row" style="gap: 5rem; width: 100%;">
             <h1 style="font-size: 5rem;" class="material-symbols-rounded">graphic_eq</h1>
             <div>
                 <h1 id="kandinsky-title">Kandinsky Engine enabled</h1>
@@ -45,7 +37,7 @@
         </div>
 
         <div id="colour" class="column" style="width: 100%;">
-            <div class="card text-center" style="border-bottom-left-radius: 7.5px; border-bottom-right-radius: 7.5px; width: 100%;">
+            <div class="card-flat-bottom text-center" style="width: 100%;">
                 <h1>Colour</h1>
             </div>
 
