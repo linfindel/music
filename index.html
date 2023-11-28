@@ -1,126 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Player</title>
 
-    <link
-      rel="stylesheet"
-      href="https://nadir-software.github.io/nadircss/nadir.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0"
-    />
+    <link rel="stylesheet" href="https://nadir-software.github.io/nadircss/nadir.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 
     <style>
-      * {
-        transition: 0.05s ease;
-      }
+        * {
+            transition: 0.05s ease;
+        }
 
-      .glow {
-        width: 50vw;
-      }
+        .glow {
+            width: 50vw;
+        }
 
-      #progress-container {
-        --progress-height: 100%;
+        #progress-container {
+            --progress-height: 100%;
 
-        cursor: url("https://nadir-software.github.io/nadircss/Cursors/link-select.cur"),
-          auto;
-      }
+            cursor: url("https://nadir-software.github.io/nadircss/Cursors/link-select.cur"), auto;
+        }
 
-      #progress-container:hover {
-        --progress-height: 1rem;
+        #progress-container:hover {
+            --progress-height: 1rem;
 
-        height: 1rem;
-      }
+            height: 1rem;
+        }
 
-      #progress-bar {
-        height: var(--progress-height);
-      }
+        #progress-bar {
+            height: var(--progress-height);
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="navbar-column">
-      <div id="navbar" class="navbar">
-        <h1 id="title">Music Player</h1>
-      </div>
-
-      <div
-        id="action-row"
-        class="row"
-        style="justify-content: space-between; width: 100%"
-      >
-        <div class="row">
-          <button onclick="location.href = 'settings.html'" id="settings">
-            <span class="material-symbols-rounded">settings</span>
-            Settings
-          </button>
-
-          <button onclick="uploadFile()" id="upload1">
-            <span class="material-symbols-rounded">upload_file</span>
-            Upload file
-          </button>
-
-          <button onclick="uploadLink()" id="upload2">
-            <span class="material-symbols-rounded">add_link</span>
-            Upload from URL
-          </button>
+        <div id="navbar" class="navbar">
+            <h1 id="title">Music Player</h1>
         </div>
+        
+        <div id="action-row" class="row" style="justify-content: space-between; width: 100%;">
+            <div class="row">
+                <button onclick="location.href = 'settings.html'" id="settings">
+                    <span class="material-symbols-rounded">settings</span>
+                    Settings
+                </button>
 
-        <button
-          id="about"
-          onclick="window.open(`https://www.github.com/Nadir-Software/kandinsky`, '_blank')"
-        >
-          <span class="material-symbols-rounded">code</span>
-          Kandinsky Engine
-        </button>
-      </div>
+                <button onclick="uploadFile()" id="upload1">
+                    <span class="material-symbols-rounded">upload_file</span>
+                    Upload file
+                </button>
+
+                <button onclick="uploadLink()" id="upload2">
+                    <span class="material-symbols-rounded">add_link</span>
+                    Upload from URL
+                </button>
+            </div>
+
+            <button id="about" onclick="window.open(`https://www.github.com/Nadir-Software/kandinsky`, '_blank')">
+                <span class="material-symbols-rounded">code</span>
+                Kandinsky Engine
+            </button>
+        </div>
     </div>
 
     <div class="absolute-centre glow" id="glow"></div>
 
-    <audio
-      onplay="analyse()"
-      onpause="stopAnalysis()"
-      id="audio"
-      crossorigin="anonymous"
-    ></audio>
+    <audio onplay="analyse()" onpause="stopAnalysis()" id="audio" crossorigin="anonymous"></audio>
 
-    <div
-      id="controls"
-      style="opacity: 0; pointer-events: none"
-      class="bottom column"
-    >
-      <div
-        id="progress-container"
-        class="progress"
-        style="background-color: rgba(100, 100, 100, 0.25); width: 100%"
-      >
-        <div
-          id="progress-bar"
-          class="progress"
-          style="background-color: rgba(100, 100, 100, 1); width: 0"
-        ></div>
-      </div>
+    <div id="controls" style="opacity: 0; pointer-events: none;" class="bottom column">
+        <div id="progress-container" class="progress" style="background-color: rgba(100, 100, 100, 0.25); width: 100%;">
+            <div id="progress-bar" class="progress" style="background-color: rgba(100, 100, 100, 1); width: 0;"></div>
+        </div>
 
-      <div class="row">
-        <button onclick="play()" id="play">
-          <span id="play-icon" class="material-symbols-rounded"
-            >pause_circle</span
-          >
-          <span id="play-text">Pause</span>
-        </button>
+        <div class="row">
+            <button onclick="play()" id="play">
+                <span id="play-icon" class="material-symbols-rounded">pause_circle</span>
+                <span id="play-text">Pause</span>
+            </button>
 
-        <button onclick="repeat()" id="repeat">
-          <span class="material-symbols-rounded">repeat</span>
-          <span id="repeat-text">Repeat off</span>
-        </button>
-      </div>
+            <button onclick="repeat()" id="repeat">
+                <span class="material-symbols-rounded">repeat</span>
+                <span id="repeat-text">Repeat off</span>
+            </button>
+        </div>
     </div>
 
     <script src="player.js"></script>
-  </body>
+</body>
 </html>
