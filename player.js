@@ -131,6 +131,7 @@ function analyse() {
         document.getElementById("about").style.backgroundColor = rgba;
 
         document.getElementById("play").style.backgroundColor = rgba;
+        document.getElementById("stop").style.backgroundColor = rgba;
         document.getElementById("repeat").style.backgroundColor = rgba;
 
         document.getElementById("progress-container").style.backgroundColor = rgba;
@@ -269,7 +270,7 @@ function applyColour() {
                 background-color: ${colour.replace("0.25", "0.5")};
             }
 
-            #settings:hover, #upload1:hover, #upload2:hover, #about:hover, #play:hover, #repeat:hover {
+            #settings:hover, #upload1:hover, #upload2:hover, #about:hover, #play:hover, #stop:hover, #repeat:hover {
                 background-color: ${colour.replace("0.25", "0.5")};
             }
 
