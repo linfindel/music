@@ -70,7 +70,7 @@
 
     <div class="absolute-centre glow" id="glow"></div>
 
-    <audio onplay="analyse()" onpause="stopAnalysis()" id="audio" crossorigin="anonymous"></audio>
+    <audio onplay="analyse()" onpause="stopAnalysis()" onended="location.reload()" id="audio" crossorigin="anonymous"></audio>
 
     <div id="controls" style="opacity: 0; pointer-events: none;" class="bottom column">
         <div id="progress-container" class="progress" style="background-color: rgba(100, 100, 100, 0.25); width: 100%;">
@@ -85,7 +85,7 @@
 
             <button onclick="location.reload()" id="stop">
                 <span class="material-symbols-rounded">stop_circle</span>
-                <span id="repeat-text">Stop</span>
+                <span>Stop</span>
             </button>
 
             <button onclick="repeat()" id="repeat">

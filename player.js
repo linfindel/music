@@ -103,12 +103,6 @@ function analyse() {
         midVolume = Math.min(255, midVolume);
         highVolume = Math.min(255, highVolume);
 
-        if (lowVolume == 0 && midVolume == 0 && highVolume == 0) {
-            lowVolume = 0;
-            midVolume = 89;
-            highVolume = 255;
-        }
-
         var rgba;
 
         if (skew == "blue") {
