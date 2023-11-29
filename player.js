@@ -215,7 +215,7 @@ function uploadFile() {
                     let percentLoaded = (e.loaded / e.total) * 100;
                     // Update the progress element with the percentage loaded
                     document.getElementById("title").innerText = `${percentLoaded.toFixed(2)}%`;
-                    document.title = `${percentLoaded.toFixed(2)} | Music Player`;
+                    document.title = `${percentLoaded.toFixed(2)}% | Music Player`;
 
                     if (percentLoaded == 100) {
                         document.getElementById("title").innerText = "Analysing...";
