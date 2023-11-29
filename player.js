@@ -235,7 +235,7 @@ function uploadLink() {
     var url = prompt("URL:");
 
     if (url.includes("https://www.youtube.com") || url.includes("https://music.youtube.com") || url.includes("https://youtu.be")) {
-        alert("Downloading or streaming from YouTube is against YouTube Terms of Service");
+        alert("Downloading or streaming from YouTube is against YouTube Terms of Service. Use a file URL instead.");
     }
 
     else {
