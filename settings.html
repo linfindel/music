@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 
     <style>
-        button:not(#settings) {
+        button:not(#settings, .about) {
             padding: 2.5rem;
         }
     </style>
@@ -46,6 +46,25 @@
                 <button style="flex: 1; border-radius: 7.5px;" onclick="setOption('colour', 'rgba(0, 255, 0, 0.25)')" class="button-success nochange-colour">Green</button>
                 <button style="flex: 1; border-top-left-radius: 7.5px; border-top-right-radius: 7.5px; border-bottom-left-radius: 7.5px; border-bottom-right-radius: 24px;" onclick="setOption('colour', 'rgba(0, 89, 255, 0.25)')" class="nochange-colour">Blue</button>
             </div>
+        </div>
+    </div>
+
+    <div class="card column">
+        <div class="text-center">
+            <h1 id="version">Loading...</h1>
+            <p id="whats-new"></p>
+        </div>
+
+        <div class="row">
+            <button id="about1" onclick="window.open('https://nadir-software.github.io', '_blank')" class="about">
+                <span class="material-symbols-rounded">home</span>
+                More projects
+            </button>
+
+            <button id="about2" onclick="window.open('https://www.github.com/Nadir-Software/music', '_blank')" class="about">
+                <span class="material-symbols-rounded">code</span>
+                View source
+            </button>
         </div>
     </div>
 
