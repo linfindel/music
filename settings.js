@@ -81,7 +81,6 @@ function applyColour() {
             }
         `;
 
-
         document.getElementById("about1").addEventListener("mouseover", () => {
             document.getElementById("about1").style.backgroundColor = colour.replace("0.25", "0.5");
         });
