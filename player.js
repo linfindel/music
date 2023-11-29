@@ -179,7 +179,7 @@ function changeSkew(newSkew) {
 function uploadFile() {
     let input = document.createElement('input');
     input.type = 'file';
-    input.accept = 'audio/*';
+    input.accept = 'audio/mp3, audio/wav, audio/ogg';
     input.onchange = () => {
         let file = input.files[0]; // Get the first selected file
         if (file) {
