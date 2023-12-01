@@ -117,6 +117,9 @@ fetch(`https://api.github.com/repos/${username}/${repo}/commits?per_page=1`)
         
         document.getElementById("version").innerText = `Version ${totalCount} Release Notes`;
         document.getElementById("whats-new").innerText = latestCommitMessage;
+
+        document.getElementById("about-card").style.opacity = "1";
+        document.getElementById("about-card").style.pointerEvents = "all";
     });
 })
 .catch(error => console.error('Error fetching data:', error));
