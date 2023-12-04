@@ -113,6 +113,14 @@ function applyColour() {
     console.log("Colour:", colour);
 }
 
+document.getElementById("purple").addEventListener("mouseover", () => {
+    document.getElementById("purple").style.backgroundColor = "rgba(255, 0, 255, 0.5)";
+});
+
+document.getElementById("purple").addEventListener("mouseleave", () => {
+    document.getElementById("purple").style.backgroundColor = "rgba(255, 0, 255, 0.25)";
+});
+
 importSettings();
 applyColour();
 
