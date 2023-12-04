@@ -392,11 +392,24 @@ function updateTimeOnHover(event) {
 }
 
 function formatTime(timeInSeconds) {
-    const minutes = Math.floor(timeInSeconds / 60);
-    const seconds = Math.floor(timeInSeconds % 60);
-    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
-    return `${formattedMinutes}:${formattedSeconds}`;
+    if (timeInSeconds < 3600) {
+        const minutes = Math.floor(timeInSeconds / 60);
+        const seconds = Math.floor(timeInSeconds % 60);
+        const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+        const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+        return `${formattedMinutes}:${formattedSeconds}`;
+    } else {
+        const hours = Math.floor(timeInSeconds / 3600);
+        const remainingSeconds = timeInSeconds % 3600;
+        const minutes = Math.floor(remainingSeconds / 60);
+        const seconds = Math.floor(remainingSeconds % 60);
+
+        const formattedHours = hours < 10 ? `0${hours}` : hours;
+        const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+        const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+
+        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+    }
 }
 
 function resetTitle() {
