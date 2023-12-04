@@ -206,6 +206,8 @@ function uploadFile() {
                 document.getElementById("audio").play();
 
                 document.getElementById("audio").addEventListener("loadedmetadata", () => {
+                    document.getElementById("title").style.cursor = "url('https://nadir-software.github.io/nadircss/Cursors/link-select.cur'), auto";
+
                     document.getElementById("title").innerText = fileName;
                     document.title = `${fileName} | Music Player`;
 
