@@ -28,6 +28,7 @@ let analyser;
 let audioElement;
 let audioSource;
 let fileName;
+var customTitles = JSON.parse(localStorage.getItem("custom-titles")) || {};
 
 function setupAnalysis() {
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -213,8 +214,6 @@ function uploadFile() {
 
                     document.getElementById("title").contentEditable = "true";
 
-                    var customTitles = JSON.parse(localStorage.getItem("custom-titles")) || {};
-
                     if (customTitles[fileName]) {
                         document.getElementById("title").innerText = customTitles[fileName];
                     }
@@ -370,8 +369,6 @@ document.getElementById("audio").addEventListener("play", () => {
     document.getElementById("controls").style.pointerEvents = "all";
 });
 
-let isDragging = false;
-
 function updateProgressClick(event) {
     const progressBar = document.getElementById("progress-bar");
     const progressContainer = document.getElementById("progress-container");
@@ -383,7 +380,32 @@ function updateProgressClick(event) {
     document.getElementById("audio").currentTime = newTime;
 }
 
+function updateTimeOnHover(event) {
+    const progressContainer = document.getElementById("progress-container");
+    const offsetX = event.clientX - progressContainer.getBoundingClientRect().left;
+    const percentage = (offsetX / progressContainer.offsetWidth) * 100;
+
+    const newTime = (percentage / 100) * document.getElementById("audio").duration;
+    const formattedTime = formatTime(newTime);
+
+    document.getElementById("title").innerText = formattedTime;
+}
+
+function formatTime(timeInSeconds) {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = Math.floor(timeInSeconds % 60);
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+    return `${formattedMinutes}:${formattedSeconds}`;
+}
+
+function resetTitle() {
+    document.getElementById("title").innerText = customTitles[fileName] || fileName;
+}
+
 document.getElementById("progress-container").addEventListener("click", updateProgressClick);
+document.getElementById("progress-container").addEventListener("mousemove", updateTimeOnHover);
+document.getElementById("progress-container").addEventListener("mouseout", resetTitle);
 
 if (localStorage.getItem("warn") != "true") {
     location.href = "warning.html";
