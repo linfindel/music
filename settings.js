@@ -109,7 +109,7 @@ const repo = 'music';
 
 fetch(`https://api.github.com/repos/${username}/${repo}/commits?per_page=1`)
   .then(response => {
-    const totalCount = response.headers.get('Link').match(/page=(\d+)>; rel="last"/)[1];
+    const totalCount = response.headers.get('Link').match(/page=(\d+)>; rel="last"/)[1] / 100;
     return response.json().then(data => {
         const latestCommitMessage = data[0].commit.message;
         console.log(`Total commit count: ${totalCount}`);
