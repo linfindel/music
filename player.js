@@ -417,6 +417,8 @@ document.getElementById("title").addEventListener("input", () => {
     var originalFileName = fileName;
     var newTitle = document.getElementById("title").innerText;
 
+    document.title = `${newTitle} | Music Player`;
+
     customTitles[originalFileName] = newTitle;
     localStorage.setItem("custom-titles", JSON.stringify(customTitles));
 }); 
