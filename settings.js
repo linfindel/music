@@ -104,7 +104,7 @@ function applyColour() {
 importSettings();
 applyColour();
 
-const username = 'Nadir-Software';
+const username = 'linfindel';
 const repo = 'music';
 
 fetch(`https://api.github.com/repos/${username}/${repo}/commits?per_page=1`)
