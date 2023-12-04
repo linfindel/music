@@ -68,6 +68,10 @@ function applyColour() {
                 background-color: ${colour.replace("0.25", "0.5")};
             }
 
+            .reset:hover {
+                background-color: ${colour.replace("0.25", "0.5")};
+            }
+
             button:not(.nochange-colour) {
                 background-color: ${colour};
             }
@@ -95,6 +99,14 @@ function applyColour() {
 
         document.getElementById("about2").addEventListener("mouseleave", () => {
             document.getElementById("about2").style.backgroundColor = colour;
+        });
+
+        document.getElementById("reset").addEventListener("mouseover", () => {
+            document.getElementById("reset").style.backgroundColor = colour.replace("0.25", "0.5");
+        });
+
+        document.getElementById("reset").addEventListener("mouseleave", () => {
+            document.getElementById("reset").style.backgroundColor = colour;
         });
     }
 

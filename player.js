@@ -21,6 +21,13 @@ else if (skew == "rgba(0, 255, 0, 0.25)") {
     document.getElementById("progress-bar").style.backgroundColor = "rgba(0, 255, 0, 1)";
 }
 
+else if (skew == "rgba(255, 0, 255, 0.25)") {
+    skew = "purple";
+
+    document.getElementById("progress-container").style.backgroundColor = "rgba(255, 0, 255, 0.25)";
+    document.getElementById("progress-bar").style.backgroundColor = "rgba(255, 0, 255, 1)";
+}
+
 let analysisInterval;
 let setupComplete;
 let audioContext;
@@ -117,6 +124,10 @@ function analyse() {
 
         else if (skew == "red") {
             rgba = `rgba(${lowVolume}, ${midVolume}, ${highVolume}, ${alpha})`;
+        }
+
+        else if (skew == "purple") {
+            rgba = `rgba(${midVolume * 2}, ${highVolume}, ${lowVolume}, ${alpha})`;
         }
 
         document.getElementById("navbar").style.backgroundColor = rgba;
