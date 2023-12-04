@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 
     <style>
-        button:not(#settings, .about) {
+        button:not(#settings, .about, .reset) {
             padding: 2.5rem;
         }
     </style>
@@ -21,10 +21,16 @@
             <h1>Music Player</h1>
         </div>
         
-        <button onclick="location.href = 'index.html'" id="settings">
-            <span class="material-symbols-rounded">arrow_back</span>
-            Back
-        </button>
+        <div class="row">
+            <button onclick="location.href = 'index.html'" id="settings">
+                <span class="material-symbols-rounded">arrow_back</span>
+                Back
+            </button>
+            <button onclick="localStorage.clear(); document.getElementById('reset-icon').innerText = 'done'; document.getElementById('reset-text').innerText = 'Reset complete';" class="button-error reset">
+                <span id="reset-icon" class="material-symbols-rounded">delete</span>
+                <span id="reset-text">Reset</span>
+            </button>
+        </div>
     </div>
 
     <div class="column">

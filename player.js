@@ -27,6 +27,7 @@ let audioContext;
 let analyser;
 let audioElement;
 let audioSource;
+let fileName;
 
 function setupAnalysis() {
     audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -183,7 +184,7 @@ function uploadFile() {
     input.onchange = () => {
         let file = input.files[0]; // Get the first selected file
         if (file) {
-            var fileName = file.name;
+            fileName = file.name;
 
             let lastDotIndex = fileName.lastIndexOf('.');
             if (lastDotIndex !== -1) {
@@ -207,6 +208,14 @@ function uploadFile() {
                 document.getElementById("audio").addEventListener("loadedmetadata", () => {
                     document.getElementById("title").innerText = fileName;
                     document.title = `${fileName} | Music Player`;
+
+                    document.getElementById("title").contentEditable = "true";
+
+                    var customTitles = JSON.parse(localStorage.getItem("custom-titles")) || {};
+
+                    if (customTitles[fileName]) {
+                        document.getElementById("title").innerText = customTitles[fileName];
+                    }
                 });
             };
 
@@ -399,3 +408,13 @@ setInterval(() => {
         // Audio playback has not started
     }
 }, 100);
+
+document.getElementById("title").addEventListener("input", () => {
+    var customTitles = JSON.parse(localStorage.getItem("custom-titles")) || {};
+
+    var originalFileName = fileName;
+    var newTitle = document.getElementById("title").innerText;
+
+    customTitles[originalFileName] = newTitle;
+    localStorage.setItem("custom-titles", JSON.stringify(customTitles));
+}); 
