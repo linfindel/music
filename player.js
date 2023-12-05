@@ -127,7 +127,7 @@ function analyse() {
         }
 
         else if (skew == "purple") {
-            rgba = `rgba(${midVolume * 2}, ${highVolume}, ${lowVolume}, ${alpha})`;
+            rgba = `rgba(${midVolume * 2}, ${highVolume}, ${lowVolume / 2}, ${alpha})`;
         }
 
         document.getElementById("navbar").style.backgroundColor = rgba;
