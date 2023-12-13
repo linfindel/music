@@ -391,45 +391,7 @@ function updateProgressClick(event) {
     document.getElementById("audio").currentTime = newTime;
 }
 
-function updateTimeOnHover(event) {
-    const progressContainer = document.getElementById("progress-container");
-    const offsetX = event.clientX - progressContainer.getBoundingClientRect().left;
-    const percentage = (offsetX / progressContainer.offsetWidth) * 100;
-
-    const newTime = (percentage / 100) * document.getElementById("audio").duration;
-    const formattedTime = formatTime(newTime);
-
-    document.getElementById("title").innerText = formattedTime;
-}
-
-function formatTime(timeInSeconds) {
-    if (timeInSeconds < 3600) {
-        const minutes = Math.floor(timeInSeconds / 60);
-        const seconds = Math.floor(timeInSeconds % 60);
-        const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-        const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
-        return `${formattedMinutes}:${formattedSeconds}`;
-    } else {
-        const hours = Math.floor(timeInSeconds / 3600);
-        const remainingSeconds = timeInSeconds % 3600;
-        const minutes = Math.floor(remainingSeconds / 60);
-        const seconds = Math.floor(remainingSeconds % 60);
-
-        const formattedHours = hours < 10 ? `0${hours}` : hours;
-        const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-        const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
-
-        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-    }
-}
-
-function resetTitle() {
-    document.getElementById("title").innerText = customTitles[fileName] || fileName;
-}
-
 document.getElementById("progress-container").addEventListener("click", updateProgressClick);
-document.getElementById("progress-container").addEventListener("mousemove", updateTimeOnHover);
-document.getElementById("progress-container").addEventListener("mouseout", resetTitle);
 
 if (localStorage.getItem("warn") != "true") {
     location.href = "warning.html";
@@ -467,4 +429,4 @@ document.getElementById("title").addEventListener("input", () => {
 
     customTitles[originalFileName] = newTitle;
     localStorage.setItem("custom-titles", JSON.stringify(customTitles));
-}); 
+});
