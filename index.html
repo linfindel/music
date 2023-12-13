@@ -73,6 +73,8 @@
     <audio onplay="analyse()" onpause="stopAnalysis()" onended="location.reload()" id="audio" crossorigin="anonymous"></audio>
 
     <div id="controls" style="opacity: 0; pointer-events: none;" class="bottom column">
+        <div id="tooltip" class="tooltip"></div>
+
         <div id="progress-container" class="progress" style="background-color: rgba(100, 100, 100, 0.25); width: 100%;">
             <div id="progress-bar" class="progress" style="background-color: rgba(100, 100, 100, 1); width: 0;"></div>
         </div>

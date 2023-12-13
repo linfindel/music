@@ -141,11 +141,12 @@ function analyse() {
         document.getElementById("stop").style.backgroundColor = rgba;
         document.getElementById("repeat").style.backgroundColor = rgba;
 
+        document.getElementById("tooltip").style.backgroundColor = rgba;
         document.getElementById("progress-container").style.backgroundColor = rgba;
         document.getElementById("progress-bar").style.backgroundColor = rgba.replace("0.25", "1");
 
         document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume * 75}px ${generalVolume}px ${rgba}`;
-    }, 0);
+    });
 }
 
 function stopAnalysis() {
@@ -430,3 +431,40 @@ document.getElementById("title").addEventListener("input", () => {
     customTitles[originalFileName] = newTitle;
     localStorage.setItem("custom-titles", JSON.stringify(customTitles));
 });
+
+// Add event listeners for mouseover and mouseout on the progress bar
+const progressContainer = document.getElementById("progress-container");
+const tooltip = document.getElementById("tooltip");
+
+progressContainer.addEventListener("mousemove", showTooltip);
+progressContainer.addEventListener("mouseout", hideTooltip);
+
+function showTooltip(event) {
+    const duration = document.getElementById("audio").duration;
+    const offsetX = event.clientX - progressContainer.getBoundingClientRect().left;
+    const percentage = (offsetX / progressContainer.offsetWidth) * 100;
+    const currentTime = (percentage / 100) * duration;
+
+    const formattedTime = formatTime(currentTime);
+    
+    tooltip.style.display = "block";
+    tooltip.style.top = `${progressContainer.offsetTop - 16}px`; // 1rem above the progress bar
+    tooltip.style.left = `${event.pageX - progressContainer.getBoundingClientRect().left}px`; // Adjust horizontal position relative to the progress bar
+    tooltip.textContent = formattedTime;
+}
+
+function hideTooltip() {
+    tooltip.style.display = "none";
+}
+
+function formatTime(timeInSeconds) {
+    const hours = Math.floor(timeInSeconds / 3600);
+    const minutes = Math.floor((timeInSeconds % 3600) / 60);
+    const seconds = Math.floor(timeInSeconds % 60);
+
+    const formattedHours = hours > 0 ? `${hours.toString().padStart(2, "0")}:` : "";
+    const formattedMinutes = `${minutes.toString().padStart(2, "0")}:`;
+    const formattedSeconds = seconds.toString().padStart(2, "0");
+
+    return hours > 0 ? `${formattedHours}${formattedMinutes}${formattedSeconds}` : `${formattedMinutes}${formattedSeconds}`;
+}
