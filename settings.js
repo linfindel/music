@@ -52,11 +52,7 @@ function applyColour() {
                 background-color: ${colour};
             }
 
-            .card {
-                background-color: ${colour};
-            }
-
-            .card-flat-bottom {
+            .card, .card-flat-bottom {
                 background-color: ${colour};
             }
 
