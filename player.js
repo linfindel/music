@@ -88,6 +88,11 @@ function analyse() {
         // Map the general volume to the alpha value (range 0.1 to 1)
         const alpha = 0.1 + (generalVolume / 255) * 0.9;
 
+        if (localStorage.getItem("debug") == "enabled") { 
+            document.getElementById("a-value").style.height = `${alpha / 255 * 100}px`;
+            document.getElementById("a-text").innerText = Math.round(alpha * 10) / 10;
+        }
+
 	    // Map the volumes to a range of 0 to 255
 	    const mapTo255 = (value) => (value / 255) * 255;
 	
@@ -116,14 +121,44 @@ function analyse() {
 
         if (skew == "blue") {
             rgba = `rgba(${highVolume}, ${midVolume}, ${lowVolume}, ${alpha})`;
+
+            if (localStorage.getItem("debug") == "enabled") {
+                document.getElementById("r-value").style.height = `${highVolume / 255 * 100}px`;
+                document.getElementById("g-value").style.height = `${midVolume / 255 * 100}px`;
+                document.getElementById("b-value").style.height = `${lowVolume / 255 * 100}px`;
+
+                document.getElementById("r-text").innerText = Math.round(highVolume / 255 * 100);
+                document.getElementById("g-text").innerText = Math.round(midVolume / 255 * 100);
+                document.getElementById("b-text").innerText = Math.round(lowVolume / 255 * 100);
+            }
         }
 
         else if (skew == "green") {
             rgba = `rgba(${midVolume}, ${lowVolume}, ${highVolume}, ${alpha})`;
+
+            if (localStorage.getItem("debug") == "enabled") {
+                document.getElementById("r-value").style.height = `${midVolume / 255 * 100}px`;
+                document.getElementById("g-value").style.height = `${lowVolume / 255 * 100}px`;
+                document.getElementById("b-value").style.height = `${highVolume / 255 * 100}px`;
+
+                document.getElementById("r-text").innerText = Math.round(midVolume / 255 * 100);
+                document.getElementById("g-text").innerText = Math.round(lowVolume / 255 * 100);
+                document.getElementById("b-text").innerText = Math.round(highVolume / 255 * 100);
+            }
         }
 
         else if (skew == "red") {
             rgba = `rgba(${lowVolume}, ${midVolume}, ${highVolume}, ${alpha})`;
+
+            if (localStorage.getItem("debug") == "enabled") {
+                document.getElementById("r-value").style.height = `${lowVolume / 255 * 100}px`;
+                document.getElementById("g-value").style.height = `${midVolume / 255 * 100}px`;
+                document.getElementById("b-value").style.height = `${highVolume / 255 * 100}px`;
+
+                document.getElementById("r-text").innerText = Math.round(lowVolume / 255 * 100);
+                document.getElementById("g-text").innerText = Math.round(midVolume / 255 * 100);
+                document.getElementById("b-text").innerText = Math.round(highVolume / 255 * 100);
+            }
         }
 
         else if (skew == "purple") {
@@ -467,4 +502,10 @@ function formatTime(timeInSeconds) {
     const formattedSeconds = seconds.toString().padStart(2, "0");
 
     return hours > 0 ? `${formattedHours}${formattedMinutes}${formattedSeconds}` : `${formattedMinutes}${formattedSeconds}`;
+}
+
+if (localStorage.getItem("debug") == "disabled" || !localStorage.getItem("debug")) {
+    document.getElementById("debug-card").remove();
+
+    console.log("Debug disabled");
 }

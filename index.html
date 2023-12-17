@@ -35,6 +35,45 @@
 
             transition: 0.2s ease;
         }
+
+        .progress-debug {
+            height: 10rem;
+            width: 1rem;
+
+            rotate: 180deg;
+        }
+
+        #r {
+            background-color: rgba(255, 0, 0, 0.25);
+        }
+
+        #r-value {
+            background-color: rgba(255, 0, 0, 0.5);
+        }
+
+        #g {
+            background-color: rgba(0, 255, 0, 0.25);
+        }
+
+        #g-value {
+            background-color: rgba(0, 255, 0, 0.5);
+        }
+
+        #b {
+            background-color: rgba(0, 0, 255, 0.25);
+        }
+
+        #b-value {
+            background-color: rgba(0, 0, 255, 0.5);
+        }
+
+        #a {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        #a-value {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -94,6 +133,52 @@
                 <span class="material-symbols-rounded">repeat</span>
                 <span id="repeat-text">Repeat off</span>
             </button>
+        </div>
+    </div>
+
+    <div id="debug-card" class="right column">
+        <h2>Debug</h2>
+
+        <div class="row">
+            <div class="column">
+                <div id="r" class="progress progress-debug">
+                    <div id="r-value" class="progress progress-debug" style="height: 0px;"></div>
+                </div>
+
+                <p>R</p>
+
+                <p id="r-text"></p>
+            </div>
+
+            <div class="column">
+                <div id="g" class="progress progress-debug">
+                    <div id="g-value" class="progress progress-debug" style="height: 0px;"></div>
+                </div>
+                
+                <p>G</p>
+
+                <p id="g-text"></p>
+            </div>
+
+            <div class="column">
+                <div id="b" class="progress progress-debug">
+                    <div id="b-value" class="progress progress-debug" style="height: 0px;"></div>
+                </div>
+                
+                <p>B</p>
+
+                <p id="b-text"></p>
+            </div>
+
+            <div class="column">
+                <div id="a" class="progress progress-debug">
+                    <div id="a-value" class="progress progress-debug" style="height: 0px;"></div>
+                </div>
+                
+                <p>A</p>
+
+                <p id="a-text"></p>
+            </div>
         </div>
     </div>
 

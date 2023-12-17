@@ -40,6 +40,27 @@ function importSettings() {
     }
 }
 
+function debug() {
+    if (localStorage.getItem("debug") == "enabled") {
+        localStorage.setItem("debug", "disabled");
+
+        document.getElementById("debug-icon").innerText = "code";
+        document.getElementById("debug-text").innerText = "Show debug panel";
+    }
+
+    else {
+        localStorage.setItem("debug", "enabled");
+
+        document.getElementById("debug-icon").innerText = "code_off";
+        document.getElementById("debug-text").innerText = "Hide debug panel";
+    }
+}
+
+if (localStorage.getItem("debug") == "enabled") {
+    document.getElementById("debug-icon").innerText = "code_off";
+    document.getElementById("debug-text").innerText = "Hide debug panel";
+}
+
 function applyColour() {
     var colour = localStorage.getItem("colour");
 
@@ -60,11 +81,7 @@ function applyColour() {
                 background-color: ${colour.replace("0.25", "0.5")};
             }
 
-            .about:hover {
-                background-color: ${colour.replace("0.25", "0.5")};
-            }
-
-            .reset:hover {
+            .about:hover, .reset:hover, .debug:hover {
                 background-color: ${colour.replace("0.25", "0.5")};
             }
 
@@ -103,6 +120,14 @@ function applyColour() {
 
         document.getElementById("reset").addEventListener("mouseleave", () => {
             document.getElementById("reset").style.backgroundColor = colour;
+        });
+
+        document.getElementById("debug").addEventListener("mouseover", () => {
+            document.getElementById("debug").style.backgroundColor = colour.replace("0.25", "0.5");
+        });
+
+        document.getElementById("debug").addEventListener("mouseleave", () => {
+            document.getElementById("debug").style.backgroundColor = colour;
         });
     }
 

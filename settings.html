@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 
     <style>
-        button:not(#settings, .about, .reset) {
+        button:not(#settings, .about, .reset, .debug) {
             padding: 2.5rem;
         }
     </style>
@@ -26,9 +26,15 @@
                 <span class="material-symbols-rounded">arrow_back</span>
                 Back
             </button>
+
             <button id="reset" onclick="localStorage.clear(); document.getElementById('reset-icon').innerText = 'done'; document.getElementById('reset-text').innerText = 'Reset complete';" class="reset">
                 <span id="reset-icon" class="material-symbols-rounded">delete</span>
                 <span id="reset-text">Reset</span>
+            </button>
+
+            <button id="debug" onclick="debug();" class="debug">
+                <span id="debug-icon" class="material-symbols-rounded">code</span>
+                <span id="debug-text">Show debug panel</span>
             </button>
         </div>
     </div>
