@@ -89,7 +89,7 @@ function analyse() {
         const alpha = 0.1 + (generalVolume / 255) * 0.9;
 
         if (localStorage.getItem("debug") == "enabled") { 
-            document.getElementById("a-value").style.height = `${alpha / 255 * 100}px`;
+            document.getElementById("a-value").style.height = `${alpha * 100}%`;
             document.getElementById("a-text").innerText = Math.round(alpha * 10) / 10;
         }
 
