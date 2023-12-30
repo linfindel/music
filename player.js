@@ -589,3 +589,9 @@ if (localStorage.getItem("debug") == "disabled" || !localStorage.getItem("debug"
 
     console.log("Debug disabled");
 }
+
+else {
+    document.getElementById("debug-card").style.opacity = "1";
+
+    console.log("Debug enabled");
+}
