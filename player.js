@@ -130,18 +130,30 @@ function analyse() {
                 var r = Math.round(highVolume / 255 * 100);
 
                 if (r < 10) {
+                    r = `00${r}`;
+                }
+
+                else if (r < 100) {
                     r = `0${r}`;
                 }
 
                 var g = Math.round(midVolume / 255 * 100);
 
                 if (g < 10) {
+                    g = `00${g}`;
+                }
+
+                else if (g < 100) {
                     g = `0${g}`;
                 }
 
                 var b = Math.round(lowVolume / 255 * 100);
 
                 if (b < 10) {
+                    b = `00${b}`;
+                }
+
+                else if (r < 100) {
                     b = `0${b}`;
                 }
 
@@ -162,18 +174,30 @@ function analyse() {
                 var r = Math.round(midVolume / 255 * 100);
 
                 if (r < 10) {
+                    r = `00${r}`;
+                }
+
+                else if (r < 100) {
                     r = `0${r}`;
                 }
 
                 var g = Math.round(lowVolume / 255 * 100);
 
                 if (g < 10) {
+                    g = `00${g}`;
+                }
+
+                else if (g < 100) {
                     g = `0${g}`;
                 }
 
                 var b = Math.round(highVolume / 255 * 100);
 
                 if (b < 10) {
+                    b = `00${b}`;
+                }
+
+                else if (r < 100) {
                     b = `0${b}`;
                 }
 
@@ -194,18 +218,30 @@ function analyse() {
                 var r = Math.round(lowVolume / 255 * 100);
 
                 if (r < 10) {
+                    r = `00${r}`;
+                }
+
+                else if (r < 100) {
                     r = `0${r}`;
                 }
 
                 var g = Math.round(midVolume / 255 * 100);
 
                 if (g < 10) {
+                    g = `00${g}`;
+                }
+
+                else if (g < 100) {
                     g = `0${g}`;
                 }
 
                 var b = Math.round(highVolume / 255 * 100);
 
                 if (b < 10) {
+                    b = `00${b}`;
+                }
+
+                else if (r < 100) {
                     b = `0${b}`;
                 }
 
@@ -225,18 +261,30 @@ function analyse() {
             var r = Math.round((midVolume * 2) / 255 * 100);
 
             if (r < 10) {
+                r = `00${r}`;
+            }
+
+            else if (r < 100) {
                 r = `0${r}`;
             }
 
             var g = Math.round(highVolume / 255 * 100);
 
             if (g < 10) {
+                g = `00${g}`;
+            }
+
+            else if (g < 100) {
                 g = `0${g}`;
             }
 
             var b = Math.round((lowVolume / 2) / 255 * 100);
 
             if (b < 10) {
+                b = `00${b}`;
+            }
+
+            else if (b < 100) {
                 b = `0${b}`;
             }
 
