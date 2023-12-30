@@ -127,9 +127,27 @@ function analyse() {
                 document.getElementById("g-value").style.height = `${midVolume / 255 * 100}px`;
                 document.getElementById("b-value").style.height = `${lowVolume / 255 * 100}px`;
 
-                document.getElementById("r-text").innerText = Math.round(highVolume / 255 * 100);
-                document.getElementById("g-text").innerText = Math.round(midVolume / 255 * 100);
-                document.getElementById("b-text").innerText = Math.round(lowVolume / 255 * 100);
+                var r = Math.round(highVolume / 255 * 100);
+
+                if (r < 10) {
+                    r = `0${r}`;
+                }
+
+                var g = Math.round(midVolume / 255 * 100);
+
+                if (g < 10) {
+                    g = `0${g}`;
+                }
+
+                var b = Math.round(lowVolume / 255 * 100);
+
+                if (b < 10) {
+                    b = `0${b}`;
+                }
+
+                document.getElementById("r-text").innerText = r;
+                document.getElementById("g-text").innerText = g;
+                document.getElementById("b-text").innerText = b;
             }
         }
 
@@ -141,9 +159,27 @@ function analyse() {
                 document.getElementById("g-value").style.height = `${lowVolume / 255 * 100}px`;
                 document.getElementById("b-value").style.height = `${highVolume / 255 * 100}px`;
 
-                document.getElementById("r-text").innerText = Math.round(midVolume / 255 * 100);
-                document.getElementById("g-text").innerText = Math.round(lowVolume / 255 * 100);
-                document.getElementById("b-text").innerText = Math.round(highVolume / 255 * 100);
+                var r = Math.round(midVolume / 255 * 100);
+
+                if (r < 10) {
+                    r = `0${r}`;
+                }
+
+                var g = Math.round(lowVolume / 255 * 100);
+
+                if (g < 10) {
+                    g = `0${g}`;
+                }
+
+                var b = Math.round(highVolume / 255 * 100);
+
+                if (b < 10) {
+                    b = `0${b}`;
+                }
+
+                document.getElementById("r-text").innerText = r;
+                document.getElementById("g-text").innerText = g;
+                document.getElementById("b-text").innerText = b;
             }
         }
 
@@ -155,14 +191,58 @@ function analyse() {
                 document.getElementById("g-value").style.height = `${midVolume / 255 * 100}px`;
                 document.getElementById("b-value").style.height = `${highVolume / 255 * 100}px`;
 
-                document.getElementById("r-text").innerText = Math.round(lowVolume / 255 * 100);
-                document.getElementById("g-text").innerText = Math.round(midVolume / 255 * 100);
-                document.getElementById("b-text").innerText = Math.round(highVolume / 255 * 100);
+                var r = Math.round(lowVolume / 255 * 100);
+
+                if (r < 10) {
+                    r = `0${r}`;
+                }
+
+                var g = Math.round(midVolume / 255 * 100);
+
+                if (g < 10) {
+                    g = `0${g}`;
+                }
+
+                var b = Math.round(highVolume / 255 * 100);
+
+                if (b < 10) {
+                    b = `0${b}`;
+                }
+
+                document.getElementById("r-text").innerText = r;
+                document.getElementById("g-text").innerText = g;
+                document.getElementById("b-text").innerText = b;
             }
         }
 
         else if (skew == "purple") {
             rgba = `rgba(${midVolume * 2}, ${highVolume}, ${lowVolume / 2}, ${alpha})`;
+
+            document.getElementById("r-value").style.height = `${(midVolume * 2) / 255 * 100}px`;
+            document.getElementById("g-value").style.height = `${highVolume / 255 * 100}px`;
+            document.getElementById("b-value").style.height = `${(lowVolume / 2) / 255 * 100}px`;
+
+            var r = Math.round((midVolume * 2) / 255 * 100);
+
+            if (r < 10) {
+                r = `0${r}`;
+            }
+
+            var g = Math.round(highVolume / 255 * 100);
+
+            if (g < 10) {
+                g = `0${g}`;
+            }
+
+            var b = Math.round((lowVolume / 2) / 255 * 100);
+
+            if (b < 10) {
+                b = `0${b}`;
+            }
+
+            document.getElementById("r-text").innerText = r;
+            document.getElementById("g-text").innerText = g;
+            document.getElementById("b-text").innerText = b;
         }
 
         document.getElementById("navbar").style.backgroundColor = rgba;
