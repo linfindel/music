@@ -38,6 +38,11 @@ function importSettings() {
             setOption("kandinsky", "enabled");
         }
     }
+
+    if (localStorage.getItem("debug") == "enabled") {
+        document.getElementById("debug-icon").innerText = "code_off";
+        document.getElementById("debug-text").innerText = "Hide debug panel";
+    }
 }
 
 function debug() {
@@ -54,11 +59,6 @@ function debug() {
         document.getElementById("debug-icon").innerText = "code_off";
         document.getElementById("debug-text").innerText = "Hide debug panel";
     }
-}
-
-if (localStorage.getItem("debug") == "enabled") {
-    document.getElementById("debug-icon").innerText = "code_off";
-    document.getElementById("debug-text").innerText = "Hide debug panel";
 }
 
 function applyColour() {
@@ -103,7 +103,7 @@ function applyColour() {
         });
 
         document.getElementById("about1").addEventListener("mouseleave", () => {
-            document.getElementById("about1").style.backgroundColor = colour;
+            document.getElementById("about1").style.backgroundColor = "";
         });
 
         document.getElementById("about2").addEventListener("mouseover", () => {
@@ -111,7 +111,7 @@ function applyColour() {
         });
 
         document.getElementById("about2").addEventListener("mouseleave", () => {
-            document.getElementById("about2").style.backgroundColor = colour;
+            document.getElementById("about2").style.backgroundColor = "";
         });
 
         document.getElementById("reset").addEventListener("mouseover", () => {
@@ -119,7 +119,7 @@ function applyColour() {
         });
 
         document.getElementById("reset").addEventListener("mouseleave", () => {
-            document.getElementById("reset").style.backgroundColor = colour;
+            document.getElementById("reset").style.backgroundColor = "";
         });
 
         document.getElementById("debug").addEventListener("mouseover", () => {
@@ -127,7 +127,7 @@ function applyColour() {
         });
 
         document.getElementById("debug").addEventListener("mouseleave", () => {
-            document.getElementById("debug").style.backgroundColor = colour;
+            document.getElementById("debug").style.backgroundColor = "";
         });
     }
 
