@@ -142,6 +142,11 @@ document.getElementById("purple").addEventListener("mouseleave", () => {
     document.getElementById("purple").style.backgroundColor = "rgba(255, 0, 255, 0.25)";
 });
 
+if (screen.width < screen.height) {
+    document.getElementById("debug").remove();
+    localStorage.setItem("debug", "disabled");
+}
+
 importSettings();
 applyColour();
 
