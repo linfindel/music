@@ -517,12 +517,14 @@ function repeat() {
     if (document.getElementById("audio").loop == true) {
         document.getElementById("audio").loop = false;
 
+        document.getElementById("repeat-icon").innerText = "step";
         document.getElementById("repeat-text").innerText = "Repeat off";
     }
 
     else {
         document.getElementById("audio").loop = true;
 
+        document.getElementById("repeat-icon").innerText = "repeat";
         document.getElementById("repeat-text").innerText = "Repeat on";
     }
 }
