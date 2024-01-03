@@ -252,11 +252,11 @@ function analyse() {
         }
 
         else if (skew == "purple") {
-            rgba = `rgba(${midVolume * 2}, ${highVolume}, ${lowVolume / 2}, ${alpha})`;
+            rgba = `rgba(${midVolume + 100}, ${highVolume}, ${lowVolume - 100}, ${alpha})`;
 
-            document.getElementById("r-value").style.height = `${(midVolume * 2) / 255 * 100}px`;
+            document.getElementById("r-value").style.height = `${(midVolume + 100) / 255 * 100}px`;
             document.getElementById("g-value").style.height = `${highVolume / 255 * 100}px`;
-            document.getElementById("b-value").style.height = `${(lowVolume / 2) / 255 * 100}px`;
+            document.getElementById("b-value").style.height = `${(lowVolume - 100) / 255 * 100}px`;
 
             var r = Math.round((midVolume * 2) / 255 * 100);
 
