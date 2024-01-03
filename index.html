@@ -1,189 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Player</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player</title>
 
-    <link rel="stylesheet" href="https://linfindel.github.io/nadircss/nadir.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="https://linfindel.github.io/nadircss/nadir.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 
-    <style>
-        * {
-            transition: 0.05s ease;
-        }
+  <style>
+    * {
+      transition: 0.05s ease;
+    }
 
-        .glow {
-            width: 50vw;
-        }
+    .glow {
+      width: 50vw;
+    }
 
-        #progress-container {
-            --progress-height: 100%;
+    #progress-container {
+      --progress-height: 100%;
 
-            cursor: url("https://linfindel.github.io/nadircss/cursors/link-select.cur"), auto;
-        }
+      cursor: url("https://linfindel.github.io/nadircss/cursors/link-select.cur"), auto;
+    }
 
-        #progress-container:hover {
-            --progress-height: 1rem;
+    #progress-container:hover {
+      --progress-height: 1rem;
 
-            height: 1rem;
-        }
+      height: 1rem;
+    }
 
-        #progress-bar {
-            filter: brightness(2);
+    #progress-bar {
+      filter: brightness(2);
 
-            height: var(--progress-height);
+      height: var(--progress-height);
 
-            transition: 0.2s ease;
-        }
+      transition: 0.2s ease;
+    }
 
-        .progress-debug {
-            height: 10rem;
-            width: 1rem;
+    .progress-debug {
+      height: 10rem;
+      width: 1rem;
 
-            rotate: 180deg;
-        }
+      rotate: 180deg;
+    }
 
-        #r {
-            background-color: rgba(255, 0, 0, 0.25);
-        }
+    #r {
+      background-color: rgba(255, 0, 0, 0.25);
+    }
 
-        #r-value {
-            background-color: rgba(255, 0, 0, 0.5);
-        }
+    #r-value {
+      background-color: rgba(255, 0, 0, 0.5);
+    }
 
-        #g {
-            background-color: rgba(0, 255, 0, 0.25);
-        }
+    #g {
+      background-color: rgba(0, 255, 0, 0.25);
+    }
 
-        #g-value {
-            background-color: rgba(0, 255, 0, 0.5);
-        }
+    #g-value {
+      background-color: rgba(0, 255, 0, 0.5);
+    }
 
-        #b {
-            background-color: rgba(0, 0, 255, 0.25);
-        }
+    #b {
+      background-color: rgba(0, 0, 255, 0.25);
+    }
 
-        #b-value {
-            background-color: rgba(0, 0, 255, 0.5);
-        }
+    #b-value {
+      background-color: rgba(0, 0, 255, 0.5);
+    }
 
-        #a {
-            background-color: rgba(255, 255, 255, 0.25);
-        }
+    #a {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
 
-        #a-value {
-            background-color: rgba(255, 255, 255, 0.5);
-        }
-    </style>
+    #a-value {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  </style>
 </head>
 <body>
-    <div class="navbar-column">
-        <div id="navbar" class="navbar">
-            <h1 style="display: inline-block; background-color: transparent;" class="text-center" id="title">Music Player</h1>
+  <div class="navbar-column">
+    <div id="navbar" class="navbar">
+      <h1 style="display: inline-block; background-color: transparent;" class="text-center" id="title">Music Player</h1>
+    </div>
+        
+    <div id="action-row" class="row" style="justify-content: space-between; width: 100%;">
+      <div class="row">
+        <button onclick="location.href = 'settings.html'" id="settings">
+          <span class="material-symbols-rounded">settings</span>
+          Settings
+        </button>
+
+        <button onclick="uploadFile()" id="upload1">
+          <span class="material-symbols-rounded">upload_file</span>
+          Upload file
+        </button>
+
+        <button onclick="uploadLink()" id="upload2">
+          <span class="material-symbols-rounded">add_link</span>
+          Upload from URL
+        </button>
+      </div>
+
+      <button id="about" onclick="window.open(`https://www.github.com/linfindel/kandinsky`, '_blank')">
+        <span class="material-symbols-rounded">code</span>
+        Kandinsky Engine
+      </button>
+    </div>
+  </div>
+
+  <div class="absolute-centre glow" id="glow"></div>
+
+  <audio onplay="analyse()" onpause="stopAnalysis()" onended="location.reload()" id="audio" crossorigin="anonymous"></audio>
+
+  <div id="controls" style="opacity: 0; pointer-events: none;" class="bottom column">
+    <div id="tooltip" class="tooltip"></div>
+
+    <div id="progress-container" class="progress" style="background-color: rgba(100, 100, 100, 0.25); width: 100%;">
+      <div id="progress-bar" class="progress" style="background-color: rgba(100, 100, 100, 1); width: 0;"></div>
+    </div>
+
+    <div class="row">
+      <button onclick="play()" id="play">
+        <span id="play-icon" class="material-symbols-rounded">pause_circle</span>
+        <span id="play-text">Pause</span>
+      </button>
+
+      <button onclick="location.reload()" id="stop">
+        <span class="material-symbols-rounded">stop_circle</span>
+        <span>Stop</span>
+      </button>
+
+      <button onclick="repeat()" id="repeat">
+        <span id="repeat-icon" class="material-symbols-rounded">step</span>
+        <span id="repeat-text">Repeat off</span>
+      </button>
+    </div>
+  </div>
+
+  <div id="debug-card" class="right column" style="opacity: 0;">
+    <h2>Debug</h2>
+
+    <div class="row">
+      <div class="column">
+        <div id="r" class="progress progress-debug">
+          <div id="r-value" class="progress progress-debug" style="height: 0px;"></div>
         </div>
         
-        <div id="action-row" class="row" style="justify-content: space-between; width: 100%;">
-            <div class="row">
-                <button onclick="location.href = 'settings.html'" id="settings">
-                    <span class="material-symbols-rounded">settings</span>
-                    Settings
-                </button>
+        <p>R</p>
 
-                <button onclick="uploadFile()" id="upload1">
-                    <span class="material-symbols-rounded">upload_file</span>
-                    Upload file
-                </button>
+        <p id="r-text"></p>
+      </div>
 
-                <button onclick="uploadLink()" id="upload2">
-                    <span class="material-symbols-rounded">add_link</span>
-                    Upload from URL
-                </button>
-            </div>
-
-            <button id="about" onclick="window.open(`https://www.github.com/linfindel/kandinsky`, '_blank')">
-                <span class="material-symbols-rounded">code</span>
-                Kandinsky Engine
-            </button>
+      <div class="column">
+        <div id="g" class="progress progress-debug">
+          <div id="g-value" class="progress progress-debug" style="height: 0px;"></div>
         </div>
-    </div>
-
-    <div class="absolute-centre glow" id="glow"></div>
-
-    <audio onplay="analyse()" onpause="stopAnalysis()" onended="location.reload()" id="audio" crossorigin="anonymous"></audio>
-
-    <div id="controls" style="opacity: 0; pointer-events: none;" class="bottom column">
-        <div id="tooltip" class="tooltip"></div>
-
-        <div id="progress-container" class="progress" style="background-color: rgba(100, 100, 100, 0.25); width: 100%;">
-            <div id="progress-bar" class="progress" style="background-color: rgba(100, 100, 100, 1); width: 0;"></div>
-        </div>
-
-        <div class="row">
-            <button onclick="play()" id="play">
-                <span id="play-icon" class="material-symbols-rounded">pause_circle</span>
-                <span id="play-text">Pause</span>
-            </button>
-
-            <button onclick="location.reload()" id="stop">
-                <span class="material-symbols-rounded">stop_circle</span>
-                <span>Stop</span>
-            </button>
-
-            <button onclick="repeat()" id="repeat">
-                <span id="repeat-icon" class="material-symbols-rounded">step</span>
-                <span id="repeat-text">Repeat off</span>
-            </button>
-        </div>
-    </div>
-
-    <div id="debug-card" class="right column" style="opacity: 0;">
-        <h2>Debug</h2>
-
-        <div class="row">
-            <div class="column">
-                <div id="r" class="progress progress-debug">
-                    <div id="r-value" class="progress progress-debug" style="height: 0px;"></div>
-                </div>
-
-                <p>R</p>
-
-                <p id="r-text"></p>
-            </div>
-
-            <div class="column">
-                <div id="g" class="progress progress-debug">
-                    <div id="g-value" class="progress progress-debug" style="height: 0px;"></div>
-                </div>
                 
-                <p>G</p>
+        <p>G</p>
 
-                <p id="g-text"></p>
-            </div>
+        <p id="g-text"></p>
+      </div>
 
-            <div class="column">
-                <div id="b" class="progress progress-debug">
-                    <div id="b-value" class="progress progress-debug" style="height: 0px;"></div>
-                </div>
-                
-                <p>B</p>
-
-                <p id="b-text"></p>
-            </div>
-
-            <div class="column">
-                <div id="a" class="progress progress-debug">
-                    <div id="a-value" class="progress progress-debug" style="height: 0px;"></div>
-                </div>
-                
-                <p>A</p>
-
-                <p id="a-text"></p>
-            </div>
+      <div class="column">
+        <div id="b" class="progress progress-debug">
+          <div id="b-value" class="progress progress-debug" style="height: 0px;"></div>
         </div>
-    </div>
+                
+        <p>B</p>
 
-    <script src="player.js"></script>
+        <p id="b-text"></p>
+      </div>
+
+      <div class="column">
+        <div id="a" class="progress progress-debug">
+          <div id="a-value" class="progress progress-debug" style="height: 0px;"></div>
+        </div>
+                
+        <p>A</p>
+
+        <p id="a-text"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="player.js"></script>
 </body>
 </html>
