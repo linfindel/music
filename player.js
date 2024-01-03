@@ -258,7 +258,7 @@ function analyse() {
             document.getElementById("g-value").style.height = `${highVolume / 255 * 100}px`;
             document.getElementById("b-value").style.height = `${(lowVolume - 100) / 255 * 100}px`;
 
-            var r = Math.round((midVolume * 2) / 255 * 100);
+            var r = Math.round((midVolume + 100) / 255 * 100);
 
             if (r < 10) {
                 r = `00${r}`;
@@ -278,9 +278,13 @@ function analyse() {
                 g = `0${g}`;
             }
 
-            var b = Math.round((lowVolume / 2) / 255 * 100);
+            var b = Math.round((lowVolume - 100) / 255 * 100);
 
-            if (b < 10) {
+            if (b < 0) {
+                b = "000";
+            }
+
+            else if (b < 10) {
                 b = `00${b}`;
             }
 
