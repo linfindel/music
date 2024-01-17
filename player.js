@@ -687,5 +687,17 @@ document.addEventListener("keyup", (e) => {
     document.getElementById("audio").currentTime = audioDuration;
   }
 
+  else if (e.key == "o" && notEditingTitle) {
+    location.href = "settings.html";
+  }
+
+  else if (e.key == "u" && notEditingTitle) {
+    uploadFile();
+  }
+
+  else if (e.key == "l" && notEditingTitle) {
+    uploadLink();
+  }
+
   console.log(e.key);
 });
