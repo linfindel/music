@@ -73,7 +73,7 @@ function applyColour() {
         background-color: ${colour};
       }
 
-      .card, .card-flat-bottom {
+      .card, .card-flat-bottom, .card-flat, .card-flat-top, .card-flat-bottom-left-alt, .card-flat-bottom-right-alt {
         background-color: ${colour};
       }
 
@@ -122,13 +122,19 @@ function applyColour() {
       document.getElementById("reset").style.backgroundColor = "";
     });
 
-    document.getElementById("debug").addEventListener("mouseover", () => {
-      document.getElementById("debug").style.backgroundColor = colour.replace("0.25", "0.5");
-    });
+    try {
+      document.getElementById("debug").addEventListener("mouseover", () => {
+        document.getElementById("debug").style.backgroundColor = colour.replace("0.25", "0.5");
+      });
+  
+      document.getElementById("debug").addEventListener("mouseleave", () => {
+        document.getElementById("debug").style.backgroundColor = "";
+      });
+    }
 
-    document.getElementById("debug").addEventListener("mouseleave", () => {
-      document.getElementById("debug").style.backgroundColor = "";
-    });
+    catch {
+      console.log("Debug disabled, skipping styling of button")
+    }
   }
 
   console.log("Colour:", colour);
