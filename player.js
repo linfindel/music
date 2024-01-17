@@ -701,5 +701,13 @@ document.addEventListener("keyup", (e) => {
     uploadLink();
   }
 
+  else if (e.key == "ArrowRight" && notEditingTitle) {
+    document.getElementById("audio").currentTime++;
+  }
+
+  else if (e.key == "ArrowLeft" && notEditingTitle) {
+    document.getElementById("audio").currentTime--;
+  }
+
   console.log(e.key);
 });
