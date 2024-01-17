@@ -672,7 +672,9 @@ document.addEventListener("keyup", (e) => {
 
   else if (e.key == "s" && notEditingTitle) {
     // Stop
-    location.reload();
+    if (document.getElementById("audio").src) {
+      location.reload();
+    }
   }
 
   else if ((e.key == "0" || e.key == "Home") && notEditingTitle) {
