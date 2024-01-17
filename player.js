@@ -675,7 +675,7 @@ document.addEventListener("keyup", (e) => {
     location.reload();
   }
 
-  else if (e.key == "0" && notEditingTitle) {
+  else if ((e.key == "0" || e.key == "Home") && notEditingTitle) {
     document.getElementById("audio").currentTime = "0";
   }
 
@@ -683,7 +683,9 @@ document.addEventListener("keyup", (e) => {
     document.getElementById("audio").currentTime = Number(`0.${e.key}`) * audioDuration;
   }
 
-  else if (e.key == "9") {
+  else if ((e.key == "9" || e.key == "End") && notEditingTitle) {
     document.getElementById("audio").currentTime = audioDuration;
   }
+
+  console.log(e.key);
 });
