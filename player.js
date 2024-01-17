@@ -1,3 +1,5 @@
+var jsmediatags = window.jsmediatags;
+
 let skew = localStorage.getItem("colour");
 
 if (skew == "rgba(0, 89, 255, 0.25)") {
@@ -369,6 +371,114 @@ function uploadFile() {
   input.onchange = () => {
     let file = input.files[0]; // Get the first selected file
     if (file) {
+      if (localStorage.getItem("kandinsky") == "disabled") {
+        jsmediatags.read(file, {
+          onSuccess: function(tag) {
+            var image = tag.tags.picture;
+            if (image) {
+              var base64String = "";
+
+              for (var i = 0; i < image.data.length; i++) {
+                base64String += String.fromCharCode(image.data[i]);
+              }
+              
+              var base64 = "data:" + image.format + ";base64," + window.btoa(base64String);
+            
+              document.getElementById('cover-art').src = base64;
+              document.getElementById('cover-art').style.display = "flex";
+
+              generateMaterialDesignPalette(base64, (error, palette) => {
+                if (error) {
+                  console.error(error);
+                }
+                  
+                else {
+                  console.log("Material Design Palette:", palette);
+
+                  document.getElementById("navbar").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+
+                  document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  document.getElementById("about").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+
+                  document.getElementById("tooltip").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  document.getElementById("progress-container").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  document.getElementById("progress-bar").style.backgroundColor = palette.accent;
+
+                  document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+
+                  document.getElementById("settings").addEventListener("mouseover", () => {
+                    document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                  })
+
+                  document.getElementById("settings").addEventListener("mouseout", () => {
+                    document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  })
+
+                  document.getElementById("upload1").addEventListener("mouseover", () => {
+                    document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                  })
+
+                  document.getElementById("upload1").addEventListener("mouseout", () => {
+                    document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  })
+
+                  document.getElementById("upload2").addEventListener("mouseover", () => {
+                    document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                  })
+
+                  document.getElementById("upload2").addEventListener("mouseout", () => {
+                    document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  })
+
+                  document.getElementById("about").addEventListener("mouseover", () => {
+                    document.getElementById("about").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                  })
+
+                  document.getElementById("about").addEventListener("mouseout", () => {
+                    document.getElementById("about").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  })
+
+                  document.getElementById("play").addEventListener("mouseover", () => {
+                    document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                  })
+
+                  document.getElementById("play").addEventListener("mouseout", () => {
+                    document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  })
+
+                  document.getElementById("stop").addEventListener("mouseover", () => {
+                    document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                  })
+
+                  document.getElementById("stop").addEventListener("mouseout", () => {
+                    document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  })
+
+                  document.getElementById("repeat").addEventListener("mouseover", () => {
+                    document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                  })
+
+                  document.getElementById("repeat").addEventListener("mouseout", () => {
+                    document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  })
+                }
+              });
+            }
+            
+            else {
+              console.log('No cover art found');
+            }
+          },
+          onError: function(error) {
+            console.log('Error reading tags: ', error.type, error.info);
+          }
+        });
+      }
+
       fileName = file.name;
 
       let lastDotIndex = fileName.lastIndexOf('.');
@@ -717,3 +827,54 @@ document.addEventListener("keyup", (e) => {
 
   console.log(e.key);
 });
+
+// Function to generate a Material Design color palette from an image URL
+function generateMaterialDesignPalette(imageURL, callback) {
+  // Create an image element to load the image
+  const img = new Image();
+  img.crossOrigin = "Anonymous"; // Enable cross-origin access to the image
+  
+  // Set up an event listener for when the image is loaded
+  img.onload = function () {
+    // Create a Vibrant.js object to extract colors from the image
+    const vibrant = new Vibrant(img);
+    const swatches = vibrant.swatches();
+  
+    // Check if swatches were successfully generated
+    if (swatches) {
+      // Extract Material Design color palette
+      const palette = {
+        accent: swatches.Vibrant.getHex(),
+        primaryDark: swatches.DarkVibrant.getHex(),
+        primaryLight: swatches.LightVibrant.getHex(),
+        primary: swatches.Muted.getHex(),
+      };
+  
+      // Execute the callback function with the generated palette
+      callback(null, palette);
+    }
+        
+    else {
+      // Error handling if swatches couldn't be generated
+      callback("Failed to generate swatches", null);
+    }
+  };
+  
+  // Set the image source to the provided URL
+  img.src = imageURL;
+}
+
+// Function to generate an RGBA value with a specified alpha
+function generateRGBA(hex, alpha) {
+  // Remove the "#" symbol if present
+  hex = hex.replace(/^#/, '');
+
+  // Parse the hex color to RGB components
+  const bigint = parseInt(hex, 16);
+  const red = (bigint >> 16) & 255;
+  const green = (bigint >> 8) & 255;
+  const blue = bigint & 255;
+
+  // Create the RGBA string
+  return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+}

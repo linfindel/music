@@ -77,13 +77,15 @@
       background-color: rgba(255, 255, 255, 0.5);
     }
   </style>
+
+  <style id="monet-styles"></style>
 </head>
 <body>
   <div class="navbar-column">
     <div id="navbar" class="navbar">
       <h1 style="display: inline-block; background-color: transparent;" class="text-center" id="title">Music Player</h1>
     </div>
-        
+
     <div id="action-row" class="row" style="justify-content: space-between; width: 100%;">
       <div class="row">
         <button onclick="location.href = 'settings.html'" id="settings">
@@ -184,6 +186,10 @@
     </div>
   </div>
 
+  <img id="cover-art" style="display: none; width: 25vw; height: 25vw; object-fit: cover;">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vibrant.js/1.0.0/Vibrant.min.js"></script>
   <script src="player.js"></script>
 </body>
 </html>
