@@ -656,8 +656,16 @@ else {
 
 // Keyboard shortcuts
 document.addEventListener("keyup", (e) => {
-  if(e.key == " " && document.activeElement != document.getElementById("title")){
-    e.preventDefault();
+  e.preventDefault();
+  e.key = e.key.toLowerCase();
+
+  const notEditingTitle = document.activeElement != document.getElementById("title");
+
+  if(e.key == " " && notEditingTitle){
     play();
+  }
+
+  else if (e.key == "r" && notEditingTitle) {
+    repeat();
   }
 });
