@@ -660,6 +660,7 @@ document.addEventListener("keyup", (e) => {
   e.key = e.key.toLowerCase();
 
   const notEditingTitle = document.activeElement != document.getElementById("title");
+  const audioDuration = document.getElementById("audio").duration;
 
   if(e.key == " " && notEditingTitle){
     play();
@@ -672,5 +673,17 @@ document.addEventListener("keyup", (e) => {
   else if (e.key == "s" && notEditingTitle) {
     // Stop
     location.reload();
+  }
+
+  else if (e.key == "0" && notEditingTitle) {
+    document.getElementById("audio").currentTime = "0";
+  }
+
+  else if ((e.key > 0 && e.key < 9) && notEditingTitle) {
+    document.getElementById("audio").currentTime = Number(`0.${e.key}`) * audioDuration;
+  }
+
+  else if (e.key == "9") {
+    document.getElementById("audio").currentTime = audioDuration;
   }
 });
