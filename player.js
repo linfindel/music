@@ -257,47 +257,49 @@ function analyse() {
     else if (skew == "purple") {
       rgba = `rgba(${midVolume + 100}, ${highVolume}, ${lowVolume - 100}, ${alpha})`;
 
-      document.getElementById("r-value").style.height = `${(midVolume + 100) / 255 * 100}px`;
-      document.getElementById("g-value").style.height = `${highVolume / 255 * 100}px`;
-      document.getElementById("b-value").style.height = `${(lowVolume - 100) / 255 * 100}px`;
+      if (localStorage.getItem("debug") == "enabled") {
+        document.getElementById("r-value").style.height = `${(midVolume + 100) / 255 * 100}px`;
+        document.getElementById("g-value").style.height = `${highVolume / 255 * 100}px`;
+        document.getElementById("b-value").style.height = `${(lowVolume - 100) / 255 * 100}px`;
 
-      var r = Math.round((midVolume + 100) / 255 * 100);
+        var r = Math.round((midVolume + 100) / 255 * 100);
 
-      if (r < 10) {
-        r = `00${r}`;
+        if (r < 10) {
+          r = `00${r}`;
+        }
+
+        else if (r < 100) {
+          r = `0${r}`;
+        }
+
+        var g = Math.round(highVolume / 255 * 100);
+
+        if (g < 10) {
+          g = `00${g}`;
+        }
+
+        else if (g < 100) {
+          g = `0${g}`;
+        }
+
+        var b = Math.round((lowVolume - 100) / 255 * 100);
+
+        if (b < 0) {
+          b = "000";
+        }
+
+        else if (b < 10) {
+          b = `00${b}`;
+        }
+
+        else if (b < 100) {
+          b = `0${b}`;
+        }
+
+        document.getElementById("r-text").innerText = r;
+        document.getElementById("g-text").innerText = g;
+        document.getElementById("b-text").innerText = b;
       }
-
-      else if (r < 100) {
-        r = `0${r}`;
-      }
-
-      var g = Math.round(highVolume / 255 * 100);
-
-      if (g < 10) {
-        g = `00${g}`;
-      }
-
-      else if (g < 100) {
-        g = `0${g}`;
-      }
-
-      var b = Math.round((lowVolume - 100) / 255 * 100);
-
-      if (b < 0) {
-        b = "000";
-      }
-
-      else if (b < 10) {
-        b = `00${b}`;
-      }
-
-      else if (b < 100) {
-        b = `0${b}`;
-      }
-
-      document.getElementById("r-text").innerText = r;
-      document.getElementById("g-text").innerText = g;
-      document.getElementById("b-text").innerText = b;
     }
 
     document.getElementById("navbar").style.backgroundColor = rgba;
