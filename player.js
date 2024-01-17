@@ -664,14 +664,10 @@ document.addEventListener("keyup", (e) => {
 
   if(e.key == " " && notEditingTitle){
     play();
-
-    document.activeElement.blur();
   }
 
   else if (e.key == "r" && notEditingTitle) {
     repeat();
-
-    document.activeElement.blur();
   }
 
   else if (e.key == "s" && notEditingTitle) {
@@ -679,57 +675,45 @@ document.addEventListener("keyup", (e) => {
     if (document.getElementById("audio").src) {
       location.reload();
     }
-
-    document.activeElement.blur();
   }
 
   else if ((e.key == "0" || e.key == "Home") && notEditingTitle) {
     document.getElementById("audio").currentTime = "0";
-
-    document.activeElement.blur();
   }
 
   else if ((e.key > 0 && e.key < 9) && notEditingTitle) {
     document.getElementById("audio").currentTime = Number(`0.${e.key}`) * audioDuration;
-
-    document.activeElement.blur();
   }
 
   else if ((e.key == "9" || e.key == "End") && notEditingTitle) {
     document.getElementById("audio").currentTime = audioDuration;
-
-    document.activeElement.blur();
   }
 
   else if (e.key == "o" && notEditingTitle) {
     location.href = "settings.html";
-
-    document.activeElement.blur();
   }
 
   else if (e.key == "u" && notEditingTitle) {
     uploadFile();
-
-    document.activeElement.blur();
   }
 
   else if (e.key == "l" && notEditingTitle) {
     uploadLink();
-
-    document.activeElement.blur();
   }
 
   else if (e.key == "ArrowRight" && notEditingTitle) {
     document.getElementById("audio").currentTime++;
-
-    document.activeElement.blur();
   }
 
   else if (e.key == "ArrowLeft" && notEditingTitle) {
     document.getElementById("audio").currentTime--;
-
-    document.activeElement.blur();
   }
+
+  else {
+    return;
+  }
+
+  document.activeElement.blur();
 
   console.log(e.key);
 });
