@@ -668,4 +668,9 @@ document.addEventListener("keyup", (e) => {
   else if (e.key == "r" && notEditingTitle) {
     repeat();
   }
+
+  else if (e.key == "s" && notEditingTitle) {
+    // Stop
+    location.reload();
+  }
 });
