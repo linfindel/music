@@ -651,3 +651,11 @@ else {
 
   console.log("Debug enabled");
 }
+
+// Keyboard shortcuts
+document.addEventListener("keyup", (e) => {
+  if(e.key == " " && document.activeElement != document.getElementById("title")){
+    e.preventDefault();
+    play();
+  }
+});
