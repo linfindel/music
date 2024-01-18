@@ -151,6 +151,8 @@ document.getElementById("purple").addEventListener("mouseleave", () => {
 if (screen.width < screen.height) {
   document.getElementById("debug").remove();
   localStorage.setItem("debug", "disabled");
+
+  document.getElementById("keyboard-shortcuts").remove();
 }
 
 importSettings();
