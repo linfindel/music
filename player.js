@@ -34,7 +34,7 @@ let analysisInterval;
 let setupComplete;
 let audioContext;
 let analyser;
-let audioElement;
+let audioElement = document.getElementById('audio');
 let audioSource;
 let fileName;
 var customTitles = JSON.parse(localStorage.getItem("custom-titles")) || {};
@@ -47,7 +47,6 @@ function setupAnalysis() {
   analyser.fftSize = 256;
 
   // Connect the audio source to the analyzer
-  audioElement = document.getElementById('audio');
   audioSource = audioContext.createMediaElementSource(audioElement);
   audioSource.connect(analyser);
   audioSource.connect(audioContext.destination);
@@ -598,7 +597,6 @@ applyColour();
 
 if (localStorage.getItem("kandinsky") == "disabled") {
   document.getElementById("audio").onplay = "";
-  document.getElementById("audio").onpause = "";
   document.getElementById("glow").remove();
 }
 
