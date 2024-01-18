@@ -609,6 +609,10 @@ if (screen.width < screen.height) {
   document.getElementById("action-row").style.justifyContent = "center";
 }
 
+if (screen.width < screen.height && localStorage.getItem("kandinsky") == "disabled") {
+  document.getElementById("about").remove();
+}
+
 function play() {
   if (audioElement.paused) {
     audioElement.play();
