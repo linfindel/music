@@ -155,6 +155,16 @@ if (screen.width < screen.height) {
   document.getElementById("keyboard-shortcuts").remove();
 }
 
+setInterval(() => {
+  if (localStorage.getItem("kandinsky") == "disabled") {
+    document.getElementById("debug").style.display = "none";
+  }
+
+  else {
+    document.getElementById("debug").style.display = "flex";
+  }
+});
+
 importSettings();
 applyColour();
 
