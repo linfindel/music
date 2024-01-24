@@ -663,6 +663,14 @@ function stop() {
   document.getElementById("cover-art").style.transition = "1s ease";
   document.getElementById("cover-art").style.opacity = "0";
 
+  var volume = 1;
+
+  setInterval(() => {
+    audioElement.volume = volume;
+
+    volume -= 0.01;
+  }, 10);
+
   setTimeout(() => {
     location.reload();
   }, 1000);
