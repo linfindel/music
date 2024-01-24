@@ -390,7 +390,7 @@ function uploadFile() {
                 if (error) {
                   console.error(error);
                 }
-                  
+
                 else {
                   console.log("Material Design Palette:", palette);
 
@@ -633,6 +633,33 @@ function play() {
   }
 }
 
+function stop() {
+  document.getElementById("controls").style.transition = "1s ease";
+  document.getElementById("controls").style.opacity = "0";
+
+  document.getElementById("navbar").style.transition = "1s ease";
+  document.getElementById("navbar").style.backgroundColor = localStorage.getItem("colour");
+
+  document.getElementById("settings").style.transition = "1s ease";
+  document.getElementById("settings").style.backgroundColor = localStorage.getItem("colour");
+  
+  document.getElementById("upload1").style.transition = "1s ease";
+  document.getElementById("upload1").style.backgroundColor = localStorage.getItem("colour");
+  
+  document.getElementById("upload2").style.transition = "1s ease";
+  document.getElementById("upload2").style.backgroundColor = localStorage.getItem("colour");
+  
+  document.getElementById("about").style.transition = "1s ease";
+  document.getElementById("about").style.backgroundColor = localStorage.getItem("colour");
+
+  document.getElementById("cover-art").style.transition = "1s ease";
+  document.getElementById("cover-art").style.opacity = "0";
+
+  setTimeout(() => {
+    location.reload();
+  }, 1000);
+}
+
 function repeat() {
   if (document.getElementById("audio").loop == true) {
     document.getElementById("audio").loop = false;
@@ -783,9 +810,8 @@ document.addEventListener("keyup", (e) => {
   }
 
   else if (e.key == "s" && notEditingTitle) {
-    // Stop
     if (document.getElementById("audio").src) {
-      location.reload();
+      stop();
     }
   }
 

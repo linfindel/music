@@ -108,10 +108,10 @@
       </button>
     </div>
   </div>
-
+  
   <div class="absolute-centre glow" id="glow"></div>
 
-  <audio onplay="analyse()" onpause="stopAnalysis()" onended="location.reload()" id="audio" crossorigin="anonymous"></audio>
+  <audio onplay="analyse()" onpause="stopAnalysis()" onended="stop()" id="audio" crossorigin="anonymous"></audio>
 
   <div id="controls" style="opacity: 0; pointer-events: none;" class="bottom column">
     <div id="tooltip" class="tooltip"></div>
