@@ -654,9 +654,11 @@ function stop() {
   document.getElementById("about").style.transition = "1s ease";
   document.getElementById("about").style.backgroundColor = localStorage.getItem("colour");
 
-  document.getElementById("glow").style.transition = "1s ease";
-  document.getElementById("glow").style.width = "50vw";
-  document.getElementById("glow").style.boxShadow = `0px 0px 200px 100px ${localStorage.getItem("colour")}`;
+  if (document.getElementById("glow")) {
+    document.getElementById("glow").style.transition = "1s ease";
+    document.getElementById("glow").style.width = "50vw";
+    document.getElementById("glow").style.boxShadow = `0px 0px 200px 100px ${localStorage.getItem("colour")}`;
+  }
 
   document.getElementById("cover-art").style.transition = "1s ease";
   document.getElementById("cover-art").style.opacity = "0";
