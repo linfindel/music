@@ -161,7 +161,9 @@ setInterval(() => {
   }
 
   else {
-    document.getElementById("debug").style.display = "flex";
+    if (document.getElementById("debug")) {
+      document.getElementById("debug").style.display = "flex";
+    }
   }
 });
 
