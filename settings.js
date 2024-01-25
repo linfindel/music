@@ -167,6 +167,18 @@ setInterval(() => {
   }
 });
 
+setInterval(() => {
+  if (window.innerWidth < window.innerHeight) {
+    document.getElementById("red").style.borderBottomLeftRadius = "7.5px";
+    document.getElementById("purple").style.borderBottomLeftRadius = "24px";
+  }
+
+  else {
+    document.getElementById("red").style.borderBottomLeftRadius = "24px";
+    document.getElementById("purple").style.borderBottomLeftRadius = "7.5px";
+  }
+});
+
 importSettings();
 applyColour();
 
