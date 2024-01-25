@@ -614,22 +614,24 @@ if (screen.width < screen.height && localStorage.getItem("kandinsky") == "disabl
 }
 
 function play() {
-  if (audioElement.paused) {
-    audioElement.play();
-
-    document.getElementById("play-icon").innerText = "pause_circle";
-    document.getElementById("play-text").innerText = "Pause";
-
-    document.getElementById("play").style.width = "";
-  }
-
-  else {
-    audioElement.pause();
-
-    document.getElementById("play-icon").innerText = "play_circle";
-    document.getElementById("play-text").innerText = "Play";
-
-    document.getElementById("play").style.width = "6.75rem";
+  if (audioElement.src) {
+    if (audioElement.paused) {
+      audioElement.play();
+  
+      document.getElementById("play-icon").innerText = "pause_circle";
+      document.getElementById("play-text").innerText = "Pause";
+  
+      document.getElementById("play").style.width = "";
+    }
+  
+    else {
+      audioElement.pause();
+  
+      document.getElementById("play-icon").innerText = "play_circle";
+      document.getElementById("play-text").innerText = "Play";
+  
+      document.getElementById("play").style.width = "6.75rem";
+    }
   }
 }
 
