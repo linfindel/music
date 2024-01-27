@@ -35,12 +35,17 @@ let setupComplete;
 let audioContext;
 let analyser;
 let audioElement = document.getElementById('audio');
+audioElement.preservesPitch = false;
 let audioSource;
 let fileName;
+let biquadFilter;
 var customTitles = JSON.parse(localStorage.getItem("custom-titles")) || {};
 
 function setupAnalysis() {
   audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  biquadFilter = audioContext.createBiquadFilter();
+  biquadFilter.type = "lowpass";
+  biquadFilter.frequency.value = 7500;
 	
   // Create an analyzer node to analyze the audio
   analyser = audioContext.createAnalyser();
@@ -638,6 +643,10 @@ function play() {
 function stop() {
   stopAnalysis();
 
+  // Connect the source to the filter, and the filter to the destination.
+  audioSource.connect(biquadFilter);
+  biquadFilter.connect(audioContext.destination);
+
   document.getElementById("controls").style.transition = "1s ease";
   document.getElementById("controls").style.opacity = "0";
 
@@ -669,8 +678,14 @@ function stop() {
 
   setInterval(() => {
     audioElement.volume = volume;
-
     volume -= 0.01;
+  }, 10);
+
+  var speed = 1;
+
+  setInterval(() => {
+    audioElement.playbackRate = speed;
+    speed -= 0.01;
   }, 10);
 
   setTimeout(() => {
