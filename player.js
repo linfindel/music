@@ -47,11 +47,9 @@ function setupAnalysis() {
   biquadFilter.type = "lowpass";
   biquadFilter.frequency.value = 7500;
 	
-  // Create an analyzer node to analyze the audio
   analyser = audioContext.createAnalyser();
   analyser.fftSize = 256;
 
-  // Connect the audio source to the analyzer
   audioSource = audioContext.createMediaElementSource(audioElement);
   audioSource.connect(analyser);
   audioSource.connect(audioContext.destination);
@@ -65,10 +63,8 @@ function analyse() {
   }
 
   analysisInterval = setInterval(() => {
-    // Get frequency data
 	  const frequencyData = new Uint8Array(analyser.frequencyBinCount);
 	
-	  // Function to calculate the average value in a frequency range
 	  function getAverageValue(startIndex, endIndex) {
 	    analyser.getByteFrequencyData(frequencyData);
 	    let sum = 0;
@@ -78,13 +74,11 @@ function analyse() {
 	  
       return sum / (endIndex - startIndex + 1);
 	  }
-        
-	  // Get volume for low, mid, and high frequencies
+
 	  var lowFrequencyVolume = getAverageValue(0, 30);
 	  var midFrequencyVolume = getAverageValue(31, 120);
 	  var highFrequencyVolume = getAverageValue(121, 255);
 
-    // Calculate the general volume based on the RMS value
     let rms = 0;
 
     for (let i = 0; i < frequencyData.length; i++) {
@@ -94,7 +88,6 @@ function analyse() {
     rms = Math.sqrt(rms / frequencyData.length);
     const generalVolume = rms;
 
-    // Map the general volume to the alpha value (range 0.1 to 1)
     const alpha = 0.1 + (generalVolume / 255) * 0.9;
 
     if (localStorage.getItem("debug") == "enabled") { 
@@ -102,7 +95,6 @@ function analyse() {
       document.getElementById("a-text").innerText = Math.round(alpha * 10) / 10;
     }
 
-	  // Map the volumes to a range of 0 to 255
 	  const mapTo255 = (value) => (value / 255) * 255;
 	
 	  let lowVolume = mapTo255(lowFrequencyVolume);
@@ -121,7 +113,6 @@ function analyse() {
       highVolume = 0;
     }
 
-    // Adjust the ranges
     lowVolume = Math.min(255, lowVolume);
     midVolume = Math.min(255, midVolume);
     highVolume = Math.min(255, highVolume);
@@ -332,17 +323,14 @@ function stopAnalysis() {
 }
 
 function rgbaToHex(rgba) {
-  // Check if the input is a valid RGBA string
   const rgbaRegex = /^rgba\((\d+\.?\d*),\s*(\d+\.?\d*),\s*(\d+\.?\d*),\s*([\d.]+)\)$/;
 
   if (!rgbaRegex.test(rgba)) {
-    return null; // Invalid input
+    return null;
   }
   
-  // Extract RGBA values
   const [, r, g, b, a] = rgba.match(rgbaRegex);
   
-  // Convert the values to hexadecimal and ensure they have two digits
   const toHex = (value) => {
     const intValue = Math.round(parseFloat(value));
     const hex = intValue.toString(16);
@@ -353,17 +341,14 @@ function rgbaToHex(rgba) {
   const hexG = toHex(g);
   const hexB = toHex(b);
   
-  // Convert the alpha value to a hexadecimal value (between 00 and FF)
   const alpha = Math.round(parseFloat(a) * 255);
   const hexA = toHex(alpha);
   
-  // Construct the hexadecimal color string
   const hexColor = `#${hexR}${hexG}${hexB}${hexA}`;
   
   return hexColor;
 }
 
-// Function to change the skew variable
 function changeSkew(newSkew) {
   skew = newSkew;
 }
@@ -373,7 +358,7 @@ function uploadFile() {
   input.type = 'file';
   input.accept = 'audio/mp3, audio/wav, audio/ogg';
   input.onchange = () => {
-    let file = input.files[0]; // Get the first selected file
+    let file = input.files[0];
     if (file) {
       if (localStorage.getItem("kandinsky") == "disabled") {
         jsmediatags.read(file, {
@@ -487,7 +472,7 @@ function uploadFile() {
 
       let lastDotIndex = fileName.lastIndexOf('.');
       if (lastDotIndex !== -1) {
-        fileName = fileName.substring(0, lastDotIndex); // Extract the string before the last '.'
+        fileName = fileName.substring(0, lastDotIndex);
       }
 
       while (fileName.includes("_")) {
@@ -522,7 +507,6 @@ function uploadFile() {
       if (e.lengthComputable) {
         let percentLoaded = (e.loaded / e.total) * 100;
 
-        // Update the progress element with the percentage loaded
         document.getElementById("title").innerText = `${percentLoaded.toFixed(2)}%`;
         document.title = `${percentLoaded.toFixed(2)}% | Music Player`;
 
@@ -533,7 +517,7 @@ function uploadFile() {
       }
     };
 
-    reader.readAsDataURL(file); // Read the file as a data URL
+    reader.readAsDataURL(file);
   }};
   input.click();
 }
@@ -565,7 +549,6 @@ function applyColour() {
   if (colour) {
     var styleElement = document.getElementsByTagName("style")[0];
 
-    // Add styles to change background color based on the retrieved color
     styleElement.innerHTML += `
       .navbar {
         background-color: ${colour};
@@ -643,7 +626,6 @@ function play() {
 function stop() {
   stopAnalysis();
 
-  // Connect the source to the filter, and the filter to the destination.
   audioSource.connect(biquadFilter);
   biquadFilter.connect(audioContext.destination);
 
@@ -777,7 +759,6 @@ document.getElementById("title").addEventListener("input", () => {
   localStorage.setItem("custom-titles", JSON.stringify(customTitles));
 });
 
-// Add event listeners for mouseover and mouseout on the progress bar
 const progressContainer = document.getElementById("progress-container");
 const tooltip = document.getElementById("tooltip");
 
@@ -793,8 +774,8 @@ function showTooltip(event) {
   const formattedTime = formatTime(currentTime);
     
   tooltip.style.display = "block";
-  tooltip.style.top = `${progressContainer.offsetTop - 16}px`; // 1rem above the progress bar
-  tooltip.style.left = `${event.pageX - progressContainer.getBoundingClientRect().left}px`; // Adjust horizontal position relative to the progress bar
+  tooltip.style.top = `${progressContainer.offsetTop - 16}px`;
+  tooltip.style.left = `${event.pageX - progressContainer.getBoundingClientRect().left}px`;
   tooltip.textContent = formattedTime;
 }
 
@@ -826,7 +807,6 @@ else {
   console.log("Debug enabled");
 }
 
-// Keyboard shortcuts
 document.addEventListener("keyup", (e) => {
   e.preventDefault();
   e.key = e.key.toLowerCase();
@@ -889,21 +869,15 @@ document.addEventListener("keyup", (e) => {
   console.log(e.key);
 });
 
-// Function to generate a Material Design color palette from an image URL
 function generateMaterialDesignPalette(imageURL, callback) {
-  // Create an image element to load the image
   const img = new Image();
-  img.crossOrigin = "Anonymous"; // Enable cross-origin access to the image
+  img.crossOrigin = "Anonymous";
   
-  // Set up an event listener for when the image is loaded
   img.onload = function () {
-    // Create a Vibrant.js object to extract colors from the image
     const vibrant = new Vibrant(img);
     const swatches = vibrant.swatches();
   
-    // Check if swatches were successfully generated
     if (swatches) {
-      // Extract Material Design color palette
       const palette = {
         accent: swatches.Vibrant.getHex(),
         primaryDark: swatches.DarkVibrant.getHex(),
@@ -911,31 +885,24 @@ function generateMaterialDesignPalette(imageURL, callback) {
         primary: swatches.Muted.getHex(),
       };
   
-      // Execute the callback function with the generated palette
       callback(null, palette);
     }
         
     else {
-      // Error handling if swatches couldn't be generated
       callback("Failed to generate swatches", null);
     }
   };
   
-  // Set the image source to the provided URL
   img.src = imageURL;
 }
 
-// Function to generate an RGBA value with a specified alpha
 function generateRGBA(hex, alpha) {
-  // Remove the "#" symbol if present
   hex = hex.replace(/^#/, '');
 
-  // Parse the hex color to RGB components
   const bigint = parseInt(hex, 16);
   const red = (bigint >> 16) & 255;
   const green = (bigint >> 8) & 255;
   const blue = bigint & 255;
 
-  // Create the RGBA string
   return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
 }
