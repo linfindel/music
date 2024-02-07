@@ -1,17 +1,17 @@
 function setOption(option, value) {
   localStorage.setItem(option, value);
 
-  if (option == "kandinsky" && value == "enabled") {
-    document.getElementById("kandinsky-title").innerText = "Kandinsky Engine enabled";
+  if (option == "kandinsky") {
+    document.getElementById("kandinsky-title").innerText = `Kandinsky Engine ${value}`;
+  }
 
+  if (option == "kandinsky" && value == "enabled") {
     document.getElementById("kandinsky").onclick = () => {
       setOption("kandinsky", "disabled");
     }
   }
 
   else if (option == "kandinsky" && value == "disabled") {
-    document.getElementById("kandinsky-title").innerText = "Kandinsky Engine disabled";
-
     document.getElementById("kandinsky").onclick = () => {
       setOption("kandinsky", "enabled");
     }
@@ -23,17 +23,15 @@ function setOption(option, value) {
 }
 
 function importSettings() {
-  if (localStorage.getItem("kandinsky") == "enabled") {
-    document.getElementById("kandinsky-title").innerText = "Kandinsky Engine enabled";
+  document.getElementById("kandinsky-title").innerText = `Kandinsky Engine ${localStorage.getItem("kandinsky")}`;
 
+  if (localStorage.getItem("kandinsky") == "enabled") {
     document.getElementById("kandinsky").onclick = () => {
       setOption("kandinsky", "disabled");
     }
   }
 
   else if (localStorage.getItem("kandinsky") == "disabled") {
-    document.getElementById("kandinsky-title").innerText = "Kandinsky Engine disabled";
-
     document.getElementById("kandinsky").onclick = () => {
       setOption("kandinsky", "enabled");
     }
