@@ -67,7 +67,6 @@ function applyColour() {
   if (colour) {
     var styleElement = document.getElementsByTagName("style")[0];
 
-    // Add styles to change background color based on the retrieved color
     styleElement.innerHTML += `
       .navbar {
         background-color: ${colour};
