@@ -382,8 +382,6 @@ function uploadFile() {
                 }
 
                 else {
-                  console.log("Material Design Palette:", palette);
-
                   document.getElementById("navbar").style.backgroundColor = generateRGBA(palette.accent, 0.25);
 
                   document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.25);
@@ -457,13 +455,9 @@ function uploadFile() {
                 }
               });
             }
-            
-            else {
-              console.log('No cover art found');
-            }
           },
           onError: function(error) {
-            console.log('Error reading tags: ', error.type, error.info);
+            console.error('Error reading tags: ', error.type, error.info);
           }
         });
       }
@@ -797,14 +791,10 @@ function formatTime(timeInSeconds) {
 
 if (localStorage.getItem("debug") == "disabled" || !localStorage.getItem("debug")) {
   document.getElementById("debug-card").remove();
-
-  console.log("Debug disabled");
 }
 
 else {
   document.getElementById("debug-card").style.opacity = "1";
-
-  console.log("Debug enabled");
 }
 
 document.addEventListener("keyup", (e) => {
@@ -865,8 +855,6 @@ document.addEventListener("keyup", (e) => {
   }
 
   document.activeElement.blur();
-
-  console.log(e.key);
 });
 
 function generateMaterialDesignPalette(imageURL, callback) {
