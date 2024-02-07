@@ -344,9 +344,9 @@ function rgbaToHex(rgba) {
   const alpha = Math.round(parseFloat(a) * 255);
   const hexA = toHex(alpha);
   
-  const hexColor = `#${hexR}${hexG}${hexB}${hexA}`;
+  const hexColour = `#${hexR}${hexG}${hexB}${hexA}`;
   
-  return hexColor;
+  return hexColour;
 }
 
 function changeSkew(newSkew) {
