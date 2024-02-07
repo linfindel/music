@@ -130,11 +130,9 @@ function applyColour() {
     }
 
     catch {
-      console.log("Debug disabled, skipping styling of button")
+      
     }
   }
-
-  console.log("Colour:", colour);
 }
 
 document.getElementById("purple").addEventListener("mouseover", () => {
