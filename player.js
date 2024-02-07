@@ -771,14 +771,14 @@ function showTooltip(event) {
 
   const formattedTime = formatTime(currentTime);
     
-  tooltip.style.display = "block";
+  tooltip.style.opacity = "1";
   tooltip.style.top = `${progressContainer.offsetTop - 16}px`;
   tooltip.style.left = `${event.pageX - progressContainer.getBoundingClientRect().left}px`;
   tooltip.textContent = formattedTime;
 }
 
 function hideTooltip() {
-  tooltip.style.display = "none";
+  tooltip.style.opacity = "0";
 }
 
 function formatTime(timeInSeconds) {
