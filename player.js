@@ -695,6 +695,10 @@ const durationInterval = setInterval(() => {
 
     document.getElementById("progress-bar").style.width = percent;
   }
+
+  else {
+    document.getElementById("progress-bar").style.width = "0%";
+  }
 });
 
 document.getElementById("audio").addEventListener("play", () => {
