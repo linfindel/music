@@ -627,8 +627,10 @@ function play() {
 function stop() {
   stopAnalysis();
 
-  audioSource.connect(biquadFilter);
-  biquadFilter.connect(audioContext.destination);
+  if (biquadFilter) {
+    audioSource.connect(biquadFilter);
+    biquadFilter.connect(audioContext.destination);
+  }
 
   document.getElementById("controls").style.transition = "1s ease";
   document.getElementById("controls").style.opacity = "0";
