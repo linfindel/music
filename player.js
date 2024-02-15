@@ -632,6 +632,14 @@ function stop() {
     biquadFilter.connect(audioContext.destination);
   }
 
+  document.getElementById("title").style.transition = "0.5s ease";
+  document.getElementById("title").style.opacity = "0";
+
+  setTimeout(() => {
+    document.getElementById("title").innerText = "Music Player";
+    document.getElementById("title").style.opacity = "1";
+  }, 500);
+
   document.getElementById("controls").style.transition = "1s ease";
   document.getElementById("controls").style.opacity = "0";
 
