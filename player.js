@@ -552,7 +552,7 @@ function applyColour() {
     var styleElement = document.getElementsByTagName("style")[0];
 
     styleElement.innerHTML += `
-      .navbar {
+      nav {
         background-color: ${colour};
       }
 
