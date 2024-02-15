@@ -500,6 +500,7 @@ function uploadFile() {
 
         if (customTitles[fileName]) {
           document.getElementById("title").innerText = customTitles[fileName];
+          document.title = `${customTitles[fileName]} | Music Player`;
         }
       });
     };
