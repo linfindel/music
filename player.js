@@ -304,7 +304,6 @@ function analyse() {
     document.getElementById("upload1").style.backgroundColor = rgba;
     document.getElementById("upload2").style.backgroundColor = rgba;
     document.getElementById("settings").style.backgroundColor = rgba;
-    document.getElementById("about").style.backgroundColor = rgba;
 
     document.getElementById("play").style.backgroundColor = rgba;
     document.getElementById("stop").style.backgroundColor = rgba;
@@ -394,7 +393,6 @@ function uploadFile() {
                   document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                  document.getElementById("about").style.backgroundColor = generateRGBA(palette.accent, 0.25);
 
                   document.getElementById("tooltip").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   document.getElementById("progress-container").style.backgroundColor = generateRGBA(palette.accent, 0.25);
@@ -426,14 +424,6 @@ function uploadFile() {
 
                   document.getElementById("upload2").addEventListener("mouseout", () => {
                     document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                  })
-
-                  document.getElementById("about").addEventListener("mouseover", () => {
-                    document.getElementById("about").style.backgroundColor = generateRGBA(palette.accent, 0.5);
-                  })
-
-                  document.getElementById("about").addEventListener("mouseout", () => {
-                    document.getElementById("about").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   })
 
                   document.getElementById("play").addEventListener("mouseover", () => {
@@ -572,7 +562,7 @@ function applyColour() {
         background-color: ${colour.replace("0.25", "0.5")};
       }
 
-      #settings:hover, #upload1:hover, #upload2:hover, #about:hover, #play:hover, #stop:hover, #repeat:hover {
+      #settings:hover, #upload1:hover, #upload2:hover, #play:hover, #stop:hover, #repeat:hover {
         background-color: ${colour.replace("0.25", "0.5")};
       }
 
@@ -593,14 +583,6 @@ if (localStorage.getItem("kandinsky") == "disabled") {
 if (localStorage.getItem("colour") == null) {
   localStorage.setItem("colour", "rgba(255, 0, 0, 0.25)");
   location.reload();
-}
-
-if (screen.width < screen.height) {
-  document.getElementById("action-row").style.justifyContent = "center";
-}
-
-if (screen.width < screen.height && localStorage.getItem("kandinsky") == "disabled") {
-  document.getElementById("about").remove();
 }
 
 function play() {
@@ -655,9 +637,6 @@ function stop() {
   
   document.getElementById("upload2").style.transition = "1s ease";
   document.getElementById("upload2").style.backgroundColor = localStorage.getItem("colour");
-  
-  document.getElementById("about").style.transition = "1s ease";
-  document.getElementById("about").style.backgroundColor = localStorage.getItem("colour");
 
   if (document.getElementById("glow")) {
     document.getElementById("glow").style.transition = "1s ease";

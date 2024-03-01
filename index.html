@@ -84,27 +84,20 @@
       <h1 style="display: inline-block; background-color: transparent;" class="text-center" id="title">Music Player</h1>
     </nav>
 
-    <div id="action-row" class="row" style="justify-content: space-between; width: 100%;">
-      <div class="row">
-        <button onclick="location.href = 'settings.html'" id="settings">
-          <span class="material-symbols-rounded">settings</span>
-          Settings
-        </button>
+    <div id="action-row" class="row">
+      <button onclick="location.href = 'settings.html'" id="settings">
+        <span class="material-symbols-rounded">settings</span>
+        Settings
+      </button>
 
-        <button onclick="uploadFile()" id="upload1">
-          <span class="material-symbols-rounded">upload_file</span>
-          Upload file
-        </button>
+      <button onclick="uploadFile()" id="upload1">
+        <span class="material-symbols-rounded">upload_file</span>
+        Upload file
+      </button>
 
-        <button onclick="uploadLink()" id="upload2">
-          <span class="material-symbols-rounded">add_link</span>
-          Upload from URL
-        </button>
-      </div>
-
-      <button id="about" onclick="window.open(`https://www.github.com/linfindel/kandinsky`, '_blank')">
-        <span class="material-symbols-rounded">code</span>
-        Kandinsky Engine
+      <button onclick="uploadLink()" id="upload2">
+        <span class="material-symbols-rounded">add_link</span>
+        Upload from URL
       </button>
     </div>
   </div>
