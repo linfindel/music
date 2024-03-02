@@ -773,6 +773,16 @@ document.getElementById("title").addEventListener("input", () => {
   localStorage.setItem("custom-titles", JSON.stringify(customTitles));
 });
 
+document.getElementById("title").addEventListener("blur", () => {
+  if (window.getSelection) {
+    window.getSelection().removeAllRanges();
+  }
+  
+  else if (document.selection) {
+    document.selection.empty();
+  }
+})
+
 const progressContainer = document.getElementById("progress-container");
 const tooltip = document.getElementById("tooltip");
 
