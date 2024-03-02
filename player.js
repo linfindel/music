@@ -39,6 +39,8 @@ audioElement.preservesPitch = false;
 let audioSource;
 let fileName;
 let biquadFilter;
+let base64;
+let artist;
 var customTitles = JSON.parse(localStorage.getItem("custom-titles")) || {};
 
 function setupAnalysis() {
@@ -366,98 +368,107 @@ function uploadFile() {
   input.onchange = () => {
     let file = input.files[0];
     if (file) {
-      if (localStorage.getItem("kandinsky") == "disabled") {
-        jsmediatags.read(file, {
-          onSuccess: function(tag) {
-            var image = tag.tags.picture;
-            if (image) {
-              var base64String = "";
+      jsmediatags.read(file, {
+        onSuccess: function(tag) {
+          var image = tag.tags.picture;
+          artist = tag.tags.artist;
+          if (image) {
+            var base64String = "";
 
-              for (var i = 0; i < image.data.length; i++) {
-                base64String += String.fromCharCode(image.data[i]);
-              }
-              
-              var base64 = "data:" + image.format + ";base64," + window.btoa(base64String);
+            for (var i = 0; i < image.data.length; i++) {
+              base64String += String.fromCharCode(image.data[i]);
+            }
             
+            base64 = "data:" + image.format + ";base64," + window.btoa(base64String);
+          
+            if (localStorage.getItem("kandinsky") == "disabled") {
               document.getElementById('cover-art').src = base64;
               document.getElementById('cover-art').style.display = "flex";
-
-              generateMaterialDesignPalette(base64, (error, palette) => {
-                if (error) {
-                  console.error(error);
-                }
-
-                else {
-                  document.getElementById("navbar").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-
-                  document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                  document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                  document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-
-                  document.getElementById("tooltip").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                  document.getElementById("progress-container").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                  document.getElementById("progress-bar").style.backgroundColor = palette.accent;
-
-                  document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                  document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                  document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-
-                  document.getElementById("settings").addEventListener("mouseover", () => {
-                    document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.5);
-                  })
-
-                  document.getElementById("settings").addEventListener("mouseout", () => {
-                    document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                  })
-
-                  document.getElementById("upload1").addEventListener("mouseover", () => {
-                    document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.5);
-                  })
-
-                  document.getElementById("upload1").addEventListener("mouseout", () => {
-                    document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                  })
-
-                  document.getElementById("upload2").addEventListener("mouseover", () => {
-                    document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.5);
-                  })
-
-                  document.getElementById("upload2").addEventListener("mouseout", () => {
-                    document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                  })
-
-                  document.getElementById("play").addEventListener("mouseover", () => {
-                    document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.5);
-                  })
-
-                  document.getElementById("play").addEventListener("mouseout", () => {
-                    document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                  })
-
-                  document.getElementById("stop").addEventListener("mouseover", () => {
-                    document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.5);
-                  })
-
-                  document.getElementById("stop").addEventListener("mouseout", () => {
-                    document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                  })
-
-                  document.getElementById("repeat").addEventListener("mouseover", () => {
-                    document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.5);
-                  })
-
-                  document.getElementById("repeat").addEventListener("mouseout", () => {
-                    document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                  })
-                }
-              });
             }
-          },
-          onError: function(error) {
-            console.error('Error reading tags: ', error.type, error.info);
+
+            var link = document.querySelector("link[rel~='icon']");
+            if (!link) {
+                link = document.createElement('link');
+                link.rel = 'icon';
+                document.head.appendChild(link);
+            }
+            link.href = base64;
+
+            generateMaterialDesignPalette(base64, (error, palette) => {
+              if (error) {
+                console.error(error);
+              }
+
+              else {
+                document.getElementById("navbar").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+
+                document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+
+                document.getElementById("tooltip").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                document.getElementById("progress-container").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                document.getElementById("progress-bar").style.backgroundColor = palette.accent;
+
+                document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+
+                document.getElementById("settings").addEventListener("mouseover", () => {
+                  document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                })
+
+                document.getElementById("settings").addEventListener("mouseout", () => {
+                  document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                })
+
+                document.getElementById("upload1").addEventListener("mouseover", () => {
+                  document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                })
+
+                document.getElementById("upload1").addEventListener("mouseout", () => {
+                  document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                })
+
+                document.getElementById("upload2").addEventListener("mouseover", () => {
+                  document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                })
+
+                document.getElementById("upload2").addEventListener("mouseout", () => {
+                  document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                })
+
+                document.getElementById("play").addEventListener("mouseover", () => {
+                  document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                })
+
+                document.getElementById("play").addEventListener("mouseout", () => {
+                  document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                })
+
+                document.getElementById("stop").addEventListener("mouseover", () => {
+                  document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                })
+
+                document.getElementById("stop").addEventListener("mouseout", () => {
+                  document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                })
+
+                document.getElementById("repeat").addEventListener("mouseover", () => {
+                  document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                })
+
+                document.getElementById("repeat").addEventListener("mouseout", () => {
+                  document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                })
+              }
+            });
           }
-        });
-      }
+        },
+        onError: function(error) {
+          console.error('Error reading tags: ', error.type, error.info);
+        }
+      });
 
       fileName = file.name;
 
@@ -485,6 +496,14 @@ function uploadFile() {
 
         document.getElementById("title").innerText = fileName;
         document.title = `${fileName} | Music Player`;
+
+        if ("mediaSession" in navigator) {
+          navigator.mediaSession.metadata = new MediaMetadata({
+            title: fileName,
+            artist: artist,
+            artwork: [{ src: base64 }],
+          });
+        }
 
         document.getElementById("title").contentEditable = "true";
 
