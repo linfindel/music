@@ -384,6 +384,76 @@ function uploadFile() {
             if (localStorage.getItem("kandinsky") == "disabled") {
               document.getElementById('cover-art').src = base64;
               document.getElementById('cover-art').style.display = "flex";
+
+              generateMaterialDesignPalette(base64, (error, palette) => {
+                if (error) {
+                  console.error(error);
+                }
+  
+                else {
+                  document.getElementById("navbar").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+  
+                  document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+  
+                  document.getElementById("tooltip").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  document.getElementById("progress-container").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  document.getElementById("progress-bar").style.backgroundColor = palette.accent;
+  
+                  document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+  
+                  document.getElementById("settings").addEventListener("mouseover", () => {
+                    document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                  })
+  
+                  document.getElementById("settings").addEventListener("mouseout", () => {
+                    document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  })
+  
+                  document.getElementById("upload1").addEventListener("mouseover", () => {
+                    document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                  })
+  
+                  document.getElementById("upload1").addEventListener("mouseout", () => {
+                    document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  })
+  
+                  document.getElementById("upload2").addEventListener("mouseover", () => {
+                    document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                  })
+  
+                  document.getElementById("upload2").addEventListener("mouseout", () => {
+                    document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  })
+  
+                  document.getElementById("play").addEventListener("mouseover", () => {
+                    document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                  })
+  
+                  document.getElementById("play").addEventListener("mouseout", () => {
+                    document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  })
+  
+                  document.getElementById("stop").addEventListener("mouseover", () => {
+                    document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                  })
+  
+                  document.getElementById("stop").addEventListener("mouseout", () => {
+                    document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  })
+  
+                  document.getElementById("repeat").addEventListener("mouseover", () => {
+                    document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                  })
+  
+                  document.getElementById("repeat").addEventListener("mouseout", () => {
+                    document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  })
+                }
+              });
             }
 
             var link = document.querySelector("link[rel~='icon']");
@@ -393,76 +463,6 @@ function uploadFile() {
                 document.head.appendChild(link);
             }
             link.href = base64;
-
-            generateMaterialDesignPalette(base64, (error, palette) => {
-              if (error) {
-                console.error(error);
-              }
-
-              else {
-                document.getElementById("navbar").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-
-                document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-
-                document.getElementById("tooltip").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                document.getElementById("progress-container").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                document.getElementById("progress-bar").style.backgroundColor = palette.accent;
-
-                document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-
-                document.getElementById("settings").addEventListener("mouseover", () => {
-                  document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.5);
-                })
-
-                document.getElementById("settings").addEventListener("mouseout", () => {
-                  document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                })
-
-                document.getElementById("upload1").addEventListener("mouseover", () => {
-                  document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.5);
-                })
-
-                document.getElementById("upload1").addEventListener("mouseout", () => {
-                  document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                })
-
-                document.getElementById("upload2").addEventListener("mouseover", () => {
-                  document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.5);
-                })
-
-                document.getElementById("upload2").addEventListener("mouseout", () => {
-                  document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                })
-
-                document.getElementById("play").addEventListener("mouseover", () => {
-                  document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.5);
-                })
-
-                document.getElementById("play").addEventListener("mouseout", () => {
-                  document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                })
-
-                document.getElementById("stop").addEventListener("mouseover", () => {
-                  document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.5);
-                })
-
-                document.getElementById("stop").addEventListener("mouseout", () => {
-                  document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                })
-
-                document.getElementById("repeat").addEventListener("mouseover", () => {
-                  document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.5);
-                })
-
-                document.getElementById("repeat").addEventListener("mouseout", () => {
-                  document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                })
-              }
-            });
           }
         },
         onError: function(error) {
