@@ -391,6 +391,8 @@ function uploadFile() {
                 }
   
                 else {
+                  document.getElementById('cover-art').style.boxShadow = `0px 0px 300px 0px ${generateRGBA(palette.accent, 0.25)}`;
+
                   document.getElementById("navbar").style.backgroundColor = generateRGBA(palette.accent, 0.25);
   
                   document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.25);
