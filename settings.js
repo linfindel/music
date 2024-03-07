@@ -38,22 +38,6 @@ function importSettings() {
   }
 }
 
-function debug() {
-  if (localStorage.getItem("debug") == "enabled") {
-    localStorage.setItem("debug", "disabled");
-
-    document.getElementById("debug-icon").innerText = "code";
-    document.getElementById("debug-text").innerText = "Show debug panel";
-  }
-
-  else {
-    localStorage.setItem("debug", "enabled");
-
-    document.getElementById("debug-icon").innerText = "code_off";
-    document.getElementById("debug-text").innerText = "Hide debug panel";
-  }
-}
-
 function applyColour() {
   var colour = localStorage.getItem("colour");
 
@@ -144,18 +128,6 @@ if (screen.width < screen.height) {
 
   document.getElementById("keyboard-shortcuts").remove();
 }
-
-setInterval(() => {
-  if (localStorage.getItem("kandinsky") == "disabled") {
-    document.getElementById("debug").style.display = "none";
-  }
-
-  else {
-    if (document.getElementById("debug")) {
-      document.getElementById("debug").style.display = "flex";
-    }
-  }
-});
 
 setInterval(() => {
   if (window.innerWidth < window.innerHeight) {
