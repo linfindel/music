@@ -36,11 +36,6 @@ function importSettings() {
       setOption("kandinsky", "enabled");
     }
   }
-
-  if (localStorage.getItem("debug") == "enabled") {
-    document.getElementById("debug-icon").innerText = "code_off";
-    document.getElementById("debug-text").innerText = "Hide debug panel";
-  }
 }
 
 function debug() {

@@ -832,7 +832,7 @@ function formatTime(timeInSeconds) {
 }
 
 if (localStorage.getItem("debug") == "disabled" || !localStorage.getItem("debug")) {
-  document.getElementById("debug-card").remove();
+  document.getElementById("debug-card").style.display = "none";
 }
 
 else {
@@ -935,4 +935,12 @@ function generateRGBA(hex, alpha) {
   const blue = bigint & 255;
 
   return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+}
+
+if (localStorage.getItem("debug-colour-makeup") == "disabled") {
+  document.getElementById("makeup").style.display = "none";
+}
+
+if (localStorage.getItem("debug-compare") == "disabled") {
+  document.getElementById("comparison").style.display = "none";
 }
