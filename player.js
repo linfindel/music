@@ -607,6 +607,13 @@ applyColour();
 if (localStorage.getItem("kandinsky") == "disabled") {
   document.getElementById("audio").onplay = "";
   document.getElementById("glow").remove();
+
+  var styleElement = document.getElementsByTagName("style")[0];
+  styleElement.innerHTML += `
+    * {
+      transition: 0.25s ease;
+    }
+  `;
 }
 
 if (localStorage.getItem("colour") == null) {
