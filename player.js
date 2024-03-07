@@ -120,9 +120,11 @@ function analyse() {
     highVolume = Math.min(255, highVolume);
 
     var rgba;
+    var rgb;
 
     if (skew == "blue") {
       rgba = `rgba(${highVolume}, ${midVolume}, ${lowVolume}, ${alpha})`;
+      rgb = `rgb(${highVolume}, ${midVolume}, ${lowVolume})`;
 
       if (localStorage.getItem("debug") == "enabled") {
         document.getElementById("r-value").style.height = `${highVolume / 255 * 100}px`;
@@ -167,6 +169,7 @@ function analyse() {
 
     else if (skew == "green") {
       rgba = `rgba(${midVolume}, ${lowVolume}, ${highVolume}, ${alpha})`;
+      rgb = `rgb(${midVolume}, ${lowVolume}, ${highVolume})`;
 
       if (localStorage.getItem("debug") == "enabled") {
         document.getElementById("r-value").style.height = `${midVolume / 255 * 100}px`;
@@ -211,6 +214,7 @@ function analyse() {
 
     else if (skew == "red") {
       rgba = `rgba(${lowVolume}, ${midVolume}, ${highVolume}, ${alpha})`;
+      rgb = `rgba(${lowVolume}, ${midVolume}, ${highVolume})`;
 
       if (localStorage.getItem("debug") == "enabled") {
         document.getElementById("r-value").style.height = `${lowVolume / 255 * 100}px`;
@@ -255,6 +259,7 @@ function analyse() {
 
     else if (skew == "purple") {
       rgba = `rgba(${midVolume + 100}, ${highVolume}, ${lowVolume - 100}, ${alpha})`;
+      rgb = `rgb(${midVolume + 100}, ${highVolume}, ${lowVolume - 100})`;
 
       if (localStorage.getItem("debug") == "enabled") {
         document.getElementById("r-value").style.height = `${(midVolume + 100) / 255 * 100}px`;
@@ -300,6 +305,9 @@ function analyse() {
         document.getElementById("b-text").innerText = b;
       }
     }
+
+    document.getElementById("rgb").style.backgroundColor = rgb;
+    document.getElementById("rgba").style.backgroundColor = rgba;
 
     document.getElementById("navbar").style.backgroundColor = rgba;
 
@@ -567,7 +575,7 @@ function applyColour() {
         background-color: ${colour};
       }
 
-      .card {
+      .card, .card-flat-right, .card-flat-left {
         background-color: ${colour};
       }
 
