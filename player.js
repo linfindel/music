@@ -806,15 +806,19 @@ setInterval(() => {
   if (window.innerHeight > window.innerWidth) {
     document.getElementById('cover-art').style.width = "75vw";
     document.getElementById('cover-art').style.height = "75vw";
-
-    document.getElementById("progress-bar").style.transition = "0.25s ease";
   }
 
   else {
     document.getElementById('cover-art').style.width = "25vw";
     document.getElementById('cover-art').style.height = "25vw";
+  }
 
+  if (localStorage.getItem("kandinsky") == "enabled") {
     document.getElementById("progress-bar").style.transition = "0.2s ease";
+  }
+
+  else {
+    document.getElementById("progress-bar").style.transition = "0.25s ease";
   }
 });
 
