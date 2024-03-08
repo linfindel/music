@@ -800,6 +800,16 @@ setInterval(() => {
       document.selection.empty();
     }
   }
+
+  if (window.innerHeight > window.innerWidth) {
+    document.getElementById('cover-art').style.width = "75vw";
+    document.getElementById('cover-art').style.height = "75vw";
+  }
+
+  else {
+    document.getElementById('cover-art').style.width = "25vw";
+    document.getElementById('cover-art').style.height = "25vw";
+  }
 });
 
 const progressContainer = document.getElementById("progress-container");
