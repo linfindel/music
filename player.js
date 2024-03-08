@@ -812,15 +812,16 @@ setInterval(() => {
     document.getElementById('cover-art').style.width = "25vw";
     document.getElementById('cover-art').style.height = "25vw";
   }
-
-  if (localStorage.getItem("kandinsky") == "enabled") {
-    document.getElementById("progress-bar").style.transition = "0.2s ease";
-  }
-
-  else {
-    document.getElementById("progress-bar").style.transition = "0.25s ease";
-  }
 });
+
+if (localStorage.getItem("kandinsky") == "enabled") {
+  document.getElementById("progress-bar").style.transition = "0.2s ease";
+  document.getElementById("progress-bar").style.filter = "brightness(2)";
+}
+
+else {
+  document.getElementById("progress-bar").style.transition = "0.25s ease";
+}
 
 const progressContainer = document.getElementById("progress-container");
 const tooltip = document.getElementById("tooltip");
