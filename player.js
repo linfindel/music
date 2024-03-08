@@ -40,6 +40,7 @@ let audioSource;
 let fileName;
 let biquadFilter;
 let base64;
+let medianColor;
 let artist;
 var customTitles = JSON.parse(localStorage.getItem("custom-titles")) || {};
 
@@ -396,71 +397,174 @@ function uploadFile() {
               generateMaterialDesignPalette(base64, (error, palette) => {
                 if (error) {
                   console.error(error);
+
+                  const imgElement = document.getElementById('cover-art');
+                  const canvas = document.createElement('canvas');
+                  const ctx = canvas.getContext('2d');
+                
+                  canvas.width = imgElement.width;
+                  canvas.height = imgElement.height;
+                
+                  ctx.drawImage(imgElement, 0, 0, canvas.width, canvas.height);
+                
+                  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                  const pixels = imageData.data;
+                
+                  const pixelColors = [];
+                    
+                  for (let i = 0; i < pixels.length; i += 4) {
+                    const red = pixels[i];
+                    const green = pixels[i + 1];
+                    const blue = pixels[i + 2];
+                
+                    const color = `rgb(${red}, ${green}, ${blue})`;
+                    pixelColors.push(color);
+                  }
+                
+                  const totalCount = pixelColors.length;
+
+                  pixelColors.sort();
+                  const medianColorIndex = Math.floor(totalCount / 2);
+                  medianColor = pixelColors[medianColorIndex];
+
+                  let rgbValues = medianColor.match(/\d+/g).map(Number);
+                  medianColor = "#";
+
+                  for (let i = 0; i < 3; i++) {
+                    let hexPart = rgbValues[i].toString(16);
+                    medianColor += hexPart.length == 1 ? "0" + hexPart : hexPart;
+                  }
                 }
-  
-                else {
+
+                if (palette) {
                   document.getElementById('cover-art').style.boxShadow = `0px 0px 300px 0px ${generateRGBA(palette.accent, 0.25)}`;
 
                   document.getElementById("navbar").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-  
+
                   document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-  
+
                   document.getElementById("tooltip").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   document.getElementById("progress-container").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   document.getElementById("progress-bar").style.backgroundColor = palette.accent;
-  
+
                   document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-  
+
                   document.getElementById("settings").addEventListener("mouseover", () => {
                     document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.5);
                   })
-  
+
                   document.getElementById("settings").addEventListener("mouseout", () => {
                     document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   })
-  
+
                   document.getElementById("upload1").addEventListener("mouseover", () => {
                     document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.5);
                   })
-  
+
                   document.getElementById("upload1").addEventListener("mouseout", () => {
                     document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   })
-  
+
                   document.getElementById("upload2").addEventListener("mouseover", () => {
                     document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.5);
                   })
-  
+
                   document.getElementById("upload2").addEventListener("mouseout", () => {
                     document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   })
-  
+
                   document.getElementById("play").addEventListener("mouseover", () => {
                     document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.5);
                   })
-  
+
                   document.getElementById("play").addEventListener("mouseout", () => {
                     document.getElementById("play").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   })
-  
+
                   document.getElementById("stop").addEventListener("mouseover", () => {
                     document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.5);
                   })
-  
+
                   document.getElementById("stop").addEventListener("mouseout", () => {
                     document.getElementById("stop").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   })
-  
+
                   document.getElementById("repeat").addEventListener("mouseover", () => {
                     document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.5);
                   })
-  
+
                   document.getElementById("repeat").addEventListener("mouseout", () => {
                     document.getElementById("repeat").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  })
+                }
+
+                else {
+                  document.getElementById('cover-art').style.boxShadow = `0px 0px 300px 0px ${generateRGBA(medianColor, 0.25)}`;
+
+                  document.getElementById("navbar").style.backgroundColor = generateRGBA(medianColor, 0.25);
+
+                  document.getElementById("settings").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                  document.getElementById("upload1").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                  document.getElementById("upload2").style.backgroundColor = generateRGBA(medianColor, 0.25);
+
+                  document.getElementById("tooltip").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                  document.getElementById("progress-container").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                  document.getElementById("progress-bar").style.backgroundColor = medianColor;
+
+                  document.getElementById("play").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                  document.getElementById("stop").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                  document.getElementById("repeat").style.backgroundColor = generateRGBA(medianColor, 0.25);
+
+                  document.getElementById("settings").addEventListener("mouseover", () => {
+                    document.getElementById("settings").style.backgroundColor = generateRGBA(medianColor, 0.5);
+                  })
+
+                  document.getElementById("settings").addEventListener("mouseout", () => {
+                    document.getElementById("settings").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                  })
+
+                  document.getElementById("upload1").addEventListener("mouseover", () => {
+                    document.getElementById("upload1").style.backgroundColor = generateRGBA(medianColor, 0.5);
+                  })
+
+                  document.getElementById("upload1").addEventListener("mouseout", () => {
+                    document.getElementById("upload1").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                  })
+
+                  document.getElementById("upload2").addEventListener("mouseover", () => {
+                    document.getElementById("upload2").style.backgroundColor = generateRGBA(medianColor, 0.5);
+                  })
+
+                  document.getElementById("upload2").addEventListener("mouseout", () => {
+                    document.getElementById("upload2").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                  })
+
+                  document.getElementById("play").addEventListener("mouseover", () => {
+                    document.getElementById("play").style.backgroundColor = generateRGBA(medianColor, 0.5);
+                  })
+
+                  document.getElementById("play").addEventListener("mouseout", () => {
+                    document.getElementById("play").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                  })
+
+                  document.getElementById("stop").addEventListener("mouseover", () => {
+                    document.getElementById("stop").style.backgroundColor = generateRGBA(medianColor, 0.5);
+                  })
+
+                  document.getElementById("stop").addEventListener("mouseout", () => {
+                    document.getElementById("stop").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                  })
+
+                  document.getElementById("repeat").addEventListener("mouseover", () => {
+                    document.getElementById("repeat").style.backgroundColor = generateRGBA(medianColor, 0.5);
+                  })
+
+                  document.getElementById("repeat").addEventListener("mouseout", () => {
+                    document.getElementById("repeat").style.backgroundColor = generateRGBA(medianColor, 0.25);
                   })
                 }
               });
@@ -936,14 +1040,20 @@ function generateMaterialDesignPalette(imageURL, callback) {
     const swatches = vibrant.swatches();
   
     if (swatches) {
-      const palette = {
-        accent: swatches.Vibrant.getHex(),
-        primaryDark: swatches.DarkVibrant.getHex(),
-        primaryLight: swatches.LightVibrant.getHex(),
-        primary: swatches.Muted.getHex(),
-      };
-  
-      callback(null, palette);
+      try {
+        const palette = {
+          accent: swatches.Vibrant.getHex(),
+          primaryDark: swatches.DarkVibrant.getHex(),
+          primaryLight: swatches.LightVibrant.getHex(),
+          primary: swatches.Muted.getHex(),
+        };
+
+        callback(null, palette);
+      }
+
+      catch {
+        callback("Dynamic colour not found, falling back on median...", null);
+      }
     }
         
     else {
