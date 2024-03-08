@@ -646,7 +646,7 @@ function play() {
 function stop() {
   stopAnalysis();
 
-  if (biquadFilter) {
+  if (biquadFilter && localStorage.getItem("stop-effect") == "enabled") {
     audioSource.connect(biquadFilter);
     biquadFilter.connect(audioContext.destination);
   }
@@ -690,12 +690,14 @@ function stop() {
     volume -= 0.01;
   }, 10);
 
-  var speed = 1;
+  if (localStorage.getItem("stop-effect") == "enabled") {
+    var speed = 1;
 
-  setInterval(() => {
-    audioElement.playbackRate = speed;
-    speed -= 0.01;
-  }, 10);
+    setInterval(() => {
+      audioElement.playbackRate = speed;
+      speed -= 0.01;
+    }, 10);
+  }
 
   setTimeout(() => {
     location.reload();

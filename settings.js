@@ -17,6 +17,22 @@ function setOption(option, value) {
     }
   }
 
+  if (option == "stop-effect") {
+    document.getElementById("stop-title").innerText = `Lowpass stop effect ${value}`;
+  }
+
+  if (option == "stop-effect" && value == "enabled") {
+    document.getElementById("stop").onclick = () => {
+      setOption("stop-effect", "disabled");
+    }
+  }
+
+  else if (option == "stop-effect" && value == "disabled") {
+    document.getElementById("stop").onclick = () => {
+      setOption("stop-effect", "enabled");
+    }
+  }
+
   if (option == "colour") {
     applyColour();
   }
@@ -34,6 +50,20 @@ function importSettings() {
   else if (localStorage.getItem("kandinsky") == "disabled") {
     document.getElementById("kandinsky").onclick = () => {
       setOption("kandinsky", "enabled");
+    }
+  }
+
+  document.getElementById("stop-title").innerText = `Lowpass stop effect ${localStorage.getItem("stop-effect")}`;
+
+  if (localStorage.getItem("stop-effect") == "enabled") {
+    document.getElementById("stop").onclick = () => {
+      setOption("stop-effect", "disabled");
+    }
+  }
+
+  else if (localStorage.getItem("stop-effect") == "disabled") {
+    document.getElementById("stop").onclick = () => {
+      setOption("stop-effect", "enabled");
     }
   }
 }
