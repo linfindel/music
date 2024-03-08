@@ -39,7 +39,7 @@ function setOption(option, value) {
 }
 
 function importSettings() {
-  document.getElementById("kandinsky-title").innerText = `Kandinsky Engine ${localStorage.getItem("kandinsky")}`;
+  document.getElementById("kandinsky-title").innerText = `Kandinsky Engine ${localStorage.getItem("kandinsky") || "enabled"}`;
 
   if (localStorage.getItem("kandinsky") == "enabled") {
     document.getElementById("kandinsky").onclick = () => {
