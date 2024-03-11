@@ -33,6 +33,22 @@ function setOption(option, value) {
     }
   }
 
+  if (option == "numbering" && value == "enabled") {
+    document.getElementById("numbering-title").innerText = "Removing title numbering";
+
+    document.getElementById("numbering").onclick = () => {
+      setOption("numbering", "disabled");
+    }
+  }
+
+  else if (option == "numbering" && value == "disabled") {
+    document.getElementById("numbering-title").innerText = "Retaining title numbering";
+
+    document.getElementById("numbering").onclick = () => {
+      setOption("numbering", "enabled");
+    }
+  }
+
   if (option == "colour") {
     applyColour();
   }
@@ -64,6 +80,22 @@ function importSettings() {
   else if (localStorage.getItem("stop-effect") == "disabled") {
     document.getElementById("stop").onclick = () => {
       setOption("stop-effect", "enabled");
+    }
+  }
+
+  if (localStorage.getItem("numbering") == "enabled") {
+    document.getElementById("numbering-title").innerText = "Removing title numbering";
+
+    document.getElementById("numbering").onclick = () => {
+      setOption("numbering", "disabled");
+    }
+  }
+
+  else if (localStorage.getItem("numbering") == "disabled") {
+    document.getElementById("numbering-title").innerText = "Retaining title numbering";
+
+    document.getElementById("numbering").onclick = () => {
+      setOption("numbering", "enabled");
     }
   }
 }

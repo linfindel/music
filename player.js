@@ -433,6 +433,8 @@ function uploadFile() {
                     rgbValues[0] = 50;
                     rgbValues[1] = 50;
                     rgbValues[2] = 50;
+
+                    console.error("Median colour is black, falling back on rgba(50, 50, 50, 0.25)...")
                   }
 
                   medianColor = "#";
@@ -600,6 +602,10 @@ function uploadFile() {
 
       while (fileName.includes("_")) {
         fileName = fileName.replace("_", " ");
+      }
+
+      if (localStorage.getItem("numbering") == "enabled") {
+        fileName = fileName.replace(/^\d+ - /, '');
       }
 
       document.getElementById("title").innerText = "Loading...";
