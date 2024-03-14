@@ -609,7 +609,7 @@ function uploadFile() {
       }
 
       document.getElementById("title").innerText = "Loading...";
-      document.title = `Loading... | Music Player`;
+      document.title = `Loading... - Music Player`;
 
       let reader = new FileReader();
       reader.onload = function (e) {
@@ -622,7 +622,7 @@ function uploadFile() {
         document.getElementById("title").style.cursor = "url('https://linfindel.github.io/nadircss/cursors/link-select.cur'), auto";
 
         document.getElementById("title").innerText = fileName;
-        document.title = `${fileName} | Music Player`;
+        document.title = `${fileName} - Music Player`;
 
         if ("mediaSession" in navigator) {
           navigator.mediaSession.metadata = new MediaMetadata({
@@ -636,7 +636,7 @@ function uploadFile() {
 
         if (customTitles[fileName]) {
           document.getElementById("title").innerText = customTitles[fileName];
-          document.title = `${customTitles[fileName]} | Music Player`;
+          document.title = `${customTitles[fileName]} - Music Player`;
         }
       });
     };
@@ -646,11 +646,11 @@ function uploadFile() {
         let percentLoaded = (e.loaded / e.total) * 100;
 
         document.getElementById("title").innerText = `${percentLoaded.toFixed(2)}%`;
-        document.title = `${percentLoaded.toFixed(2)}% | Music Player`;
+        document.title = `${percentLoaded.toFixed(2)}% - Music Player`;
 
         if (percentLoaded == 100) {
           document.getElementById("title").innerText = "Analysing...";
-          document.title = "Analysing... | Music Player";
+          document.title = "Analysing... - Music Player";
         }
       }
     };
@@ -672,7 +672,7 @@ function uploadLink() {
     document.getElementById("audio").play();
 
     document.getElementById("title").innerText = "Loading...";
-    document.title = `Loading... | Music Player`;
+    document.title = `Loading... - Music Player`;
 
     document.getElementById("audio").addEventListener("loadedmetadata", () => {
       document.getElementById("title").innerText = "Music Player";
