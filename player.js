@@ -605,7 +605,21 @@ function uploadFile() {
       }
 
       if (localStorage.getItem("numbering") == "enabled") {
-        fileName = fileName.replace(/^\d+ - /, '');
+        if (localStorage.getItem("custom-regex")) {
+          let customRegex = localStorage.getItem("custom-regex");
+
+          while (customRegex.includes("/")) {
+            customRegex = customRegex.replace("/", "");
+          }
+
+          customRegex = RegExp(customRegex);
+
+          fileName = fileName.replace(customRegex, '');
+        }
+
+        else {
+          fileName = fileName.replace(/^\d+ - /, '');
+        }
       }
 
       document.getElementById("title").innerText = "Loading...";

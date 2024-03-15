@@ -39,6 +39,8 @@ function setOption(option, value) {
     document.getElementById("numbering").onclick = () => {
       setOption("numbering", "disabled");
     }
+
+    document.getElementById("custom-regex").style.display = "flex";
   }
 
   else if (option == "numbering" && value == "disabled") {
@@ -47,6 +49,8 @@ function setOption(option, value) {
     document.getElementById("numbering").onclick = () => {
       setOption("numbering", "enabled");
     }
+
+    document.getElementById("custom-regex").style.display = "none";
   }
 
   if (option == "colour") {
@@ -89,6 +93,8 @@ function importSettings() {
     document.getElementById("numbering").onclick = () => {
       setOption("numbering", "disabled");
     }
+
+    document.getElementById("custom-regex").style.display = "flex";
   }
 
   else if (localStorage.getItem("numbering") == "disabled") {
@@ -97,6 +103,8 @@ function importSettings() {
     document.getElementById("numbering").onclick = () => {
       setOption("numbering", "enabled");
     }
+
+    document.getElementById("custom-regex").style.display = "none";
   }
 }
 
@@ -131,7 +139,7 @@ function applyColour() {
         background-color: ${colour.replace("0.25", "0.5")};
       }
 
-      #settings:hover {
+      #settings:hover, #custom-regex:hover {
         background-color: ${colour.replace("0.25", "0.5")};
       }
     `;
