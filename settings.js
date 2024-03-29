@@ -211,6 +211,15 @@ setInterval(() => {
   }
 });
 
+document.addEventListener("keyup", (e) => {
+  e.preventDefault();
+  e.key = e.key.toLowerCase();
+
+  if (e.key == "h") {
+    location.href = ".";
+  }
+});
+
 importSettings();
 applyColour();
 
