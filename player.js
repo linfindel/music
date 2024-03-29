@@ -936,8 +936,8 @@ setInterval(() => {
   }
 
   if (window.innerHeight > window.innerWidth) {
-    document.getElementById('cover-art').style.width = "75vw";
-    document.getElementById('cover-art').style.height = "75vw";
+    document.getElementById('cover-art').style.width = "30vh";
+    document.getElementById('cover-art').style.height = "30vh";
   }
 
   else {
