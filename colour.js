@@ -27,3 +27,17 @@ function setColour(colour) {
 
   location.href = ".";
 }
+
+setInterval(() => {
+  if (window.innerWidth < window.innerHeight) {
+    document.getElementById("red").style.borderBottomLeftRadius = "7.5px";
+    document.getElementById("purple").style.borderBottomRightRadius = "24px";
+    document.getElementById("blue").style.borderBottomLeftRadius = "24px";
+  }
+  
+  else {
+    document.getElementById("red").style.borderBottomLeftRadius = "24px";
+    document.getElementById("purple").style.borderBottomRightRadius = "24px";
+    document.getElementById("blue").style.borderBottomLeftRadius = "7.4px";
+  }
+});
