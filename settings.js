@@ -97,7 +97,7 @@ function importSettings() {
     document.getElementById("custom-regex").style.display = "flex";
   }
 
-  else if (localStorage.getItem("numbering") == "disabled") {
+  else if (localStorage.getItem("numbering") == "disabled" || !localStorage.getItem("numbering")) {
     document.getElementById("numbering-title").innerText = "Retaining title numbering";
 
     document.getElementById("numbering").onclick = () => {
