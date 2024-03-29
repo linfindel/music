@@ -41,6 +41,7 @@ let fileName;
 let biquadFilter;
 let base64;
 let medianColor;
+let image;
 let artist;
 var customTitles = JSON.parse(localStorage.getItem("custom-titles")) || {};
 
@@ -379,7 +380,7 @@ function uploadFile() {
     if (file) {
       jsmediatags.read(file, {
         onSuccess: function(tag) {
-          var image = tag.tags.picture;
+          image = tag.tags.picture;
           artist = tag.tags.artist;
           if (image) {
             var base64String = "";
