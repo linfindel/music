@@ -636,7 +636,14 @@ function uploadFile() {
         document.getElementById("audio").addEventListener("loadedmetadata", () => {
         document.getElementById("title").style.cursor = "url('https://linfindel.github.io/nadircss/cursors/link-select.cur'), auto";
 
-        document.getElementById("title").innerText = fileName;
+        document.getElementById("title").style.transition = "0.5s ease";
+        document.getElementById("title").style.opacity = "0";
+      
+        setTimeout(() => {
+          document.getElementById("title").innerText = fileName;
+          document.getElementById("title").style.opacity = "1";
+        }, 500);
+
         document.title = `${fileName} - Music Player`;
 
         if ("mediaSession" in navigator) {
