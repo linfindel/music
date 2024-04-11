@@ -1,6 +1,6 @@
 var jsmediatags = window.jsmediatags;
 
-let skew = localStorage.getItem("colour");
+let skew = localStorage.getItem("color");
 
 if (skew == "rgba(0, 89, 255, 0.25)") {
   skew = "blue";
@@ -355,9 +355,9 @@ function rgbaToHex(rgba) {
   const alpha = Math.round(parseFloat(a) * 255);
   const hexA = toHex(alpha);
   
-  const hexColour = `#${hexR}${hexG}${hexB}${hexA}`;
+  const hexColor = `#${hexR}${hexG}${hexB}${hexA}`;
   
-  return hexColour;
+  return hexColor;
 }
 
 function changeSkew(newSkew) {
@@ -435,7 +435,7 @@ function uploadFile() {
                     rgbValues[1] = 50;
                     rgbValues[2] = 50;
 
-                    console.error("Median colour is black, falling back on rgba(50, 50, 50, 0.25)...")
+                    console.error("Median color is black, falling back on rgba(50, 50, 50, 0.25)...")
                   }
 
                   medianColor = "#";
@@ -703,45 +703,45 @@ function uploadLink() {
   }
 }
 
-function applyColour() {
-  var colour = localStorage.getItem("colour");
+function applyColor() {
+  var color = localStorage.getItem("color");
 
-  if (colour) {
+  if (color) {
     var styleElement = document.getElementsByTagName("style")[0];
 
     styleElement.innerHTML += `
       nav {
-        background-color: ${colour};
+        background-color: ${color};
       }
 
       .card, .card-flat-right, .card-flat-left {
-        background-color: ${colour};
+        background-color: ${color};
       }
 
       .interactive:hover {
-        background-color: ${colour.replace("0.25", "0.5")};
+        background-color: ${color.replace("0.25", "0.5")};
       }
 
-      button:not(.nochange-colour) {
-        background-color: ${colour};
+      button:not(.nochange-color) {
+        background-color: ${color};
       }
 
-      button.not(.nochange-colour):hover {
-        background-color: ${colour.replace("0.25", "0.5")};
+      button.not(.nochange-color):hover {
+        background-color: ${color.replace("0.25", "0.5")};
       }
 
       #settings:hover, #upload1:hover, #upload2:hover, #play:hover, #stop:hover, #repeat:hover {
-        background-color: ${colour.replace("0.25", "0.5")};
+        background-color: ${color.replace("0.25", "0.5")};
       }
 
       .glow {
-        box-shadow: 0px 0px 200px 100px ${colour};
+        box-shadow: 0px 0px 200px 100px ${color};
       }
     `;
   }
 }
 
-applyColour();
+applyColor();
 
 if (localStorage.getItem("kandinsky") == "disabled") {
   document.getElementById("audio").onplay = "";
@@ -753,11 +753,6 @@ if (localStorage.getItem("kandinsky") == "disabled") {
       transition: 0.25s ease;
     }
   `;
-}
-
-if (localStorage.getItem("colour") == null) {
-  localStorage.setItem("colour", "rgba(255, 0, 0, 0.25)");
-  location.reload();
 }
 
 function play() {
@@ -802,21 +797,21 @@ function stop() {
   document.getElementById("controls").style.opacity = "0";
 
   document.getElementById("navbar").style.transition = "1s ease";
-  document.getElementById("navbar").style.backgroundColor = localStorage.getItem("colour");
+  document.getElementById("navbar").style.backgroundColor = localStorage.getItem("color");
 
   document.getElementById("settings").style.transition = "1s ease";
-  document.getElementById("settings").style.backgroundColor = localStorage.getItem("colour");
+  document.getElementById("settings").style.backgroundColor = localStorage.getItem("color");
   
   document.getElementById("upload1").style.transition = "1s ease";
-  document.getElementById("upload1").style.backgroundColor = localStorage.getItem("colour");
+  document.getElementById("upload1").style.backgroundColor = localStorage.getItem("color");
   
   document.getElementById("upload2").style.transition = "1s ease";
-  document.getElementById("upload2").style.backgroundColor = localStorage.getItem("colour");
+  document.getElementById("upload2").style.backgroundColor = localStorage.getItem("color");
 
   if (document.getElementById("glow")) {
     document.getElementById("glow").style.transition = "1s ease";
     document.getElementById("glow").style.width = "50vw";
-    document.getElementById("glow").style.boxShadow = `0px 0px 200px 100px ${localStorage.getItem("colour")}`;
+    document.getElementById("glow").style.boxShadow = `0px 0px 200px 100px ${localStorage.getItem("color")}`;
   }
 
   document.getElementById("cover-art").style.transition = "1s ease";
@@ -1087,7 +1082,7 @@ function generateMaterialDesignPalette(imageURL, callback) {
       }
 
       catch {
-        callback("Dynamic colour not found, falling back on median...", null);
+        callback("Dynamic color not found, falling back on median...", null);
       }
     }
         
@@ -1110,7 +1105,7 @@ function generateRGBA(hex, alpha) {
   return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
 }
 
-if (localStorage.getItem("debug-colour-makeup") == "disabled") {
+if (localStorage.getItem("debug-color-makeup") == "disabled") {
   document.getElementById("makeup").style.display = "none";
 }
 
