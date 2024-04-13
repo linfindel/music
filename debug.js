@@ -13,52 +13,52 @@ setInterval(() => {
     document.getElementById("debug-options").style.display = "none";
   }
 
-  if (localStorage.getItem("debug-color-makeup") == "enabled" || !localStorage.getItem("debug-color-makeup")) {
+  if (localStorage.getItem("debug-colour-makeup") == "enabled" || !localStorage.getItem("debug-colour-makeup")) {
     document.getElementById("makeup-icon").innerText = "check_box";
-    document.getElementById("makeup-text").innerText = "Color makeup enabled";
+    document.getElementById("makeup-text").innerText = "Colour makeup enabled";
   }
   
   else {
     document.getElementById("makeup-icon").innerText = "check_box_outline_blank";
-    document.getElementById("makeup-text").innerText = "Color makeup disabled";
+    document.getElementById("makeup-text").innerText = "Colour makeup disabled";
   }
 
   if (localStorage.getItem("debug-compare") == "enabled" || !localStorage.getItem("debug-compare")) {
     document.getElementById("compare-icon").innerText = "check_box";
-    document.getElementById("compare-text").innerText = "Color comparison enabled";
+    document.getElementById("compare-text").innerText = "Colour comparison enabled";
   }
   
   else {
     document.getElementById("compare-icon").innerText = "check_box_outline_blank";
-    document.getElementById("compare-text").innerText = "Color comparison disabled";
+    document.getElementById("compare-text").innerText = "Colour comparison disabled";
   }
 });
 
-var color = localStorage.getItem("color");
+var colour = localStorage.getItem("colour");
 
-if (color) {
+if (colour) {
   var styleElement = document.getElementsByTagName("style")[0];
 
   styleElement.innerHTML += `
     nav {
-      background-color: ${color};
+      background-color: ${colour};
     }
 
     button {
-      background-color: ${color};
+      background-color: ${colour};
     }
 
     button:hover {
-      background-color: ${color.replace("0.25", "0.5")};
+      background-color: ${colour.replace("0.25", "0.5")};
     }
 
     #back:hover, #debug:hover, #makeup:hover, #compare:hover {
-      background-color: ${color.replace("0.25", "0.5")};
+      background-color: ${colour.replace("0.25", "0.5")};
     }
   `;
 
   document.getElementById("back").addEventListener("mouseover", () => {
-    document.getElementById("back").style.backgroundColor = color.replace("0.25", "0.5");
+    document.getElementById("back").style.backgroundColor = colour.replace("0.25", "0.5");
   });
 
   document.getElementById("back").addEventListener("mouseleave", () => {

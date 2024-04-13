@@ -53,8 +53,8 @@ function setOption(option, value) {
     document.getElementById("custom-regex").style.display = "none";
   }
 
-  if (option == "color") {
-    applyColor();
+  if (option == "colour") {
+    applyColour();
   }
 }
 
@@ -108,44 +108,44 @@ function importSettings() {
   }
 }
 
-function applyColor() {
-  var color = localStorage.getItem("color");
+function applyColour() {
+  var colour = localStorage.getItem("colour");
 
-  if (color) {
+  if (colour) {
     var styleElement = document.getElementsByTagName("style")[0];
 
     styleElement.innerHTML += `
       nav {
-        background-color: ${color};
+        background-color: ${colour};
       }
 
       .card, .card-flat-bottom, .card-flat, .card-flat-top, .card-flat-bottom-left-alt, .card-flat-bottom-right-alt {
-        background-color: ${color};
+        background-color: ${colour};
       }
 
       .card-interactive:hover {
-        background-color: ${color.replace("0.25", "0.5")};
+        background-color: ${colour.replace("0.25", "0.5")};
       }
 
       .about:hover, .reset:hover, .debug:hover {
-        background-color: ${color.replace("0.25", "0.5")};
+        background-color: ${colour.replace("0.25", "0.5")};
       }
 
-      button:not(.nochange-color) {
-        background-color: ${color};
+      button:not(.nochange-colour) {
+        background-color: ${colour};
       }
 
-      button.not(.nochange-color):hover {
-        background-color: ${color.replace("0.25", "0.5")};
+      button.not(.nochange-colour):hover {
+        background-color: ${colour.replace("0.25", "0.5")};
       }
 
       #settings:hover, #custom-regex:hover {
-        background-color: ${color.replace("0.25", "0.5")};
+        background-color: ${colour.replace("0.25", "0.5")};
       }
     `;
 
     document.getElementById("about1").addEventListener("mouseover", () => {
-      document.getElementById("about1").style.backgroundColor = color.replace("0.25", "0.5");
+      document.getElementById("about1").style.backgroundColor = colour.replace("0.25", "0.5");
     });
 
     document.getElementById("about1").addEventListener("mouseleave", () => {
@@ -153,7 +153,7 @@ function applyColor() {
     });
 
     document.getElementById("about2").addEventListener("mouseover", () => {
-      document.getElementById("about2").style.backgroundColor = color.replace("0.25", "0.5");
+      document.getElementById("about2").style.backgroundColor = colour.replace("0.25", "0.5");
     });
 
     document.getElementById("about2").addEventListener("mouseleave", () => {
@@ -161,7 +161,7 @@ function applyColor() {
     });
 
     document.getElementById("reset").addEventListener("mouseover", () => {
-      document.getElementById("reset").style.backgroundColor = color.replace("0.25", "0.5");
+      document.getElementById("reset").style.backgroundColor = colour.replace("0.25", "0.5");
     });
 
     document.getElementById("reset").addEventListener("mouseleave", () => {
@@ -170,7 +170,7 @@ function applyColor() {
 
     try {
       document.getElementById("debug").addEventListener("mouseover", () => {
-        document.getElementById("debug").style.backgroundColor = color.replace("0.25", "0.5");
+        document.getElementById("debug").style.backgroundColor = colour.replace("0.25", "0.5");
       });
   
       document.getElementById("debug").addEventListener("mouseleave", () => {
@@ -221,7 +221,7 @@ document.addEventListener("keyup", (e) => {
 });
 
 importSettings();
-applyColor();
+applyColour();
 
 const username = 'linfindel';
 const repo = 'music';

@@ -1,52 +1,52 @@
-var color = localStorage.getItem("color");
+var colour = localStorage.getItem("colour");
 
-if (color) {
+if (colour) {
   var styleElement = document.getElementsByTagName("style")[0];
 
   styleElement.innerHTML += `
     nav {
-      background-color: ${color};
+      background-color: ${colour};
     }
 
     button, .card {
-      background-color: ${color};
+      background-color: ${colour};
     }
 
     button:hover {
-      background-color: ${color.replace("0.25", "0.5")};
+      background-color: ${colour.replace("0.25", "0.5")};
     }
 
     #back:hover {
-      background-color: ${color.replace("0.25", "0.5")};
+      background-color: ${colour.replace("0.25", "0.5")};
     }
   `;
 
   document.getElementById("back").addEventListener("mouseover", () => {
-    document.getElementById("back").style.backgroundColor = color.replace("0.25", "0.5");
+    document.getElementById("back").style.backgroundColor = colour.replace("0.25", "0.5");
   });
 
   document.getElementById("back").addEventListener("mouseleave", () => {
     document.getElementById("back").style.backgroundColor = "";
   });
 
-  document.getElementById("custom-regex").style.backgroundColor = color;
+  document.getElementById("custom-regex").style.backgroundColor = colour;
 
   document.getElementById("custom-regex").addEventListener("mouseover", () => {
-    document.getElementById("custom-regex").style.backgroundColor = color.replace("0.25", "0.5");
+    document.getElementById("custom-regex").style.backgroundColor = colour.replace("0.25", "0.5");
   });
 
   document.getElementById("custom-regex").addEventListener("mouseleave", () => {
-    document.getElementById("custom-regex").style.backgroundColor = color;
+    document.getElementById("custom-regex").style.backgroundColor = colour;
   });
 
-  document.getElementById("filename").style.backgroundColor = color;
+  document.getElementById("filename").style.backgroundColor = colour;
 
   document.getElementById("filename").addEventListener("mouseover", () => {
-    document.getElementById("filename").style.backgroundColor = color.replace("0.25", "0.5");
+    document.getElementById("filename").style.backgroundColor = colour.replace("0.25", "0.5");
   });
 
   document.getElementById("filename").addEventListener("mouseleave", () => {
-    document.getElementById("filename").style.backgroundColor = color;
+    document.getElementById("filename").style.backgroundColor = colour;
   });
 }
 
