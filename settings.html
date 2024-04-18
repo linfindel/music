@@ -13,6 +13,35 @@
     button:not(#settings, .about, .reset, .debug, #custom-regex) {
       padding: 2.5rem;
     }
+
+    #settings, #reset, #debug {
+      animation-name: float-in;
+      animation-duration: 1s;
+      animation-timing-function: ease;
+      animation-fill-mode: both;
+    }
+
+    #reset {
+      animation-delay: 250ms;
+    }
+
+    #debug {
+      animation-delay: 500ms;
+    }
+
+    @keyframes float-in {
+      0% {
+        filter: blur(5px);
+        opacity: 0;
+        transform: translateY(1em);
+      }
+
+      100% {
+        filter: blur(0px);
+        opacity: 1;
+        transform: translateY(0em);
+      }
+    }
   </style>
 </head>
 <body>

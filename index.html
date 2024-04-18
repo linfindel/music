@@ -45,6 +45,21 @@
       rotate: 180deg;
     }
 
+    #settings, #upload1, #upload2 {
+      animation-name: float-in;
+      animation-duration: 1s;
+      animation-timing-function: ease;
+      animation-fill-mode: both;
+    }
+
+    #upload1 {
+      animation-delay: 250ms;
+    }
+
+    #upload2 {
+      animation-delay: 500ms;
+    }
+
     #r {
       background-color: rgba(255, 0, 0, 0.25);
     }
@@ -75,6 +90,20 @@
 
     #a-value {
       background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    @keyframes float-in {
+      0% {
+        filter: blur(5px);
+        opacity: 0;
+        transform: translateY(1em);
+      }
+
+      100% {
+        filter: blur(0px);
+        opacity: 1;
+        transform: translateY(0em);
+      }
     }
   </style>
 </head>
