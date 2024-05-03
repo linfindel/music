@@ -115,32 +115,76 @@ function applyColour() {
     var styleElement = document.getElementsByTagName("style")[0];
 
     styleElement.innerHTML += `
-      nav {
-        background-color: ${colour};
+      @media (prefers-color-scheme: dark) {
+        nav {
+          background-color: ${colour};
+        }
+  
+        .card, .card-flat-bottom, .card-flat, .card-flat-top, .card-flat-bottom-left-alt, .card-flat-bottom-right-alt {
+          background-color: ${colour};
+        }
+  
+        .card-interactive:hover {
+          background-color: ${colour.replace("0.25", "0.5")};
+        }
+  
+        .about:hover, .reset:hover, .debug:hover {
+          background-color: ${colour.replace("0.25", "0.5")};
+        }
+  
+        button:not(.nochange-colour) {
+          background-color: ${colour};
+        }
+  
+        button.not(.nochange-colour):hover {
+          background-color: ${colour.replace("0.25", "0.5")};
+        }
+  
+        #settings:hover, #custom-regex:hover {
+          background-color: ${colour.replace("0.25", "0.5")};
+        }
       }
 
-      .card, .card-flat-bottom, .card-flat, .card-flat-top, .card-flat-bottom-left-alt, .card-flat-bottom-right-alt {
-        background-color: ${colour};
-      }
+      @media (prefers-color-scheme: light) {
+        body {
+          background-color: white;
+        }
 
-      .card-interactive:hover {
-        background-color: ${colour.replace("0.25", "0.5")};
-      }
-
-      .about:hover, .reset:hover, .debug:hover {
-        background-color: ${colour.replace("0.25", "0.5")};
-      }
-
-      button:not(.nochange-colour) {
-        background-color: ${colour};
-      }
-
-      button.not(.nochange-colour):hover {
-        background-color: ${colour.replace("0.25", "0.5")};
-      }
-
-      #settings:hover, #custom-regex:hover {
-        background-color: ${colour.replace("0.25", "0.5")};
+        * {
+          color: black;
+        }
+        
+        nav {
+          background-color: ${colour.replace(0.25, 0.5)};
+        }
+  
+        .card, .card-flat-bottom, .card-flat, .card-flat-top, .card-flat-bottom-left-alt, .card-flat-bottom-right-alt {
+          background-color: ${colour.replace(0.25, 0.5)};
+        }
+  
+        .card-interactive:hover {
+          background-color: ${colour.replace(0.25, 0.5)};
+          filter: brightness(0.5);
+        }
+  
+        .about:hover, .reset:hover, .debug:hover {
+          background-color: ${colour.replace(0.25, 0.5)};
+          filter: brightness(0.5);
+        }
+  
+        button:not(.nochange-colour) {
+          background-color: ${colour.replace(0.25, 0.5)};
+        }
+  
+        button.not(.nochange-colour):hover {
+          background-color: ${colour.replace(0.25, 0.5)};
+          filter: brightness(0.5);
+        }
+  
+        #settings:hover, #custom-regex:hover {
+          background-color: ${colour.replace(0.25, 0.5)};
+          filter: brightness(0.5);
+        }
       }
     `;
 

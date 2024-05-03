@@ -325,7 +325,13 @@ function analyse() {
     document.getElementById("progress-container").style.backgroundColor = rgba;
     document.getElementById("progress-bar").style.backgroundColor = rgba.replace("0.25", "1");
 
-    document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume * 75}px ${generalVolume}px ${rgba}`;
+    if (document.body.style.backgroundColor == "black") {
+      document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume * 75}px ${generalVolume}px ${rgba}`;
+    }
+
+    else {
+      document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume * 75}px ${generalVolume}px ${rgb}`;
+    }
   });
 }
 
@@ -447,7 +453,13 @@ function uploadFile() {
                 }
 
                 if (palette) {
-                  document.getElementById('cover-art').style.boxShadow = `0px 0px 300px 0px ${generateRGBA(palette.accent, 0.25)}`;
+                  if (document.body.style.backgroundColor == "black") {
+                    document.getElementById("cover-art").style.boxShadow = `0px 0px 300px 0px ${generateRGBA(palette.accent, 0.25)}`;
+                  }
+              
+                  else {
+                    document.getElementById("cover-art").style.boxShadow = `0px 0px 100px 0px ${palette.accent}`;
+                  }
 
                   document.getElementById("navbar").style.backgroundColor = generateRGBA(palette.accent, 0.25);
 
@@ -513,7 +525,13 @@ function uploadFile() {
                 }
 
                 else {
-                  document.getElementById('cover-art').style.boxShadow = `0px 0px 300px 0px ${generateRGBA(medianColor, 0.25)}`;
+                  if (document.body.style.backgroundColor == "black") {
+                    document.getElementById("cover-art").style.boxShadow = `0px 0px 300px 0px ${generateRGBA(medianColor, 0.25)}`;
+                  }
+              
+                  else {
+                    document.getElementById("cover-art").style.boxShadow = `0px 0px 100px 0px ${medianColor}`;
+                  }
 
                   document.getElementById("navbar").style.backgroundColor = generateRGBA(medianColor, 0.25);
 
@@ -709,33 +727,78 @@ function applyColour() {
   if (colour) {
     var styleElement = document.getElementsByTagName("style")[0];
 
+    console.log(colour, colour.replace("0.25", "0.5"));
+
     styleElement.innerHTML += `
-      nav {
-        background-color: ${colour};
+      @media (prefers-color-scheme: dark) {
+        nav {
+          background-color: ${colour};
+        }
+  
+        .card, .card-flat-right, .card-flat-left {
+          background-color: ${colour};
+        }
+  
+        .interactive:hover {
+          background-color: ${colour.replace("0.25", "0.5")};
+        }
+  
+        button:not(.nochange-colour) {
+          background-color: ${colour};
+        }
+  
+        button.not(.nochange-colour):hover {
+          background-color: ${colour.replace("0.25", "0.5")};
+        }
+  
+        #settings:hover, #upload1:hover, #upload2:hover, #play:hover, #stop:hover, #repeat:hover {
+          background-color: ${colour.replace("0.25", "0.5")};
+        }
+  
+        .glow {
+          box-shadow: 0px 0px 200px 100px ${colour};
+        }
       }
 
-      .card, .card-flat-right, .card-flat-left {
-        background-color: ${colour};
-      }
+      @media (prefers-color-scheme: light) {
+        body {
+          background-color: white;
+        }
 
-      .interactive:hover {
-        background-color: ${colour.replace("0.25", "0.5")};
-      }
+        * {
+          color: black;
+        }
 
-      button:not(.nochange-colour) {
-        background-color: ${colour};
-      }
-
-      button.not(.nochange-colour):hover {
-        background-color: ${colour.replace("0.25", "0.5")};
-      }
-
-      #settings:hover, #upload1:hover, #upload2:hover, #play:hover, #stop:hover, #repeat:hover {
-        background-color: ${colour.replace("0.25", "0.5")};
-      }
-
-      .glow {
-        box-shadow: 0px 0px 200px 100px ${colour};
+        nav {
+          background-color: ${colour.replace(0.25, 0.5)};
+        }
+  
+        .card, .card-flat-right, .card-flat-left {
+          background-color: ${colour.replace(0.25, 0.5)};
+        }
+  
+        .interactive:hover {
+          background-color: ${colour.replace(0.25, 0.5)};
+          filter: brightness(0.5);
+        }
+  
+        button:not(.nochange-colour) {
+          background-color: ${colour.replace(0.25, 0.5)};
+        }
+  
+        button.not(.nochange-colour):hover {
+          background-color: ${colour.replace(0.25, 0.5)};
+          filter: brightness(0.5);
+        }
+  
+        #settings:hover, #upload1:hover, #upload2:hover, #play:hover, #stop:hover, #repeat:hover {
+          background-color: ${colour.replace(0.25, 0.5)};
+          filter: brightness(0.5);
+        }
+  
+        .glow {
+          box-shadow: 0px 0px 200px 100px ${colour.replace(0.25, 0.5)};
+        }
       }
     `;
   }
