@@ -1026,7 +1026,17 @@ document.addEventListener("keyup", (e) => {
   }
 
   else if (e.key == "o" && notEditingTitle) {
-    location.href = "settings.html";
+    if (audioElement.src) {
+      stop();
+
+      setTimeout(() => {
+        location.href = "settings.html";
+      }, 1000);
+    }
+
+    else {
+      location.href = "settings.html";
+    }
   }
 
   else if (e.key == "u" && notEditingTitle) {
