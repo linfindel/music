@@ -787,17 +787,24 @@ function stop() {
   document.getElementById("controls").style.transition = "1s ease";
   document.getElementById("controls").style.opacity = "0";
 
-  document.getElementById("navbar").style.transition = "1s ease";
-  document.getElementById("navbar").style.backgroundColor = localStorage.getItem("colour");
-
+  document.getElementById("navbar").style.transition = "1s ease"
   document.getElementById("settings").style.transition = "1s ease";
-  document.getElementById("settings").style.backgroundColor = localStorage.getItem("colour");
-  
   document.getElementById("upload1").style.transition = "1s ease";
-  document.getElementById("upload1").style.backgroundColor = localStorage.getItem("colour");
-  
   document.getElementById("upload2").style.transition = "1s ease";
-  document.getElementById("upload2").style.backgroundColor = localStorage.getItem("colour");
+
+  if (document.body.style.backgroundColor == "black") {
+    document.getElementById("navbar").style.backgroundColor = localStorage.getItem("colour");
+    document.getElementById("settings").style.backgroundColor = localStorage.getItem("colour");
+    document.getElementById("upload1").style.backgroundColor = localStorage.getItem("colour");
+    document.getElementById("upload2").style.backgroundColor = localStorage.getItem("colour");
+  }
+
+  else if (document.body.style.backgroundColor == "") {
+    document.getElementById("navbar").style.backgroundColor = localStorage.getItem("colour").replace(0.25, 0.5);
+    document.getElementById("settings").style.backgroundColor = localStorage.getItem("colour").replace(0.25, 0.5);
+    document.getElementById("upload1").style.backgroundColor = localStorage.getItem("colour").replace(0.25, 0.5);
+    document.getElementById("upload2").style.backgroundColor = localStorage.getItem("colour").replace(0.25, 0.5);
+  }
 
   if (document.getElementById("glow")) {
     document.getElementById("glow").style.transition = "1s ease";
