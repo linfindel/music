@@ -436,12 +436,20 @@ function uploadFile() {
 
                   let rgbValues = medianColor.match(/\d+/g).map(Number);
 
-                  if (rgbValues[0] < 50 && rgbValues[1] < 50 && rgbValues[2] < 50) {
+                  if (document.body.style.backgroundColor == "black" && (rgbValues[0] < 50 && rgbValues[1] < 50 && rgbValues[2] < 50)) {
                     rgbValues[0] = 50;
                     rgbValues[1] = 50;
                     rgbValues[2] = 50;
 
-                    console.error("Median colour is black, falling back on rgba(50, 50, 50, 0.25)...")
+                    console.error("Median colour is black, falling back on rgba(50, 50, 50, 0.25)...");
+                  }
+
+                  else if (document.body.style.backgroundColor == "" && (rgbValues[0] > 205 && rgbValues[1] > 205 && rgbValues[2] > 205)) {
+                    rgbValues[0] = 205;
+                    rgbValues[1] = 205;
+                    rgbValues[2] = 205;
+
+                    console.error("Median colour is white, falling back on rgba(205, 205, 205, 0.25)...");
                   }
 
                   medianColor = "#";
