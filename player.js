@@ -325,7 +325,7 @@ function analyse() {
     document.getElementById("progress-container").style.backgroundColor = rgba;
     document.getElementById("progress-bar").style.backgroundColor = rgba.replace("0.25", "1");
 
-    if (document.body.style.backgroundColor == "black") {
+    if (window.getComputedStyle(document.body).backgroundColor == "rgb(0, 0, 0)") {
       document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume * 75}px ${generalVolume}px ${rgba}`;
     }
 
@@ -436,7 +436,7 @@ function uploadFile() {
 
                   let rgbValues = medianColor.match(/\d+/g).map(Number);
 
-                  if (document.body.style.backgroundColor == "black" && (rgbValues[0] < 50 && rgbValues[1] < 50 && rgbValues[2] < 50)) {
+                  if (window.getComputedStyle(document.body).backgroundColor == "rgb(0, 0, 0)" && (rgbValues[0] < 50 && rgbValues[1] < 50 && rgbValues[2] < 50)) {
                     rgbValues[0] = 50;
                     rgbValues[1] = 50;
                     rgbValues[2] = 50;
@@ -444,7 +444,7 @@ function uploadFile() {
                     console.error("Median colour is black, falling back on rgba(50, 50, 50, 0.25)...");
                   }
 
-                  else if (document.body.style.backgroundColor == "" && (rgbValues[0] > 205 && rgbValues[1] > 205 && rgbValues[2] > 205)) {
+                  else if (window.getComputedStyle(document.body).backgroundColor == "rgb(255, 255, 255)" && (rgbValues[0] > 205 && rgbValues[1] > 205 && rgbValues[2] > 205)) {
                     rgbValues[0] = 205;
                     rgbValues[1] = 205;
                     rgbValues[2] = 205;
@@ -461,7 +461,7 @@ function uploadFile() {
                 }
 
                 if (palette) {
-                  if (document.body.style.backgroundColor == "black") {
+                  if (window.getComputedStyle(document.body).backgroundColor == "rgb(0, 0, 0)") {
                     document.getElementById("cover-art").style.boxShadow = `0px 0px 300px 0px ${generateRGBA(palette.accent, 0.25)}`;
                   }
               
@@ -533,7 +533,7 @@ function uploadFile() {
                 }
 
                 else {
-                  if (document.body.style.backgroundColor == "black") {
+                  if (window.getComputedStyle(document.body).backgroundColor == "rgb(0, 0, 0)") {
                     document.getElementById("cover-art").style.boxShadow = `0px 0px 300px 0px ${generateRGBA(medianColor, 0.25)}`;
                   }
               
@@ -792,14 +792,14 @@ function stop() {
   document.getElementById("upload1").style.transition = "1s ease";
   document.getElementById("upload2").style.transition = "1s ease";
 
-  if (document.body.style.backgroundColor == "black") {
+  if (window.getComputedStyle(document.body).backgroundColor == "rgb(0, 0, 0)") {
     document.getElementById("navbar").style.backgroundColor = localStorage.getItem("colour");
     document.getElementById("settings").style.backgroundColor = localStorage.getItem("colour");
     document.getElementById("upload1").style.backgroundColor = localStorage.getItem("colour");
     document.getElementById("upload2").style.backgroundColor = localStorage.getItem("colour");
   }
 
-  else if (document.body.style.backgroundColor == "") {
+  else if (window.getComputedStyle(document.body).backgroundColor == "rgb(255, 255, 255)") {
     document.getElementById("navbar").style.backgroundColor = localStorage.getItem("colour").replace(0.25, 0.5);
     document.getElementById("settings").style.backgroundColor = localStorage.getItem("colour").replace(0.25, 0.5);
     document.getElementById("upload1").style.backgroundColor = localStorage.getItem("colour").replace(0.25, 0.5);
