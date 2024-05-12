@@ -33,6 +33,14 @@
   </div>
   
   <script>
+    if (navigator.userAgent.toLowerCase().includes('firefox')) {
+      localStorage.setItem('stop-effect', 'enabled');
+      localStorage.setItem('warn', 'true');
+      localStorage.setItem('kandinsky', 'disabled');
+      
+      location.href = 'colour.html'
+    }
+    
     var styleElement = document.getElementsByTagName("style")[0];
 
     styleElement.innerHTML = `
