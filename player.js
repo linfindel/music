@@ -332,7 +332,7 @@ function analyse() {
     else {
       document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume + 75}px ${generalVolume}px ${rgb}`;
     }
-  });
+  }, 25);
 }
 
 function stopAnalysis() {
