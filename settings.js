@@ -276,7 +276,7 @@ fetch(`https://api.github.com/repos/${username}/${repo}/commits?per_page=1`)
     return response.json().then(data => {
       const latestCommitMessage = data[0].commit.message;
 
-      document.getElementById("version").innerText = `Version ${totalCount} Release Notes`;
+      document.getElementById("version").innerText = `Version ${totalCount.toFixed(2)} Release Notes`;
       document.getElementById("whats-new").innerText = latestCommitMessage;
 
       document.getElementById("about-card").style.opacity = "1";
