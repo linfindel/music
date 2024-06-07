@@ -474,11 +474,11 @@ function uploadFile() {
 
                   if (palette) {
                     if (window.getComputedStyle(document.body).backgroundColor == "rgb(0, 0, 0)") {
-                      document.getElementById("cover-art").style.boxShadow = `0px 0px 300px 0px ${generateRGBA(palette.accent, 0.25)}`;
+                      document.getElementById("cover-art").style.boxShadow = `0px 0px 300px 25px ${generateRGBA(palette.accent, 0.25)}`;
                     }
                 
                     else {
-                      document.getElementById("cover-art").style.boxShadow = `0px 0px 100px 0px ${palette.accent}`;
+                      document.getElementById("cover-art").style.boxShadow = `0px 0px 100px 8.3px ${palette.accent}`;
                     }
 
                     document.getElementById("navbar").style.backgroundColor = generateRGBA(palette.accent, 0.25);
@@ -546,11 +546,11 @@ function uploadFile() {
 
                   else {
                     if (window.getComputedStyle(document.body).backgroundColor == "rgb(0, 0, 0)") {
-                      document.getElementById("cover-art").style.boxShadow = `0px 0px 300px 0px ${generateRGBA(medianColor, 0.25)}`;
+                      document.getElementById("cover-art").style.boxShadow = `0px 0px 300px 25px ${generateRGBA(medianColor, 0.25)}`;
                     }
                 
                     else {
-                      document.getElementById("cover-art").style.boxShadow = `0px 0px 100px 0px ${medianColor}`;
+                      document.getElementById("cover-art").style.boxShadow = `0px 0px 100px 8.3px ${medianColor}`;
                     }
 
                     document.getElementById("navbar").style.backgroundColor = generateRGBA(medianColor, 0.25);
