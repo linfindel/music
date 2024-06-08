@@ -22,17 +22,17 @@
         
     <div class="row">
       <button onclick="location.href = '.'" id="settings">
-        <span class="material-symbols-rounded">arrow_back</span>
+        <span translate="no" class="material-symbols-rounded">arrow_back</span>
         Back
       </button>
 
       <button id="reset" onclick="localStorage.clear(); document.getElementById('reset-icon').innerText = 'done'; document.getElementById('reset-text').innerText = 'Reset complete'; location.href = '.';" class="reset">
-          <span id="reset-icon" class="material-symbols-rounded">delete</span>
+          <span translate="no" id="reset-icon" class="material-symbols-rounded">delete</span>
           <span id="reset-text">Reset</span>
       </button>
 
       <button id="debug" onclick="location.href = 'debug.html'" class="debug">
-          <span id="debug-icon" class="material-symbols-rounded">code</span>
+          <span translate="no" id="debug-icon" class="material-symbols-rounded">code</span>
           <span id="debug-text">Developer options</span>
       </button>
     </div>
@@ -40,7 +40,7 @@
 
   <div class="column text-center" style="max-width: 100vw;">
     <div id="kandinsky" onclick="setOption('kandinsky', 'disabled')" class="card card-interactive row" style="gap: 5rem; width: 100%; max-width: calc(100vw - 7rem);" tabindex="0" onkeypress="this.click()">
-      <h1 style="font-size: 5rem;" class="material-symbols-rounded">graphic_eq</h1>
+      <h1 translate="no" style="font-size: 5rem;" class="material-symbols-rounded">graphic_eq</h1>
       <div>
         <h1 id="kandinsky-title">Kandinsky Engine enabled</h1>
         <p>The Kandinsky Engine generates colours based on sound</p>
@@ -61,7 +61,7 @@
     </div>
 
     <div id="stop" onclick="setOption('stop-effect', 'disabled')" class="card card-interactive row" style="gap: 5rem; width: 100%; max-width: calc(100vw - 7rem);" tabindex="0" onkeypress="this.click()">
-      <h1 style="font-size: 5rem;" class="material-symbols-rounded">graphic_eq</h1>
+      <h1 translate="no" style="font-size: 5rem;" class="material-symbols-rounded">graphic_eq</h1>
       <div>
         <h1 id="stop-title">Lowpass stop effect enabled</h1>
       </div>
@@ -70,7 +70,7 @@
     <div class="column-flat" style="align-items: flex-start; width: 100%; max-width: calc(100vw - 7rem); margin-left: -5rem;">
       <div id="numbering" onclick="setOption('numbering', 'disabled')" class="card card-interactive row" style="gap: 5rem; width: 100%;" tabindex="0" onkeypress="this.click()">
         <div class="row">
-          <h1 style="font-size: 5rem;" class="material-symbols-rounded">queue_music</h1>
+          <h1 translate="no" style="font-size: 5rem;" class="material-symbols-rounded">queue_music</h1>
           
           <div>
             <h1 id="numbering-title">Retaining title numbering</h1>
@@ -80,7 +80,7 @@
       </div>
 
       <button id="custom-regex" onclick="location.href = 'custom-regex.html'">
-        <span class="material-symbols-rounded">regular_expression</span>
+        <span translate="no" class="material-symbols-rounded">regular_expression</span>
         Custom regex (advanced)
       </button>
     </div>
@@ -203,7 +203,7 @@
 
     <div class="card column" style="width: 100%; max-width: calc(100vw - 7rem);">
       <div class="text-center">
-        <h1 style="font-size: 5rem;" class="material-symbols-rounded">license</h1>
+        <h1 translate="no" style="font-size: 5rem;" class="material-symbols-rounded">license</h1>
         <h1>GPL 3.0</h1>
         <p>This is free and open-source software. You can contribute to the source code below.</p>
       </div>
@@ -217,12 +217,12 @@
 
       <div class="row">
         <button id="about1" onclick="window.open('https://linfindel.github.io', '_blank')" class="about">
-          <span class="material-symbols-rounded">home</span>
+          <span translate="no" class="material-symbols-rounded">home</span>
           More projects
         </button>
 
         <button id="about2" onclick="window.open('https://www.github.com/linfindel/music', '_blank')" class="about">
-          <span class="material-symbols-rounded">code</span>
+          <span translate="no" class="material-symbols-rounded">code</span>
           Source code
         </button>
       </div>

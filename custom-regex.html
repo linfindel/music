@@ -17,7 +17,7 @@
     </nav>
         
     <button onclick="location.href = 'settings.html'" id="back">
-      <span class="material-symbols-rounded">arrow_back</span>
+      <span translate="no" class="material-symbols-rounded">arrow_back</span>
       Back
     </button>
   </div>
@@ -25,11 +25,11 @@
   <div class="card row">
     <input type="text" id="filename" placeholder="Filename" oninput="localStorage.setItem('filename', this.value)">
 
-    <h1 class="material-symbols-rounded">add</h1>
+    <h1 translate="no" class="material-symbols-rounded">add</h1>
 
     <input type="text" id="custom-regex" placeholder="Custom regex" oninput="localStorage.setItem('custom-regex', this.value)">
 
-    <h1 class="material-symbols-rounded">arrow_forward</h1>
+    <h1 translate="no" class="material-symbols-rounded">arrow_forward</h1>
 
     <h1 id="result"></h1>
   </div>
