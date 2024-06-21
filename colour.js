@@ -1,17 +1,3 @@
-var styleElement = document.getElementsByTagName("style")[0];
-
-styleElement.innerHTML = `
-  @media (prefers-color-scheme: light) {
-    body {
-      background-color: white;
-    }
-
-    * {
-      color: black;
-    }
-  }
-`;
-
 document.getElementById("red").addEventListener("mouseover", () => {
   document.getElementById("red").style.backgroundColor = "rgba(255, 0, 0, 0.5)";
 });

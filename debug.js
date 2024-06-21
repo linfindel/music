@@ -40,50 +40,20 @@ if (colour) {
   var styleElement = document.getElementsByTagName("style")[0];
 
   styleElement.innerHTML += `
-    @media (prefers-color-scheme: dark) {
-      nav {
-        background-color: ${colour};
-      }
-  
-      button {
-        background-color: ${colour};
-      }
-  
-      button:hover {
-        background-color: ${colour.replace("0.25", "0.5")};
-      }
-  
-      #back:hover, #debug:hover, #makeup:hover, #compare:hover {
-        background-color: ${colour.replace("0.25", "0.5")};
-      }
+    nav {
+      background-color: ${colour};
     }
 
-    @media (prefers-color-scheme: light) {
-      body {
-        background-color: white;
-      }
+    button {
+      background-color: ${colour};
+    }
 
-      * {
-        color: black;
-      }
+    button:hover {
+      background-color: ${colour.replace("0.25", "0.5")};
+    }
 
-      nav {
-        background-color: ${colour.replace(0.25, 0.5)};
-      }
-  
-      button {
-        background-color: ${colour.replace(0.25, 0.5)};
-      }
-  
-      button:hover {
-        background-color: ${colour.replace(0.25, 0.5)};
-        filter: brightness(0.5);
-      }
-  
-      #back:hover, #debug:hover, #makeup:hover, #compare:hover {
-        background-color: ${colour.replace(0.25, 0.5)};
-        filter: brightness(0.5);
-      }
+    #back:hover, #debug:hover, #makeup:hover, #compare:hover {
+      background-color: ${colour.replace("0.25", "0.5")};
     }
   `;
 

@@ -325,14 +325,8 @@ function analyse() {
     document.getElementById("progress-container").style.backgroundColor = rgba;
     document.getElementById("progress-bar").style.backgroundColor = rgba.replace("0.25", "1");
 
-    if (window.getComputedStyle(document.body).backgroundColor == "rgb(0, 0, 0)") {
-      document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume * 75}px ${generalVolume}px ${rgba}`;
-    }
-
-    else {
-      document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume + 75}px ${generalVolume}px ${rgb}`;
-    }
-  }, 25);
+    document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume * 75}px ${generalVolume}px ${rgba}`;
+  });
 }
 
 function stopAnalysis() {
@@ -462,13 +456,8 @@ function uploadFile() {
                 }
 
                 if (palette) {
-                  if (window.getComputedStyle(document.body).backgroundColor == "rgb(0, 0, 0)") {
-                    document.getElementById("cover-art").style.boxShadow = `0px 0px 300px 25px ${generateRGBA(palette.accent, 0.25)}`;
-                  }
-              
-                  else {
-                    document.getElementById("cover-art").style.boxShadow = `0px 0px 100px 8.3px ${palette.accent}`;
-                  }
+                  
+                  document.getElementById("cover-art").style.boxShadow = `0px 0px 300px 0px ${generateRGBA(palette.accent, 0.25)}`;
 
                   document.getElementById("navbar").style.backgroundColor = generateRGBA(palette.accent, 0.25);
 
@@ -534,13 +523,8 @@ function uploadFile() {
                 }
 
                 else {
-                  if (window.getComputedStyle(document.body).backgroundColor == "rgb(0, 0, 0)") {
-                    document.getElementById("cover-art").style.boxShadow = `0px 0px 300px 25px ${generateRGBA(medianColor, 0.25)}`;
-                  }
-              
-                  else {
-                    document.getElementById("cover-art").style.boxShadow = `0px 0px 100px 8.3px ${medianColor}`;
-                  }
+                  
+                  document.getElementById("cover-art").style.boxShadow = `0px 0px 300px 0px ${generateRGBA(medianColor, 0.25)}`;
 
                   document.getElementById("navbar").style.backgroundColor = generateRGBA(medianColor, 0.25);
 
@@ -728,6 +712,60 @@ function uploadLink() {
       document.title = "Music Player";
     });
   }
+}
+
+function applyColour() {
+  var colour = localStorage.getItem("colour");
+
+  if (colour) {
+    var styleElement = document.getElementsByTagName("style")[0];
+
+    console.log(colour, colour.replace("0.25", "0.5"));
+
+    styleElement.innerHTML += `
+      nav {
+        background-color: ${colour};
+      }
+
+      .card, .card-flat-right, .card-flat-left {
+        background-color: ${colour};
+      }
+
+      .interactive:hover {
+        background-color: ${colour.replace("0.25", "0.5")};
+      }
+
+      button:not(.nochange-colour) {
+        background-color: ${colour};
+      }
+
+      button.not(.nochange-colour):hover {
+        background-color: ${colour.replace("0.25", "0.5")};
+      }
+
+      #settings:hover, #upload1:hover, #upload2:hover, #play:hover, #stop:hover, #repeat:hover {
+        background-color: ${colour.replace("0.25", "0.5")};
+      }
+
+      .glow {
+        box-shadow: 0px 0px 200px 100px ${colour};
+      }
+    `;
+  }
+}
+
+applyColour();
+
+if (localStorage.getItem("kandinsky") == "disabled") {
+  document.getElementById("audio").onplay = "";
+  document.getElementById("glow").remove();
+
+  var styleElement = document.getElementsByTagName("style")[0];
+  styleElement.innerHTML += `
+    * {
+      transition: 0.25s ease;
+    }
+  `;
 }
 
 if (localStorage.getItem("colour") == null) {
