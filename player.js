@@ -758,7 +758,9 @@ applyColour();
 
 if (localStorage.getItem("kandinsky") == "disabled") {
   document.getElementById("audio").onplay = "";
-  document.getElementById("glow").remove();
+  if (document.getElementById("glow")) {
+    document.getElementById("glow").remove();
+  }
 
   var styleElement = document.getElementsByTagName("style")[0];
   styleElement.innerHTML += `
