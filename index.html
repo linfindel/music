@@ -13,6 +13,13 @@
       transition: 0.05s ease;
     }
 
+    /* This might ameliorate some Firefox flickering so I'm leaving it in just in case */
+    /* @-moz-document url-prefix() {
+      * {
+      transition: 0.01s ease;
+      }
+    } */
+
     *:not(#title) {
       user-select: none;
     }
@@ -188,6 +195,8 @@
   </div>
 
   <img class="absolute-centre" id="cover-art" style="display: none; width: 25vw; height: 25vw; object-fit: cover;">
+
+  <div id="phantom"></div>
 
   <script>
     if (localStorage.getItem("kandinsky") == "disabled") {

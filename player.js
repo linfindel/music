@@ -43,6 +43,7 @@ let base64;
 let medianColor;
 let image;
 let artist;
+let lastRGBA;
 var customTitles = JSON.parse(localStorage.getItem("custom-titles")) || {};
 
 function setupAnalysis() {
@@ -308,24 +309,28 @@ function analyse() {
       }
     }
 
-    document.getElementById("rgb").style.backgroundColor = rgb;
-    document.getElementById("rgba").style.backgroundColor = rgba;
+    document.getElementById("phantom").style.backgroundColor = rgba;
 
-    document.getElementById("navbar").style.backgroundColor = rgba;
+    if (!document.getElementById("phantom").style.backgroundColor.includes("0, 0, 0")) {
+      document.getElementById("rgb").style.backgroundColor = rgb;
+      document.getElementById("rgba").style.backgroundColor = rgba;
 
-    document.getElementById("upload1").style.backgroundColor = rgba;
-    document.getElementById("upload2").style.backgroundColor = rgba;
-    document.getElementById("settings").style.backgroundColor = rgba;
+      document.getElementById("navbar").style.backgroundColor = rgba;
 
-    document.getElementById("play").style.backgroundColor = rgba;
-    document.getElementById("stop").style.backgroundColor = rgba;
-    document.getElementById("repeat").style.backgroundColor = rgba;
+      document.getElementById("upload1").style.backgroundColor = rgba;
+      document.getElementById("upload2").style.backgroundColor = rgba;
+      document.getElementById("settings").style.backgroundColor = rgba;
 
-    document.getElementById("tooltip").style.backgroundColor = rgba;
-    document.getElementById("progress-container").style.backgroundColor = rgba;
-    document.getElementById("progress-bar").style.backgroundColor = rgba.replace("0.25", "1");
+      document.getElementById("play").style.backgroundColor = rgba;
+      document.getElementById("stop").style.backgroundColor = rgba;
+      document.getElementById("repeat").style.backgroundColor = rgba;
 
-    document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume * 75}px ${generalVolume}px ${rgba}`;
+      document.getElementById("tooltip").style.backgroundColor = rgba;
+      document.getElementById("progress-container").style.backgroundColor = rgba;
+      document.getElementById("progress-bar").style.backgroundColor = rgba.replace("0.25", "1");
+
+      document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume * 75}px ${generalVolume}px ${rgba}`;
+    }
   });
 }
 
