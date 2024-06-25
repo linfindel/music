@@ -220,11 +220,6 @@ document.addEventListener("keyup", (e) => {
   }
 });
 
-if (navigator.userAgent.toLowerCase().includes('firefox')) {
-  document.getElementById("kandinsky").style.display = "none";
-  document.getElementById("debug").style.display = "none";
-}
-
 importSettings();
 applyColour();
 
