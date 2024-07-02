@@ -30,20 +30,10 @@ else if (skew == "rgba(255, 0, 255, 0.25)") {
   document.getElementById("progress-bar").style.backgroundColor = "rgba(255, 0, 255, 1)";
 }
 
-let analysisInterval;
-let setupComplete;
-let audioContext;
-let analyser;
+let analysisInterval, setupComplete, audioContext, analyser, audioSource, fileName, biquadFilter, base64, medianColor, image, artist, lastRGBA
+
 let audioElement = document.getElementById('audio');
 audioElement.preservesPitch = false;
-let audioSource;
-let fileName;
-let biquadFilter;
-let base64;
-let medianColor;
-let image;
-let artist;
-let lastRGBA;
 var customTitles = JSON.parse(localStorage.getItem("custom-titles")) || {};
 
 function setupAnalysis() {
