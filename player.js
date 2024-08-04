@@ -832,7 +832,7 @@ function stop() {
 
   if (document.getElementById("glow")) {
     document.getElementById("glow").style.transition = "1s ease";
-    document.getElementById("glow").style.width = "50vw";
+    document.getElementById("glow").style.width = "75vw";
     document.getElementById("glow").style.boxShadow = `0px 0px 200px 100px ${localStorage.getItem("colour")}`;
   }
 
