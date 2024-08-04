@@ -451,8 +451,7 @@ function uploadFile() {
                 }
 
                 if (palette) {
-                  
-                  document.getElementById("cover-art").style.boxShadow = `0px 0px 300px 0px ${generateRGBA(palette.accent, 0.25)}`;
+                  document.getElementById("cover-art").style.boxShadow = `0px 0px 25vw 0px ${generateRGBA(palette.accent, 0.5)}`;
 
                   document.getElementById("navbar").style.backgroundColor = generateRGBA(palette.accent, 0.25);
 
@@ -519,7 +518,7 @@ function uploadFile() {
 
                 else {
                   
-                  document.getElementById("cover-art").style.boxShadow = `0px 0px 300px 0px ${generateRGBA(medianColor, 0.25)}`;
+                  document.getElementById("cover-art").style.boxShadow = `0px 0px 25vw 0px ${generateRGBA(medianColor, 0.5)}`;
 
                   document.getElementById("navbar").style.backgroundColor = generateRGBA(medianColor, 0.25);
 
