@@ -921,7 +921,11 @@ function updateProgressClick(event) {
 
 document.getElementById("progress-container").addEventListener("click", updateProgressClick);
 
-if (localStorage.getItem("warn") != "true") {
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const preview = urlParams.get('preview');
+
+if (localStorage.getItem("warn") != "true" && preview != "y") {
   location.href = "mode.html";
 }
 

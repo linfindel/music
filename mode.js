@@ -10,12 +10,6 @@ const mappingsReversed = {
   "disabled": "album"
 }
 
-const screenshotMappings = {
-  "flash": "webp",
-  "hybrid": "webp",
-  "album": "png"
-}
-
 const preview = document.getElementById("preview");
 const warning = document.getElementById("warning");
 const buttons = {
@@ -27,7 +21,7 @@ const buttons = {
 function setMode(mode) {
   localStorage.setItem("kandinsky", mappings[mode]);
 
-  preview.src = `screenshots/${mode}.${screenshotMappings[mode]}`;
+  preview.src = `screenshots/${mode}.mp4`;
   preview.alt = `A preview showing the ${mode} mode`;
   
   Object.values(buttons).forEach(button => button.style.backgroundColor = "rgba(0, 89, 255, 0.25)");
