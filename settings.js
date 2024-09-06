@@ -1,22 +1,6 @@
 function setOption(option, value) {
   localStorage.setItem(option, value);
 
-  if (option == "kandinsky") {
-    document.getElementById("kandinsky-title").innerText = `Kandinsky Engine ${value}`;
-  }
-
-  if (option == "kandinsky" && value == "enabled") {
-    document.getElementById("kandinsky").onclick = () => {
-      setOption("kandinsky", "disabled");
-    }
-  }
-
-  else if (option == "kandinsky" && value == "disabled") {
-    document.getElementById("kandinsky").onclick = () => {
-      setOption("kandinsky", "enabled");
-    }
-  }
-
   if (option == "stop-effect") {
     document.getElementById("stop-title").innerText = `Lowpass stop effect ${value}`;
   }
@@ -58,22 +42,16 @@ function setOption(option, value) {
   }
 }
 
+const modeIconMappings = {
+  "enabled": "graphic_eq",
+  "hybrid": "graphic_eq",
+  "disabled": "art_track"
+}
+
 function importSettings() {
-  document.getElementById("kandinsky-title").innerText = `Kandinsky Engine ${localStorage.getItem("kandinsky") || "enabled"}`;
-
-  if (localStorage.getItem("kandinsky") == "enabled") {
-    document.getElementById("kandinsky").onclick = () => {
-      setOption("kandinsky", "disabled");
-    }
-  }
-
-  else if (localStorage.getItem("kandinsky") == "disabled") {
-    document.getElementById("kandinsky").onclick = () => {
-      setOption("kandinsky", "enabled");
-    }
-  }
-
-  document.getElementById("stop-title").innerText = `Lowpass stop effect ${localStorage.getItem("stop-effect")}`;
+  document.getElementById("mode-icon").innerText = modeIconMappings[localStorage.getItem("kandinsky")]
+  
+  document.getElementById("stop-title").innerText = `Lowpass stop effect ${localStorage.getItem("stop-effect") || "disabled"}`;
 
   if (localStorage.getItem("stop-effect") == "enabled") {
     document.getElementById("stop").onclick = () => {
@@ -139,7 +117,7 @@ function applyColour() {
         background-color: ${colour.replace("0.25", "0.5")};
       }
 
-      #settings:hover, #custom-regex:hover {
+      #settings:hover, #custom-regex:hover, #mode:hover {
         background-color: ${colour.replace("0.25", "0.5")};
       }
     `;

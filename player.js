@@ -30,7 +30,7 @@ else if (skew == "rgba(255, 0, 255, 0.25)") {
   document.getElementById("progress-bar").style.backgroundColor = "rgba(255, 0, 255, 1)";
 }
 
-let analysisInterval, setupComplete, audioContext, analyser, audioSource, fileName, biquadFilter, base64, medianColor, image, artist, lastRGBA
+let analysisInterval, setupComplete, audioContext, analyser, audioSource, fileName, biquadFilter, base64, medianColor, image, artist, lastRGBA, globalAccent;
 
 let audioElement = document.getElementById('audio');
 audioElement.preservesPitch = false;
@@ -299,27 +299,33 @@ function analyse() {
       }
     }
 
-    document.getElementById("phantom").style.backgroundColor = rgba;
+    if (localStorage.getItem("kandinsky") == "enabled") {
+      document.getElementById("phantom").style.backgroundColor = rgba;
 
-    if (!document.getElementById("phantom").style.backgroundColor.includes("0, 0, 0")) {
-      document.getElementById("rgb").style.backgroundColor = rgb;
-      document.getElementById("rgba").style.backgroundColor = rgba;
+      if (!document.getElementById("phantom").style.backgroundColor.includes("0, 0, 0")) {
+        document.getElementById("rgb").style.backgroundColor = rgb;
+        document.getElementById("rgba").style.backgroundColor = rgba;
 
-      document.getElementById("navbar").style.backgroundColor = rgba;
+        document.getElementById("navbar").style.backgroundColor = rgba;
 
-      document.getElementById("upload1").style.backgroundColor = rgba;
-      document.getElementById("upload2").style.backgroundColor = rgba;
-      document.getElementById("settings").style.backgroundColor = rgba;
+        document.getElementById("upload1").style.backgroundColor = rgba;
+        document.getElementById("upload2").style.backgroundColor = rgba;
+        document.getElementById("settings").style.backgroundColor = rgba;
 
-      document.getElementById("play").style.backgroundColor = rgba;
-      document.getElementById("stop").style.backgroundColor = rgba;
-      document.getElementById("repeat").style.backgroundColor = rgba;
+        document.getElementById("play").style.backgroundColor = rgba;
+        document.getElementById("stop").style.backgroundColor = rgba;
+        document.getElementById("repeat").style.backgroundColor = rgba;
 
-      document.getElementById("tooltip").style.backgroundColor = rgba;
-      document.getElementById("progress-container").style.backgroundColor = rgba;
-      document.getElementById("progress-bar").style.backgroundColor = rgba.replace("0.25", "1");
+        document.getElementById("tooltip").style.backgroundColor = rgba;
+        document.getElementById("progress-container").style.backgroundColor = rgba;
+        document.getElementById("progress-bar").style.backgroundColor = rgba.replace("0.25", "1");
 
-      document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume * 75}px ${generalVolume}px ${rgba}`;
+        document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume * 75}px ${generalVolume}px ${rgba}`;
+      }
+    }
+
+    else if (localStorage.getItem("kandinsky") == "hybrid") {
+      document.getElementById("cover-art").style.boxShadow = `0px 0px ${generalVolume + 100}px ${generalVolume - 100}px ${globalAccent || medianColor}`;
     }
   });
 }
@@ -359,7 +365,7 @@ function changeSkew(newSkew) {
   skew = newSkew;
 }
 
-function uploadFile() {
+function uploadFile() {  
   let input = document.createElement('input');
   input.type = 'file';
 
@@ -372,6 +378,8 @@ function uploadFile() {
   }
 
   input.onchange = () => {
+    globalAccent = null;
+
     let file = input.files[0];
     if (file) {
       jsmediatags.read(file, {
@@ -387,7 +395,7 @@ function uploadFile() {
             
             base64 = "data:" + image.format + ";base64," + window.btoa(base64String);
           
-            if (localStorage.getItem("kandinsky") == "disabled") {
+            if (localStorage.getItem("kandinsky") == "disabled" || localStorage.getItem("kandinsky") == "hybrid") {
               document.getElementById('cover-art').src = base64;
               document.getElementById('cover-art').style.display = "flex";
 
@@ -451,6 +459,8 @@ function uploadFile() {
                 }
 
                 if (palette) {
+                  globalAccent = palette.accent;
+
                   document.getElementById("cover-art").style.boxShadow = `0px 0px 25vw 0px ${generateRGBA(palette.accent, 0.5)}`;
 
                   document.getElementById("navbar").style.backgroundColor = generateRGBA(palette.accent, 0.25);
@@ -517,7 +527,6 @@ function uploadFile() {
                 }
 
                 else {
-                  
                   document.getElementById("cover-art").style.boxShadow = `0px 0px 25vw 0px ${generateRGBA(medianColor, 0.5)}`;
 
                   document.getElementById("navbar").style.backgroundColor = generateRGBA(medianColor, 0.25);
@@ -750,18 +759,21 @@ function applyColour() {
 
 applyColour();
 
-if (localStorage.getItem("kandinsky") == "disabled") {
-  document.getElementById("audio").onplay = "";
+if (localStorage.getItem("kandinsky") == "disabled" || localStorage.getItem("kandinsky") == "hybrid") {
   if (document.getElementById("glow")) {
     document.getElementById("glow").remove();
   }
 
-  var styleElement = document.getElementsByTagName("style")[0];
-  styleElement.innerHTML += `
-    * {
-      transition: 0.25s ease;
-    }
-  `;
+  if (localStorage.getItem("kandinsky") == "disabled") {
+    document.getElementById("audio").onplay = "";
+
+    var styleElement = document.getElementsByTagName("style")[0];
+    styleElement.innerHTML += `
+      * {
+        transition: 0.25s ease;
+      }
+    `;
+  }
 }
 
 if (localStorage.getItem("colour") == null) {
@@ -910,7 +922,7 @@ function updateProgressClick(event) {
 document.getElementById("progress-container").addEventListener("click", updateProgressClick);
 
 if (localStorage.getItem("warn") != "true") {
-  location.href = "warning.html";
+  location.href = "mode.html";
 }
 
 setInterval(() => {

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player</title>
+
+  <link rel="stylesheet" href="https://linfindel.github.io/nadircss/nadir.css">
+  
+  <style></style>
+</head>
+<body>
+  <div id="container" class="absolute-centre column">
+    <img src="screenshots/album.png" alt="A preview showing the album mode" id="preview" style="width: 75%; border-radius: 0;">
+
+    <div class="column-flat" style="width: calc(75% - 5rem);">
+      <div class="card-flat-bottom" style="width: 100%;">
+        <h1 class="text-center">Select colour mode</h1>
+
+        <div class="row">
+           <button id="flash" onclick="setMode('flash')">
+            <span class="material-symbols-rounded">graphic_eq</span>
+            Flashing lights
+           </button>
+
+           <button id="hybrid" onclick="setMode('hybrid')">
+            <span class="material-symbols-rounded">graphic_eq</span>
+            Hybrid
+           </button>
+
+           <button id="album" onclick="setMode('album')">
+            <span class="material-symbols-rounded">art_track</span>
+            Album cover
+           </button>
+        </div>
+      </div>
+
+      <div id="warning" class="toolbar-warning" style="border-radius: 7.5px; width: calc(100% + 3rem); display: none;">
+        <h2>This mode is unsafe for photosensitive epileptics</h2>
+      </div>
+
+      <div class="card-flat-top column" style="width: 100%;">
+        <button onclick="next()">
+          <span class="material-symbols-rounded">arrow_forward</span>
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="mode.js"></script>
+</body>
+</html>
