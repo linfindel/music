@@ -93,31 +93,11 @@ function applyColour() {
     var styleElement = document.getElementsByTagName("style")[0];
 
     styleElement.innerHTML += `
-      nav {
+      nav, .card, .card-flat-bottom, .card-flat, .card-flat-top, .card-flat-bottom-left-alt, .card-flat-bottom-right-alt, button:not(.nochange-colour) {
         background-color: ${colour};
       }
 
-      .card, .card-flat-bottom, .card-flat, .card-flat-top, .card-flat-bottom-left-alt, .card-flat-bottom-right-alt {
-        background-color: ${colour};
-      }
-
-      .card-interactive:hover {
-        background-color: ${colour.replace("0.25", "0.5")};
-      }
-
-      .about:hover, .reset:hover, .debug:hover {
-        background-color: ${colour.replace("0.25", "0.5")};
-      }
-
-      button:not(.nochange-colour) {
-        background-color: ${colour};
-      }
-
-      button.not(.nochange-colour):hover {
-        background-color: ${colour.replace("0.25", "0.5")};
-      }
-
-      #settings:hover, #custom-regex:hover, #mode:hover {
+      .card-interactive:hover, .about:hover, .reset:hover, .debug:hover, button:not(.nochange-colour):hover, #settings:hover, #custom-regex:hover, #mode:hover, #keyboard:hover {
         background-color: ${colour.replace("0.25", "0.5")};
       }
     `;
@@ -174,16 +154,28 @@ if (screen.width < screen.height) {
   document.getElementById("debug").remove();
   localStorage.setItem("debug", "disabled");
 
-  document.getElementById("keyboard-shortcuts").remove();
+  document.getElementById("keyboard").remove();
 }
 
 setInterval(() => {
   if (window.innerWidth < window.innerHeight) {
+    document.getElementById("primary-action-row").style.width = "100%";
+    document.getElementById("settings").style.flex = "1";
+    document.getElementById("reset").style.flex = "1";
+
+    document.getElementById("external-pages-row").style.width = "100%";
+
     document.getElementById("red").style.borderBottomLeftRadius = "7.5px";
     document.getElementById("purple").style.borderBottomLeftRadius = "24px";
   }
 
   else {
+    document.getElementById("primary-action-row").style.width = "";
+    document.getElementById("settings").style.flex = "";
+    document.getElementById("reset").style.flex = "";
+
+    document.getElementById("external-pages-row").style.width = "calc(100% + 5rem)";
+
     document.getElementById("red").style.borderBottomLeftRadius = "24px";
     document.getElementById("purple").style.borderBottomLeftRadius = "7.5px";
   }
