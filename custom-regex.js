@@ -4,19 +4,11 @@ if (colour) {
   var styleElement = document.getElementsByTagName("style")[0];
 
   styleElement.innerHTML += `
-    nav {
+    nav, button, .card {
       background-color: ${colour};
     }
 
-    button, .card {
-      background-color: ${colour};
-    }
-
-    button:hover {
-      background-color: ${colour.replace("0.25", "0.5")};
-    }
-
-    #back:hover {
+    button:hover, #back:hover {
       background-color: ${colour.replace("0.25", "0.5")};
     }
   `;
