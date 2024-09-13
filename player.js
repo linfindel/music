@@ -774,12 +774,6 @@ if (localStorage.getItem("kandinsky") == "disabled" || localStorage.getItem("kan
   }
 }
 
-if (localStorage.getItem("kandinsky") == "hybrid") {
-  document.getElementById("cover-art").style.display = "flex";
-  document.getElementById("cover-art").style.boxShadow = `0px 0px 250px 25px ${localStorage.getItem("colour")}`;
-  document.getElementById("cover-art").src = "data:image/gif;base64,R0lGODlhZABkAIAAAAAAAP///yH5BAAAAAAALAAAAABkAGQAAAJzhI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuC8fyTNf2jef6zvf+DwwKh8Si8YhMKpfMpvMJjUqn1Kr1is1qt9yu9wsOi8fksvmMTqvX7Lb7DY/L5/S6/Y7P6/f8vv8PGCg4SFhoeIiYqLjI2Oj4CGlYAAA7";
-}
-
 if (localStorage.getItem("colour") == null) {
   localStorage.setItem("colour", "rgba(255, 0, 0, 0.25)");
   location.reload();

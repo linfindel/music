@@ -13,6 +13,13 @@
       transition: 0.05s ease;
     }
 
+    /* This might ameliorate some Firefox flickering so I'm leaving it in just in case */
+    /* @-moz-document url-prefix() {
+      * {
+      transition: 0.01s ease;
+      }
+    } */
+
     *:not(#title) {
       user-select: none;
     }
@@ -187,7 +194,7 @@
     </div>
   </div>
 
-  <img alt="" class="absolute-centre" id="cover-art" style="display: none; width: 25vw; height: 25vw; object-fit: cover;">
+  <img class="absolute-centre" id="cover-art" style="display: none; width: 25vw; height: 25vw; object-fit: cover;">
 
   <div id="phantom"></div>
 
@@ -214,11 +221,27 @@
 
         styleElement.innerHTML += `
         
-          nav, .card, .card-flat-right, .card-flat-left, button:not(.nochange-colour) {
+          nav {
             background-color: ${colour};
           }
     
-          .interactive:hover, button.not(.nochange-colour):hover, #settings:hover, #upload1:hover, #upload2:hover, #play:hover, #stop:hover, #repeat:hover {
+          .card, .card-flat-right, .card-flat-left {
+            background-color: ${colour};
+          }
+    
+          .interactive:hover {
+            background-color: ${colour.replace("0.25", "0.5")};
+          }
+    
+          button:not(.nochange-colour) {
+            background-color: ${colour};
+          }
+    
+          button.not(.nochange-colour):hover {
+            background-color: ${colour.replace("0.25", "0.5")};
+          }
+    
+          #settings:hover, #upload1:hover, #upload2:hover, #play:hover, #stop:hover, #repeat:hover {
             background-color: ${colour.replace("0.25", "0.5")};
           }
     
