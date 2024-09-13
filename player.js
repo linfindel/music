@@ -723,8 +723,6 @@ function applyColour() {
   if (colour) {
     var styleElement = document.getElementsByTagName("style")[0];
 
-    console.log(colour, colour.replace("0.25", "0.5"));
-
     styleElement.innerHTML += `
       nav {
         background-color: ${colour};
