@@ -724,11 +724,27 @@ function applyColour() {
     var styleElement = document.getElementsByTagName("style")[0];
 
     styleElement.innerHTML += `
-      nav, .card, .card-flat-right, .card-flat-left, button:not(.nochange-colour), button.not(.nochange-colour):hover {
+      nav {
         background-color: ${colour};
       }
 
-      .interactive:hover, #settings:hover, #upload1:hover, #upload2:hover, #play:hover, #stop:hover, #repeat:hover {
+      .card, .card-flat-right, .card-flat-left {
+        background-color: ${colour};
+      }
+
+      .interactive:hover {
+        background-color: ${colour.replace("0.25", "0.5")};
+      }
+
+      button:not(.nochange-colour) {
+        background-color: ${colour};
+      }
+
+      button.not(.nochange-colour):hover {
+        background-color: ${colour.replace("0.25", "0.5")};
+      }
+
+      #settings:hover, #upload1:hover, #upload2:hover, #play:hover, #stop:hover, #repeat:hover {
         background-color: ${colour.replace("0.25", "0.5")};
       }
 
