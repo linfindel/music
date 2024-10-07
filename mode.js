@@ -1,12 +1,14 @@
 const mappings = {
   "flash": "enabled",
   "hybrid": "hybrid",
+  "circle": "circle",
   "album": "disabled"
 }
 
 const mappingsReversed = {
   "enabled": "flash",
   "hybrid": "hybrid",
+  "circle": "circle",
   "disabled": "album"
 }
 
@@ -15,6 +17,7 @@ const warning = document.getElementById("warning");
 const buttons = {
   "flash": document.getElementById("flash"),
   "hybrid": document.getElementById("hybrid"),
+  "circle": document.getElementById("circle"),
   "album": document.getElementById("album")
 };
 
@@ -28,7 +31,7 @@ function setMode(mode) {
 
   buttons[mode].style.backgroundColor = "rgba(0, 89, 255, 0.5)";
 
-  if (mode == "flash" || mode == "hybrid") {
+  if (mode == "flash" || mode == "hybrid" || mode == "circle") {
     warning.style.display = "flex";
   }
 

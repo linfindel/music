@@ -30,7 +30,7 @@ else if (skew == "rgba(255, 0, 255, 0.25)") {
   document.getElementById("progress-bar").style.backgroundColor = "rgba(255, 0, 255, 1)";
 }
 
-let analysisInterval, setupComplete, audioContext, analyser, audioSource, fileName, biquadFilter, base64, medianColor, image, artist, lastRGBA, globalAccent;
+let analysisInterval, setupComplete, audioContext, analyser, audioSource, fileName, biquadFilter, base64, medianColor, image, artist, lastRGBA, globalAccent, rgbColour;
 
 let audioElement = document.getElementById('audio');
 audioElement.preservesPitch = false;
@@ -299,7 +299,7 @@ function analyse() {
       }
     }
 
-    if (localStorage.getItem("kandinsky") == "enabled") {
+    if (localStorage.getItem("kandinsky") == "enabled" || localStorage.getItem("kandinsky") == "circle") {
       document.getElementById("phantom").style.backgroundColor = rgba;
 
       if (!document.getElementById("phantom").style.backgroundColor.includes("0, 0, 0")) {
@@ -320,12 +320,19 @@ function analyse() {
         document.getElementById("progress-container").style.backgroundColor = rgba;
         document.getElementById("progress-bar").style.backgroundColor = rgba.replace("0.25", "1");
 
-        document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume * 75}px ${generalVolume}px ${rgba}`;
+        if (document.getElementById("kandinsky") == "enabled") {
+         document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume * 75}px ${generalVolume}px ${rgba}`;
+        }
       }
     }
 
-    else if (localStorage.getItem("kandinsky") == "hybrid") {
+    if (localStorage.getItem("kandinsky") == "hybrid") {
       document.getElementById("cover-art").style.boxShadow = `0px 0px ${generalVolume + 100}px ${generalVolume - 100}px ${globalAccent || medianColor}`;
+    }
+
+    if (localStorage.getItem("kandinsky") == "circle") {
+      document.getElementById("circle").style.border = `5px solid ${rgb}`;
+      document.getElementById("circle").style.boxShadow = `0px 0px ${generalVolume}px 5px ${rgb}, 0px 0px 0px ${generalVolume - 100}px ${rgb}`;
     }
   });
 }
@@ -642,6 +649,10 @@ function uploadFile() {
 
       let reader = new FileReader();
       reader.onload = function (e) {
+        if (localStorage.getItem("kandinsky") == "circle") {
+          document.getElementById("circle").style.animation = "none";
+        }
+
         let fileURL = e.target.result;
 
         document.getElementById("audio").src = fileURL;
@@ -719,6 +730,9 @@ function uploadLink() {
 
 function applyColour() {
   var colour = localStorage.getItem("colour");
+  rgbColour = rgbaToHex(colour).slice(0, -2);
+
+  console.log(rgbColour);
 
   if (colour) {
     var styleElement = document.getElementsByTagName("style")[0];
@@ -751,13 +765,37 @@ function applyColour() {
       .glow {
         box-shadow: 0px 0px 200px 100px ${colour};
       }
+
+      .circle {
+        animation: circle 1.5s ease infinite alternate;
+
+        border: 5px solid ${rgbColour};
+        border-radius: 100%;
+
+        box-shadow: 0px 0px 50px 5px ${rgbColour}, 0px 0px 0px 5px ${rgbColour};
+
+        transition: 0.05s ease;
+
+        width: 10vw;
+        height: 10vw;
+      }
+
+      @keyframes circle {
+        0% {
+          box-shadow: 0px 0px 125px 5px ${rgbColour}, 0px 0px 0px 25px ${rgbColour}77;
+        }
+
+        100% {
+          box-shadow: 0px 0px 25px 5px ${rgbColour}, 0px 0px 0px 12.5px ${rgbColour}77;
+        }
+      }
     `;
   }
 }
 
 applyColour();
 
-if (localStorage.getItem("kandinsky") == "disabled" || localStorage.getItem("kandinsky") == "hybrid") {
+if (localStorage.getItem("kandinsky") == "disabled" || localStorage.getItem("kandinsky") == "hybrid" || localStorage.getItem("kandinsky") == "circle") {
   if (document.getElementById("glow")) {
     document.getElementById("glow").remove();
   }
@@ -771,6 +809,13 @@ if (localStorage.getItem("kandinsky") == "disabled" || localStorage.getItem("kan
         transition: 0.25s ease;
       }
     `;
+  }
+
+  else if (localStorage.getItem("kandinsky") == "circle") {
+    const circle = document.createElement("div");
+    circle.className = "circle absolute-centre";
+    circle.id = "circle";
+    document.body.appendChild(circle);
   }
 }
 
@@ -923,6 +968,8 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const preview = urlParams.get('preview');
 
+console.log("hehe");
+
 if (localStorage.getItem("warn") != "true" && preview != "y") {
   location.href = "mode.html";
 }
@@ -983,7 +1030,7 @@ setInterval(() => {
   }
 });
 
-if (localStorage.getItem("kandinsky") == "enabled") {
+if (localStorage.getItem("kandinsky") == "enabled" || localStorage.getItem("kandinsky") == "circle") {
   document.getElementById("progress-bar").style.transition = "0.2s ease";
   document.getElementById("progress-bar").style.filter = "brightness(2)";
 }

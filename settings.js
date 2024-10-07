@@ -45,6 +45,7 @@ function setOption(option, value) {
 const modeIconMappings = {
   "enabled": "graphic_eq",
   "hybrid": "graphic_eq",
+  "circle": "trip_origin",
   "disabled": "art_track"
 }
 
