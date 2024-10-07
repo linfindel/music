@@ -896,6 +896,7 @@ function stop() {
   }
 
   if (document.getElementById("circle")) {
+    document.getElementById("circle").style.transition = "1s ease";
     document.getElementById("circle").style.border = `5px solid ${rgbColour}`;
     document.getElementById("circle").style.boxShadow = `0px 0px 125px 5px ${rgbColour}, 0px 0px 0px 25px ${rgbColour}77`;
   }
