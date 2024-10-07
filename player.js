@@ -730,6 +730,11 @@ function uploadLink() {
 
 function applyColour() {
   var colour = localStorage.getItem("colour");
+
+  if (!colour) {
+    location.href = "mode.html";
+  }
+
   rgbColour = rgbaToHex(colour).slice(0, -2);
 
   console.log(rgbColour);
@@ -890,6 +895,11 @@ function stop() {
     document.getElementById("glow").style.boxShadow = `0px 0px 200px 100px ${localStorage.getItem("colour")}`;
   }
 
+  if (document.getElementById("circle")) {
+    document.getElementById("circle").style.border = `5px solid ${rgbColour}`;
+    document.getElementById("circle").style.boxShadow = `0px 0px 125px 5px ${rgbColour}, 0px 0px 0px 25px ${rgbColour}77`;
+  }
+
   document.getElementById("cover-art").style.transition = "1s ease";
   document.getElementById("cover-art").style.opacity = "0";
 
@@ -964,13 +974,8 @@ function updateProgressClick(event) {
 
 document.getElementById("progress-container").addEventListener("click", updateProgressClick);
 
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const preview = urlParams.get('preview');
 
-console.log("hehe");
-
-if (localStorage.getItem("warn") != "true" && preview != "y") {
+if (localStorage.getItem("warn") != "true") {
   location.href = "mode.html";
 }
 
