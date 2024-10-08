@@ -801,9 +801,9 @@ function applyColour() {
 applyColour();
 
 if (localStorage.getItem("kandinsky") == "disabled" || localStorage.getItem("kandinsky") == "hybrid" || localStorage.getItem("kandinsky") == "circle") {
-  if (document.getElementById("glow")) {
-    document.getElementById("glow").remove();
-  }
+  // if (document.getElementById("glow")) {
+  //   document.getElementById("glow").remove();
+  // }
 
   if (localStorage.getItem("kandinsky") == "disabled") {
     document.getElementById("audio").onplay = "";

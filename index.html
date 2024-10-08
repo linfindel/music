@@ -242,6 +242,12 @@
             box-shadow: 0px 0px 200px 100px ${colour};
           }
         }`;
+
+        if (localStorage.getItem("kandinsky") == "disabled" || localStorage.getItem("kandinsky") == "hybrid" || localStorage.getItem("kandinsky") == "circle") {
+          if (document.getElementById("glow")) {
+            document.getElementById("glow").remove();
+          }
+        }
       }
     }
 
