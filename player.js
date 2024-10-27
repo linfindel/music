@@ -332,6 +332,22 @@ function analyse() {
       document.getElementById("cover-art").style.boxShadow = `0px 0px ${generalVolume + 100}px ${generalVolume - 100}px ${selectedColour}`;
 
       let rgbSelectedColour = hexToRgb(selectedColour);
+      let rgbaSelectedColour = `rgba(${rgbSelectedColour.r}, ${rgbSelectedColour.g}, ${rgbSelectedColour.b}, ${alpha}`;
+
+
+      document.getElementById("navbar").style.backgroundColor = rgbaSelectedColour;
+
+      document.getElementById("upload1").style.backgroundColor = rgbaSelectedColour;
+      document.getElementById("upload2").style.backgroundColor = rgbaSelectedColour;
+      document.getElementById("settings").style.backgroundColor = rgbaSelectedColour;
+
+      document.getElementById("play").style.backgroundColor = rgbaSelectedColour;
+      document.getElementById("stop").style.backgroundColor = rgbaSelectedColour;
+      document.getElementById("repeat").style.backgroundColor = rgbaSelectedColour;
+
+      document.getElementById("tooltip").style.backgroundColor = rgbaSelectedColour;
+      document.getElementById("progress-container").style.backgroundColor = rgbaSelectedColour;
+      document.getElementById("progress-bar").style.backgroundColor = selectedColour;
 
       document.getElementById("r-value").style.height = `${rgbSelectedColour.r / 255 * 100}px`;
       document.getElementById("g-value").style.height = `${rgbSelectedColour.g / 255 * 100}px`;
@@ -382,7 +398,7 @@ function analyse() {
       document.getElementById("b-text").innerText = rgbSelectedColour.b;
 
       document.getElementById("rgb").style.backgroundColor = selectedColour;
-      document.getElementById("rgba").style.backgroundColor = `rgba(${rgbSelectedColour.r}, ${rgbSelectedColour.g}, ${rgbSelectedColour.b}, ${alpha}`;
+      document.getElementById("rgba").style.backgroundColor = rgbaSelectedColour;
     }
 
     if (localStorage.getItem("kandinsky") == "circle") {
