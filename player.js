@@ -327,7 +327,62 @@ function analyse() {
     }
 
     if (localStorage.getItem("kandinsky") == "hybrid") {
-      document.getElementById("cover-art").style.boxShadow = `0px 0px ${generalVolume + 100}px ${generalVolume - 100}px ${globalAccent || medianColor}`;
+      let selectedColour = globalAccent || medianColor;
+
+      document.getElementById("cover-art").style.boxShadow = `0px 0px ${generalVolume + 100}px ${generalVolume - 100}px ${selectedColour}`;
+
+      let rgbSelectedColour = hexToRgb(selectedColour);
+
+      document.getElementById("r-value").style.height = `${rgbSelectedColour.r / 255 * 100}px`;
+      document.getElementById("g-value").style.height = `${rgbSelectedColour.g / 255 * 100}px`;
+      document.getElementById("b-value").style.height = `${rgbSelectedColour.b / 255 * 100}px`
+      
+      if (rgbSelectedColour.r < 0) {
+        rgbSelectedColour.r = "000";
+      }
+
+      else if (rgbSelectedColour.r < 10) {
+        rgbSelectedColour.r = `00${rgbSelectedColour.r}`;
+      }
+
+      else if (rgbSelectedColour.r < 100) {
+        rgbSelectedColour.r = `0${rgbSelectedColour.r}`;
+      };
+
+
+
+      if (rgbSelectedColour.g < 0) {
+        rgbSelectedColour.g = "000";
+      }
+
+      else if (rgbSelectedColour.g < 10) {
+        rgbSelectedColour.g = `00${rgbSelectedColour.g}`;
+      }
+
+      else if (rgbSelectedColour.g < 100) {
+        rgbSelectedColour.g = `0${rgbSelectedColour.g}`;
+      };
+
+
+
+      if (rgbSelectedColour.b < 0) {
+        rgbSelectedColour.b = "000";
+      }
+
+      else if (rgbSelectedColour.b < 10) {
+        rgbSelectedColour.b = `00${rgbSelectedColour.b}`;
+      }
+
+      else if (rgbSelectedColour.b < 100) {
+        rgbSelectedColour.b = `0${rgbSelectedColour.b}`;
+      };
+
+      document.getElementById("r-text").innerText = rgbSelectedColour.r;
+      document.getElementById("g-text").innerText = rgbSelectedColour.g;
+      document.getElementById("b-text").innerText = rgbSelectedColour.b;
+
+      document.getElementById("rgb").style.backgroundColor = selectedColour;
+      document.getElementById("rgba").style.backgroundColor = `rgba(${rgbSelectedColour.r}, ${rgbSelectedColour.g}, ${rgbSelectedColour.b}, ${alpha}`;
     }
 
     if (localStorage.getItem("kandinsky") == "circle") {
@@ -339,6 +394,15 @@ function analyse() {
 
 function stopAnalysis() {
   clearInterval(analysisInterval);
+}
+
+function hexToRgb(hex) {
+  let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? {
+    r: parseInt(result[1], 16),
+    g: parseInt(result[2], 16),
+    b: parseInt(result[3], 16)
+  } : null;
 }
 
 function rgbaToHex(rgba) {
