@@ -30,7 +30,7 @@ else if (skew == "rgba(255, 0, 255, 0.25)") {
   document.getElementById("progress-bar").style.backgroundColor = "rgba(255, 0, 255, 1)";
 }
 
-let analysisInterval, setupComplete, audioContext, analyser, audioSource, fileName, biquadFilter, base64, medianColor, image, artist, lastRGBA, globalAccent, rgbColour;
+let analysisInterval, setupComplete, audioContext, analyser, audioSource, fileName, biquadFilter, base64, medianColor, image, artist, lastRGBA, globalAccent, rgbColour, selectedColour, rgbSelectedColour, rgbaSelectedColour;
 
 let audioElement = document.getElementById('audio');
 audioElement.preservesPitch = false;
@@ -326,14 +326,14 @@ function analyse() {
       }
     }
 
+    if (localStorage.getItem("kandinsky") == "hybrid" || localStorage.getItem("kandinsky") == "disabled") {
+      selectedColour = globalAccent || medianColor;
+      rgbSelectedColour = hexToRgb(selectedColour);
+      rgbaSelectedColour = `rgba(${rgbSelectedColour.r}, ${rgbSelectedColour.g}, ${rgbSelectedColour.b}, ${alpha}`;
+    }
+
     if (localStorage.getItem("kandinsky") == "hybrid") {
-      let selectedColour = globalAccent || medianColor;
-
       document.getElementById("cover-art").style.boxShadow = `0px 0px ${generalVolume + 100}px ${generalVolume - 100}px ${selectedColour}`;
-
-      let rgbSelectedColour = hexToRgb(selectedColour);
-      let rgbaSelectedColour = `rgba(${rgbSelectedColour.r}, ${rgbSelectedColour.g}, ${rgbSelectedColour.b}, ${alpha}`;
-
 
       document.getElementById("navbar").style.backgroundColor = rgbaSelectedColour;
 
@@ -404,6 +404,21 @@ function analyse() {
     if (localStorage.getItem("kandinsky") == "circle") {
       document.getElementById("circle").style.border = `5px solid ${rgb}`;
       document.getElementById("circle").style.boxShadow = `0px 0px ${generalVolume}px 5px ${rgb}, 0px 0px 0px ${generalVolume - 100}px ${rgb}`;
+    }
+
+    if (localStorage.getItem("kandinsky") == "disabled") {
+      document.getElementById("r-value").style.height = `${rgbSelectedColour.r / 255 * 100}px`;
+      document.getElementById("g-value").style.height = `${rgbSelectedColour.g / 255 * 100}px`;
+      document.getElementById("b-value").style.height = `${rgbSelectedColour.b / 255 * 100}px`;
+      document.getElementById("a-value").style.height = `${rgbSelectedColour.b / 255 * 100}px`;
+
+      document.getElementById("r-text").innerText = rgbSelectedColour.r;
+      document.getElementById("g-text").innerText = rgbSelectedColour.g;
+      document.getElementById("b-text").innerText = rgbSelectedColour.b;
+      document.getElementById("a-text").innerText = "0.25";
+
+      document.getElementById("rgb").style.backgroundColor = selectedColour;
+      document.getElementById("rgba").style.backgroundColor = `rgba(${rgbSelectedColour.r}, ${rgbSelectedColour.g}, ${rgbSelectedColour.b}, 0.25)`;
     }
   });
 }
@@ -880,28 +895,11 @@ function applyColour() {
 
 applyColour();
 
-if (localStorage.getItem("kandinsky") == "disabled" || localStorage.getItem("kandinsky") == "hybrid" || localStorage.getItem("kandinsky") == "circle") {
-  // if (document.getElementById("glow")) {
-  //   document.getElementById("glow").remove();
-  // }
-
-  if (localStorage.getItem("kandinsky") == "disabled") {
-    document.getElementById("audio").onplay = "";
-
-    var styleElement = document.getElementsByTagName("style")[0];
-    styleElement.innerHTML += `
-      * {
-        transition: 0.25s ease;
-      }
-    `;
-  }
-
-  else if (localStorage.getItem("kandinsky") == "circle") {
-    const circle = document.createElement("div");
-    circle.className = "circle absolute-centre";
-    circle.id = "circle";
-    document.body.appendChild(circle);
-  }
+if (localStorage.getItem("kandinsky") == "circle") {
+  const circle = document.createElement("div");
+  circle.className = "circle absolute-centre";
+  circle.id = "circle";
+  document.body.appendChild(circle);
 }
 
 if (localStorage.getItem("colour") == null) {
