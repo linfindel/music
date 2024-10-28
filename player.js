@@ -87,7 +87,7 @@ function analyse() {
 
     if (localStorage.getItem("debug") == "enabled") { 
       document.getElementById("a-value").style.height = `${alpha * 100}%`;
-      document.getElementById("a-text").innerText = Math.round(alpha * 10) / 10;
+      document.getElementById("a-text").innerText = alpha.toFixed(2);
     }
 
 	  const mapTo255 = (value) => (value / 255) * 255;
