@@ -57,7 +57,7 @@ function analyse() {
     setupAnalysis();
   }
 
-  analysisInterval = setInterval(() => {
+  analysisInterval = setInterval(() => {    
 	  const frequencyData = new Uint8Array(analyser.frequencyBinCount);
 	
 	  function getAverageValue(startIndex, endIndex) {
@@ -320,7 +320,7 @@ function analyse() {
         document.getElementById("progress-container").style.backgroundColor = rgba;
         document.getElementById("progress-bar").style.backgroundColor = rgba.replace("0.25", "1");
 
-        if (document.getElementById("kandinsky") == "enabled") {
+        if (localStorage.getItem("kandinsky") == "enabled") {
          document.getElementById("glow").style.boxShadow = `0px 0px ${generalVolume * 75}px ${generalVolume}px ${rgba}`;
         }
       }
