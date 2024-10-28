@@ -739,7 +739,7 @@ function uploadFile() {
         document.getElementById("audio").play();
 
         document.getElementById("audio").addEventListener("loadedmetadata", () => {
-        document.getElementById("title").style.cursor = "url('https://linfindel.github.io/nadircss/cursors/link-select.cur'), auto";
+        document.getElementById("title").style.cursor = "pointer";
 
         document.getElementById("title").style.transition = "0.5s ease";
         document.getElementById("title").style.opacity = "0";
