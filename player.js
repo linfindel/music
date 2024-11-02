@@ -762,6 +762,9 @@ function uploadFile() {
         setTimeout(() => {
           document.getElementById("title").innerText = fileName;
           document.getElementById("title").style.opacity = "1";
+
+          document.getElementById("title").contentEditable = "true";
+          document.getElementById("title").style.outline = "none";
         }, 500);
 
         document.title = `${fileName} - Music Player`;
@@ -773,8 +776,6 @@ function uploadFile() {
             artwork: [{ src: base64 }],
           });
         }
-
-        document.getElementById("title").contentEditable = "true";
 
         if (customTitles[fileName]) {
           document.getElementById("title").innerText = customTitles[fileName];
