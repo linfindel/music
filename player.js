@@ -12,10 +12,6 @@ if (skew == "rgba(0, 89, 255, 0.25)") {
     document.getElementById("low-freq").style.backgroundColor = "rgba(0, 0, 255, 0.25)";
     document.getElementById("medium-freq").style.backgroundColor = "rgba(0, 255, 0, 0.25)";
     document.getElementById("high-freq").style.backgroundColor = "rgba(255, 0, 0, 0.25)";
-
-    document.getElementById("low-freq-value").style.backgroundColor = "rgba(0, 0, 255, 0.5)";
-    document.getElementById("medium-freq-value").style.backgroundColor = "rgba(0, 255, 0, 0.5)";
-    document.getElementById("high-freq-value").style.backgroundColor = "rgba(255, 0, 0, 0.5)";
   }
 }
 
@@ -28,11 +24,7 @@ else if (skew == "rgba(255, 0, 0, 0.25)") {
   if (localStorage.getItem("debug") == "enabled") {
     document.getElementById("low-freq").style.backgroundColor = "rgba(255, 0, 0, 0.25)";
     document.getElementById("medium-freq").style.backgroundColor = "rgba(0, 255, 0, 0.25)";
-    document.getElementById("high-freq").style.backgroundColor = "rgba(0, 0, 255, 0.25)";
-
-    document.getElementById("low-freq-value").style.backgroundColor = "rgba(255, 0, 0, 0.5)";
-    document.getElementById("medium-freq-value").style.backgroundColor = "rgba(0, 255, 0, 0.5)";
-    document.getElementById("high-freq-value").style.backgroundColor = "rgba(0, 0, 255, 0.5)";
+    document.getElementById("high-freq").style.backgroundColor = "rgba(0, 0, 255, 0.25)"
   }
 }
 
@@ -46,10 +38,6 @@ else if (skew == "rgba(0, 255, 0, 0.25)") {
     document.getElementById("low-freq").style.backgroundColor = "rgba(0, 255, 0, 0.25)";
     document.getElementById("medium-freq").style.backgroundColor = "rgba(255, 0, 0, 0.25)";
     document.getElementById("high-freq").style.backgroundColor = "rgba(0, 0, 255, 0.25)";
-
-    document.getElementById("low-freq-value").style.backgroundColor = "rgba(0, 255, 0, 0.5)";
-    document.getElementById("medium-freq-value").style.backgroundColor = "rgba(255, 0, 0, 0.5)";
-    document.getElementById("high-freq-value").style.backgroundColor = "rgba(0, 0, 255, 0.5)";
   }
 }
 
@@ -63,10 +51,6 @@ else if (skew == "rgba(255, 0, 255, 0.25)") {
     document.getElementById("low-freq").style.backgroundColor = "rgba(0, 0, 255, 0.25)";
     document.getElementById("medium-freq").style.backgroundColor = "rgba(255, 0, 0, 0.25)";
     document.getElementById("high-freq").style.backgroundColor = "rgba(0, 255, 0, 0.25)";
-
-    document.getElementById("low-freq-value").style.backgroundColor = "rgba(0, 0, 255, 0.5)";
-    document.getElementById("medium-freq-value").style.backgroundColor = "rgba(255, 0, 0, 0.5)";
-    document.getElementById("high-freq-value").style.backgroundColor = "rgba(0, 255, 0, 0.5)";
   }
 }
 
@@ -988,8 +972,6 @@ function applyColour() {
 
   if (localStorage.getItem("debug") == "enabled") {
     let rgbSeparatedValues = hexToRgb(rgbColour);
-
-    console.log(rgbSeparatedValues)
     
     document.getElementById("r-value").style.height = `${rgbSeparatedValues.r / 255 * 100}px`;
     document.getElementById("g-value").style.height = `${rgbSeparatedValues.g / 255 * 100}px`;
