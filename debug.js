@@ -32,6 +32,16 @@ setInterval(() => {
     document.getElementById("compare-icon").innerText = "check_box_outline_blank";
     document.getElementById("compare-text").innerText = "Colour comparison disabled";
   }
+
+  if (localStorage.getItem("debug-freq") == "enabled" || !localStorage.getItem("debug-freq")) {
+    document.getElementById("freq-icon").innerText = "check_box";
+    document.getElementById("freq-text").innerText = "Frequency breakdown enabled";
+  }
+  
+  else {
+    document.getElementById("freq-icon").innerText = "check_box_outline_blank";
+    document.getElementById("freq-text").innerText = "Frequency breakdown disabled";
+  }
 });
 
 var colour = localStorage.getItem("colour");
@@ -52,7 +62,7 @@ if (colour) {
       background-color: ${colour.replace("0.25", "0.5")};
     }
 
-    #back:hover, #debug:hover, #makeup:hover, #compare:hover {
+    #back:hover, #debug:hover, #makeup:hover, #compare:hover, #freq:hover {
       background-color: ${colour.replace("0.25", "0.5")};
     }
   `;

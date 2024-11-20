@@ -7,6 +7,16 @@ if (skew == "rgba(0, 89, 255, 0.25)") {
 
   document.getElementById("progress-container").style.backgroundColor = "rgba(0, 89, 255, 0.25)";
   document.getElementById("progress-bar").style.backgroundColor = "rgba(0, 89, 255, 1)";
+
+  if (localStorage.getItem("debug") == "enabled") {
+    document.getElementById("low-freq").style.backgroundColor = "rgba(0, 0, 255, 0.25)";
+    document.getElementById("medium-freq").style.backgroundColor = "rgba(0, 255, 0, 0.25)";
+    document.getElementById("high-freq").style.backgroundColor = "rgba(255, 0, 0, 0.25)";
+
+    document.getElementById("low-freq-value").style.backgroundColor = "rgba(0, 0, 255, 0.5)";
+    document.getElementById("medium-freq-value").style.backgroundColor = "rgba(0, 255, 0, 0.5)";
+    document.getElementById("high-freq-value").style.backgroundColor = "rgba(255, 0, 0, 0.5)";
+  }
 }
 
 else if (skew == "rgba(255, 0, 0, 0.25)") {
@@ -14,6 +24,16 @@ else if (skew == "rgba(255, 0, 0, 0.25)") {
 
   document.getElementById("progress-container").style.backgroundColor = "rgba(255, 0, 0, 0.25)";
   document.getElementById("progress-bar").style.backgroundColor = "rgba(255, 0, 0, 1)";
+
+  if (localStorage.getItem("debug") == "enabled") {
+    document.getElementById("low-freq").style.backgroundColor = "rgba(255, 0, 0, 0.25)";
+    document.getElementById("medium-freq").style.backgroundColor = "rgba(0, 255, 0, 0.25)";
+    document.getElementById("high-freq").style.backgroundColor = "rgba(0, 0, 255, 0.25)";
+
+    document.getElementById("low-freq-value").style.backgroundColor = "rgba(255, 0, 0, 0.5)";
+    document.getElementById("medium-freq-value").style.backgroundColor = "rgba(0, 255, 0, 0.5)";
+    document.getElementById("high-freq-value").style.backgroundColor = "rgba(0, 0, 255, 0.5)";
+  }
 }
 
 else if (skew == "rgba(0, 255, 0, 0.25)") {
@@ -21,6 +41,16 @@ else if (skew == "rgba(0, 255, 0, 0.25)") {
 
   document.getElementById("progress-container").style.backgroundColor = "rgba(0, 255, 0, 0.25)";
   document.getElementById("progress-bar").style.backgroundColor = "rgba(0, 255, 0, 1)";
+
+  if (localStorage.getItem("debug") == "enabled") {
+    document.getElementById("low-freq").style.backgroundColor = "rgba(0, 255, 0, 0.25)";
+    document.getElementById("medium-freq").style.backgroundColor = "rgba(255, 0, 0, 0.25)";
+    document.getElementById("high-freq").style.backgroundColor = "rgba(0, 0, 255, 0.25)";
+
+    document.getElementById("low-freq-value").style.backgroundColor = "rgba(0, 255, 0, 0.5)";
+    document.getElementById("medium-freq-value").style.backgroundColor = "rgba(255, 0, 0, 0.5)";
+    document.getElementById("high-freq-value").style.backgroundColor = "rgba(0, 0, 255, 0.5)";
+  }
 }
 
 else if (skew == "rgba(255, 0, 255, 0.25)") {
@@ -28,6 +58,16 @@ else if (skew == "rgba(255, 0, 255, 0.25)") {
 
   document.getElementById("progress-container").style.backgroundColor = "rgba(255, 0, 255, 0.25)";
   document.getElementById("progress-bar").style.backgroundColor = "rgba(255, 0, 255, 1)";
+
+  if (localStorage.getItem("debug") == "enabled") {
+    document.getElementById("low-freq").style.backgroundColor = "rgba(0, 0, 255, 0.25)";
+    document.getElementById("medium-freq").style.backgroundColor = "rgba(255, 0, 0, 0.25)";
+    document.getElementById("high-freq").style.backgroundColor = "rgba(0, 255, 0, 0.25)";
+
+    document.getElementById("low-freq-value").style.backgroundColor = "rgba(0, 0, 255, 0.5)";
+    document.getElementById("medium-freq-value").style.backgroundColor = "rgba(255, 0, 0, 0.5)";
+    document.getElementById("high-freq-value").style.backgroundColor = "rgba(0, 255, 0, 0.5)";
+  }
 }
 
 let analysisInterval, setupComplete, audioContext, analyser, audioSource, fileName, biquadFilter, base64, medianColor, image, artist, lastRGBA, globalAccent, rgbColour, selectedColour, rgbSelectedColour, rgbaSelectedColour;
@@ -111,6 +151,10 @@ function analyse() {
     lowVolume = Math.min(255, lowVolume);
     midVolume = Math.min(255, midVolume);
     highVolume = Math.min(255, highVolume);
+
+    document.getElementById("low-freq-value").style.height = `${lowVolume / 255 * 100}%`;
+    document.getElementById("medium-freq-value").style.height = `${midVolume / 255 * 100}%`;
+    document.getElementById("high-freq-value").style.height = `${highVolume / 255 * 100}%`;
 
     var rgba;
     var rgb;
@@ -1296,4 +1340,8 @@ if (localStorage.getItem("debug-colour-makeup") == "disabled") {
 
 if (localStorage.getItem("debug-compare") == "disabled") {
   document.getElementById("comparison").style.display = "none";
+}
+
+if (localStorage.getItem("debug-freq") == "disabled") {
+  document.getElementById("freq").style.display = "none";
 }
