@@ -197,10 +197,6 @@ function analyse() {
     midVolume = Math.min(255, midVolume);
     highVolume = Math.min(255, highVolume);
 
-    // document.getElementById("low-freq-value").style.height = `${lowVolume / 255 * 100}%`;
-    // document.getElementById("medium-freq-value").style.height = `${midVolume / 255 * 100}%`;
-    // document.getElementById("high-freq-value").style.height = `${highVolume / 255 * 100}%`;
-
     var rgba;
     var rgb;
 
