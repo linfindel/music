@@ -70,7 +70,7 @@ else if (skew == "rgba(255, 0, 255, 0.25)") {
   }
 }
 
-let analysisInterval, setupComplete, audioContext, analyser, audioSource, fileName, biquadFilter, base64, medianColor, image, artist, lastRGBA, globalAccent, rgbColour, selectedColour, rgbSelectedColour, rgbaSelectedColour;
+let analysisInterval, setupComplete, audioContext, analyser, audioSource, fileName, biquadFilter, base64, medianColor, image, artist, lastRGBA, globalAccent, rgbColour, selectedColour, rgbSelectedColour, rgbaSelectedColour, lowFrequencies, midFrequencies, highFrequencies, cooldown;
 
 let audioElement = document.getElementById('audio');
 audioElement.preservesPitch = false;
@@ -114,6 +114,51 @@ function analyse() {
 	  var midFrequencyVolume = getAverageValue(31, 120);
 	  var highFrequencyVolume = getAverageValue(121, 255);
 
+    if (localStorage.getItem("debug") == "enabled" && !cooldown) {
+      lowFrequencies = [];
+      midFrequencies = [];
+      highFrequencies = [];
+
+      document.getElementById("low-freq").innerHTML = "";
+      document.getElementById("medium-freq").innerHTML = "";
+      document.getElementById("high-freq").innerHTML = "";
+
+      for (let i = 0; i < 30; i += 5) {
+        lowFrequencies[i] = getAverageValue(i, i + 5);
+
+        const freqBar = document.createElement("div");
+        freqBar.id = `low-freq-value-${i}`;
+        freqBar.style.position = "relative";
+        freqBar.style.width = "16.666666667%";
+
+        document.getElementById("low-freq").appendChild(freqBar);
+      }
+
+      for (let i = 0; i < 90; i += 5) {
+        midFrequencies[i] = getAverageValue(i + 30, i + 35);
+
+        const freqBar = document.createElement("div");
+        freqBar.id = `medium-freq-value-${i}`;
+        freqBar.style.position = "relative";
+        freqBar.style.width = "5.555555556%";
+
+        document.getElementById("medium-freq").appendChild(freqBar);
+      }
+
+      for (let i = 0; i < 135; i += 5) {
+        highFrequencies[i] = getAverageValue(i + 120, i + 125);
+
+        const freqBar = document.createElement("div");
+        freqBar.id = `high-freq-value-${i}`;
+        freqBar.style.position = "relative";
+        freqBar.style.width = "3.703703704%";
+
+        document.getElementById("high-freq").appendChild(freqBar);
+      }
+
+      startCooldown();
+    }
+
     let rms = 0;
 
     for (let i = 0; i < frequencyData.length; i++) {
@@ -152,9 +197,9 @@ function analyse() {
     midVolume = Math.min(255, midVolume);
     highVolume = Math.min(255, highVolume);
 
-    document.getElementById("low-freq-value").style.height = `${lowVolume / 255 * 100}%`;
-    document.getElementById("medium-freq-value").style.height = `${midVolume / 255 * 100}%`;
-    document.getElementById("high-freq-value").style.height = `${highVolume / 255 * 100}%`;
+    // document.getElementById("low-freq-value").style.height = `${lowVolume / 255 * 100}%`;
+    // document.getElementById("medium-freq-value").style.height = `${midVolume / 255 * 100}%`;
+    // document.getElementById("high-freq-value").style.height = `${highVolume / 255 * 100}%`;
 
     var rgba;
     var rgb;
@@ -167,6 +212,21 @@ function analyse() {
         document.getElementById("r-value").style.height = `${highVolume / 255 * 100}px`;
         document.getElementById("g-value").style.height = `${midVolume / 255 * 100}px`;
         document.getElementById("b-value").style.height = `${lowVolume / 255 * 100}px`;
+
+        for (let i = 0; i < 30; i += 5) {
+          document.getElementById(`low-freq-value-${i}`).style.height = `${lowFrequencies[i] / 255 * 100}%`;
+          document.getElementById(`low-freq-value-${i}`).style.backgroundColor = "rgba(0, 0, 255, 0.5)";
+        }
+
+        for (let i = 0; i < 90; i += 5) {
+          document.getElementById(`medium-freq-value-${i}`).style.height = `${midFrequencies[i] / 255 * 100}%`;
+          document.getElementById(`medium-freq-value-${i}`).style.backgroundColor = "rgba(0, 255, 0, 0.5)";
+        }
+
+        for (let i = 0; i < 135; i += 5) {
+          document.getElementById(`high-freq-value-${i}`).style.height = `${highFrequencies[i] / 255 * 100}%`;
+          document.getElementById(`high-freq-value-${i}`).style.backgroundColor = "rgba(255, 0, 0, 0.5)";
+        }
 
         var r = Math.round(highVolume / 255 * 100);
 
@@ -213,6 +273,21 @@ function analyse() {
         document.getElementById("g-value").style.height = `${lowVolume / 255 * 100}px`;
         document.getElementById("b-value").style.height = `${highVolume / 255 * 100}px`;
 
+        for (let i = 0; i < 30; i += 5) {
+          document.getElementById(`low-freq-value-${i}`).style.height = `${lowFrequencies[i] / 255 * 100}%`;
+          document.getElementById(`low-freq-value-${i}`).style.backgroundColor = "rgba(0, 255, 0, 0.5)";
+        }
+
+        for (let i = 0; i < 90; i += 5) {
+          document.getElementById(`medium-freq-value-${i}`).style.height = `${midFrequencies[i] / 255 * 100}%`;
+          document.getElementById(`medium-freq-value-${i}`).style.backgroundColor = "rgba(255, 0, 0, 0.5)";
+        }
+
+        for (let i = 0; i < 135; i += 5) {
+          document.getElementById(`high-freq-value-${i}`).style.height = `${highFrequencies[i] / 255 * 100}%`;
+          document.getElementById(`high-freq-value-${i}`).style.backgroundColor = "rgba(0, 0, 255, 0.5)";
+        }
+
         var r = Math.round(midVolume / 255 * 100);
 
         if (r < 10) {
@@ -258,6 +333,21 @@ function analyse() {
         document.getElementById("g-value").style.height = `${midVolume / 255 * 100}px`;
         document.getElementById("b-value").style.height = `${highVolume / 255 * 100}px`;
 
+        for (let i = 0; i < 30; i += 5) {
+          document.getElementById(`low-freq-value-${i}`).style.height = `${lowFrequencies[i] / 255 * 100}%`;
+          document.getElementById(`low-freq-value-${i}`).style.backgroundColor = "rgba(255, 0, 0, 0.5)";
+        }
+
+        for (let i = 0; i < 90; i += 5) {
+          document.getElementById(`medium-freq-value-${i}`).style.height = `${midFrequencies[i] / 255 * 100}%`;
+          document.getElementById(`medium-freq-value-${i}`).style.backgroundColor = "rgba(0, 255, 0, 0.5)";
+        }
+
+        for (let i = 0; i < 135; i += 5) {
+          document.getElementById(`high-freq-value-${i}`).style.height = `${highFrequencies[i] / 255 * 100}%`;
+          document.getElementById(`high-freq-value-${i}`).style.backgroundColor = "rgba(0, 0, 255, 0.5)";
+        }
+
         var r = Math.round(lowVolume / 255 * 100);
 
         if (r < 10) {
@@ -302,6 +392,21 @@ function analyse() {
         document.getElementById("r-value").style.height = `${(midVolume + 100) / 255 * 100}px`;
         document.getElementById("g-value").style.height = `${highVolume / 255 * 100}px`;
         document.getElementById("b-value").style.height = `${(lowVolume - 100) / 255 * 100}px`;
+
+        for (let i = 0; i < 30; i += 5) {
+          document.getElementById(`low-freq-value-${i}`).style.height = `${lowFrequencies[i] / 255 * 100}%`;
+          document.getElementById(`low-freq-value-${i}`).style.backgroundColor = "rgba(0, 0, 255, 0.5)";
+        }
+
+        for (let i = 0; i < 90; i += 5) {
+          document.getElementById(`medium-freq-value-${i}`).style.height = `${midFrequencies[i] / 255 * 100}%`;
+          document.getElementById(`medium-freq-value-${i}`).style.backgroundColor = "rgba(255, 0, 0, 0.5)";
+        }
+
+        for (let i = 0; i < 135; i += 5) {
+          document.getElementById(`high-freq-value-${i}`).style.height = `${highFrequencies[i] / 255 * 100}%`;
+          document.getElementById(`high-freq-value-${i}`).style.backgroundColor = "rgba(0, 255, 0, 0.5)";
+        }
 
         var r = Math.round((midVolume + 100) / 255 * 100);
 
@@ -469,6 +574,14 @@ function analyse() {
 
 function stopAnalysis() {
   clearInterval(analysisInterval);
+}
+
+function startCooldown() {
+  cooldown = true;
+
+  setTimeout(() => {
+    cooldown = false;
+  }, 25);
 }
 
 function hexToRgb(hex) {
