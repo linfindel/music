@@ -140,6 +140,39 @@ function analyse() {
         document.getElementById("high-freq").appendChild(freqBar);
       }
 
+      const meanBarLow = document.createElement("div");
+      meanBarLow.id = "low-freq-mean";
+      meanBarLow.style.position = "absolute";
+      meanBarLow.style.width = "100%";
+      meanBarLow.style.height = "0.2rem";
+      meanBarLow.style.bottom = "0";
+      meanBarLow.style.zIndex = "1";
+      meanBarLow.style.backdropFilter = "saturate(20)";
+
+      document.getElementById("low-freq").appendChild(meanBarLow);
+
+      const meanBarMid = document.createElement("div");
+      meanBarMid.id = "medium-freq-mean";
+      meanBarMid.style.position = "absolute";
+      meanBarMid.style.width = "100%";
+      meanBarMid.style.height = "0.2rem";
+      meanBarMid.style.bottom = "0";
+      meanBarMid.style.zIndex = "1";
+      meanBarMid.style.backdropFilter = "saturate(20)";
+
+      document.getElementById("medium-freq").appendChild(meanBarMid);
+
+      const meanBarHigh = document.createElement("div");
+      meanBarHigh.id = "high-freq-mean";
+      meanBarHigh.style.position = "absolute";
+      meanBarHigh.style.width = "100%";
+      meanBarHigh.style.height = "0.2rem";
+      meanBarHigh.style.bottom = "0";
+      meanBarHigh.style.zIndex = "1";
+      meanBarHigh.style.backdropFilter = "saturate(20)";
+
+      document.getElementById("high-freq").appendChild(meanBarHigh);
+
       startCooldown();
     }
 
@@ -180,6 +213,12 @@ function analyse() {
     lowVolume = Math.min(255, lowVolume);
     midVolume = Math.min(255, midVolume);
     highVolume = Math.min(255, highVolume);
+
+    if (localStorage.getItem("debug") == "enabled") {
+      document.getElementById("low-freq-mean").style.bottom = `${lowVolume / 255 * 100}%`;
+      document.getElementById("medium-freq-mean").style.bottom = `${midVolume / 255 * 100}%`;
+      document.getElementById("high-freq-mean").style.bottom = `${highVolume / 255 * 100}%`;
+    }
 
     var rgba;
     var rgb;
