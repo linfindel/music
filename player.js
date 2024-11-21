@@ -582,7 +582,7 @@ function analyse() {
       document.getElementById("r-value").style.height = `${rgbSelectedColour.r / 255 * 100}px`;
       document.getElementById("g-value").style.height = `${rgbSelectedColour.g / 255 * 100}px`;
       document.getElementById("b-value").style.height = `${rgbSelectedColour.b / 255 * 100}px`;
-      document.getElementById("a-value").style.height = `${rgbSelectedColour.b / 255 * 100}px`;
+      document.getElementById("a-value").style.height = "2.5rem";
 
       document.getElementById("r-text").innerText = rgbSelectedColour.r;
       document.getElementById("g-text").innerText = rgbSelectedColour.g;
@@ -1016,10 +1016,10 @@ function applyColour() {
   if (localStorage.getItem("debug") == "enabled") {
     let rgbSeparatedValues = hexToRgb(rgbColour);
     
-    document.getElementById("r-value").style.height = `${rgbSeparatedValues.r / 255 * 100}px`;
-    document.getElementById("g-value").style.height = `${rgbSeparatedValues.g / 255 * 100}px`;
-    document.getElementById("b-value").style.height = `${rgbSeparatedValues.b / 255 * 100}px`
-    document.getElementById("a-value").style.height = `${rgbSeparatedValues.b / 255 * 100}px`
+    document.getElementById("r-value").style.height = `${rgbSeparatedValues.r}px`;
+    document.getElementById("g-value").style.height = `${rgbSeparatedValues.g}px`;
+    document.getElementById("b-value").style.height = `${rgbSeparatedValues.b}px`;
+    document.getElementById("a-value").style.height = "2.5rem";
 
     document.getElementById("r-text").innerText = rgbSeparatedValues.r;
     document.getElementById("g-text").innerText = rgbSeparatedValues.g;
