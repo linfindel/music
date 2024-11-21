@@ -143,12 +143,12 @@ function applyColour() {
   }
 }
 
-document.getElementById("purple").addEventListener("mouseover", () => {
-  document.getElementById("purple").style.backgroundColor = "rgba(255, 0, 255, 0.5)";
+document.getElementById("pink").addEventListener("mouseover", () => {
+  document.getElementById("pink").style.backgroundColor = "rgba(255, 0, 255, 0.5)";
 });
 
-document.getElementById("purple").addEventListener("mouseleave", () => {
-  document.getElementById("purple").style.backgroundColor = "rgba(255, 0, 255, 0.25)";
+document.getElementById("pink").addEventListener("mouseleave", () => {
+  document.getElementById("pink").style.backgroundColor = "rgba(255, 0, 255, 0.25)";
 });
 
 if (screen.width < screen.height) {
@@ -167,7 +167,7 @@ setInterval(() => {
     document.getElementById("external-pages-row").style.width = "100%";
 
     document.getElementById("red").style.borderBottomLeftRadius = "7.5px";
-    document.getElementById("purple").style.borderBottomLeftRadius = "24px";
+    document.getElementById("pink").style.borderBottomLeftRadius = "24px";
   }
 
   else {
@@ -178,7 +178,7 @@ setInterval(() => {
     document.getElementById("external-pages-row").style.width = "calc(100% + 5rem)";
 
     document.getElementById("red").style.borderBottomLeftRadius = "24px";
-    document.getElementById("purple").style.borderBottomLeftRadius = "7.5px";
+    document.getElementById("pink").style.borderBottomLeftRadius = "7.5px";
   }
 });
 

@@ -42,7 +42,7 @@ else if (skew == "rgba(0, 255, 0, 0.25)") {
 }
 
 else if (skew == "rgba(255, 0, 255, 0.25)") {
-  skew = "purple";
+  skew = "pink";
 
   document.getElementById("progress-container").style.backgroundColor = "rgba(255, 0, 255, 0.25)";
   document.getElementById("progress-bar").style.backgroundColor = "rgba(255, 0, 255, 1)";
@@ -403,7 +403,7 @@ function analyse() {
       }
     }
 
-    else if (skew == "purple") {
+    else if (skew == "pink") {
       rgba = `rgba(${midVolume + 100}, ${highVolume}, ${lowVolume - 100}, ${alpha})`;
       rgb = `rgb(${midVolume + 100}, ${highVolume}, ${lowVolume - 100})`;
 
