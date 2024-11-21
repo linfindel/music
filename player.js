@@ -521,9 +521,9 @@ function analyse() {
       document.getElementById("progress-container").style.backgroundColor = rgbaSelectedColour;
       document.getElementById("progress-bar").style.backgroundColor = selectedColour;
 
-      document.getElementById("r-value").style.height = `${rgbSelectedColour.r / 255 * 100}px`;
-      document.getElementById("g-value").style.height = `${rgbSelectedColour.g / 255 * 100}px`;
-      document.getElementById("b-value").style.height = `${rgbSelectedColour.b / 255 * 100}px`
+      document.getElementById("r-value").style.height = `${rgbSelectedColour.r / 255 * 10}rem`;
+      document.getElementById("g-value").style.height = `${rgbSelectedColour.g / 255 * 10}rem`;
+      document.getElementById("b-value").style.height = `${rgbSelectedColour.b / 255 * 10}rem`
       
       if (rgbSelectedColour.r < 0) {
         rgbSelectedColour.r = "000";
@@ -579,9 +579,9 @@ function analyse() {
     }
 
     if (localStorage.getItem("kandinsky") == "disabled") {
-      document.getElementById("r-value").style.height = `${rgbSelectedColour.r / 255 * 100}px`;
-      document.getElementById("g-value").style.height = `${rgbSelectedColour.g / 255 * 100}px`;
-      document.getElementById("b-value").style.height = `${rgbSelectedColour.b / 255 * 100}px`;
+      document.getElementById("r-value").style.height = `${rgbSelectedColour.r / 255 * 10}rem`;
+      document.getElementById("g-value").style.height = `${rgbSelectedColour.g / 255 * 10}rem`;
+      document.getElementById("b-value").style.height = `${rgbSelectedColour.b / 255 * 10}rem`;
       document.getElementById("a-value").style.height = "2.5rem";
 
       document.getElementById("r-text").innerText = rgbSelectedColour.r;
