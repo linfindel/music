@@ -214,7 +214,7 @@ function analyse() {
     midVolume = Math.min(255, midVolume);
     highVolume = Math.min(255, highVolume);
 
-    if (localStorage.getItem("debug") == "enabled") {
+    if (localStorage.getItem("debug") == "enabled" && skew != "pink") {
       document.getElementById("low-freq-mean").style.bottom = `${lowVolume / 255 * 100}%`;
       document.getElementById("medium-freq-mean").style.bottom = `${midVolume / 255 * 100}%`;
       document.getElementById("high-freq-mean").style.bottom = `${highVolume / 255 * 100}%`;
@@ -426,6 +426,10 @@ function analyse() {
           document.getElementById(`high-freq-value-${i}`).style.height = `${highFrequencies[i] / 255 * 100}%`;
           document.getElementById(`high-freq-value-${i}`).style.backgroundColor = "rgba(0, 255, 0, 0.5)";
         }
+
+        document.getElementById("low-freq-mean").style.bottom = `${(lowVolume - 100) / 255 * 100}%`;
+        document.getElementById("medium-freq-mean").style.bottom = `${(midVolume + 100) / 255 * 100}%`;
+        document.getElementById("high-freq-mean").style.bottom = `${highVolume / 255 * 100}%`;
 
         var r = Math.round((midVolume + 100) / 255 * 100);
 
