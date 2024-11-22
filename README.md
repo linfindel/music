@@ -1,19 +1,20 @@
 # Music Player
-This is a web-based music player available at https://linfindel.github.io/music. It supports playing local files and files hosted on web servers, for example https://linfindel.github.io/cdn/Blinding%20Lights.mp3.
+This is a web-based music player available at https://linfindel.github.io/music. It supports playing local files.
 
 ## Screenshots
 
 
-https://github.com/user-attachments/assets/d17c6e3b-46e1-48a6-ad7a-b15ba3bf15fa
+https://github.com/user-attachments/assets/34889bd5-3ba9-48d5-8fb6-8b0ede71a58a
 
 
 
-https://github.com/user-attachments/assets/b8c8762a-ed02-4755-9f7a-eae28b25ab42
+https://github.com/user-attachments/assets/8e44b2fc-1bc4-4586-a112-b4f698b9ffbc
 
 
 
-https://github.com/user-attachments/assets/1987da02-f8b5-46f7-8d1f-1704a537ec25
+https://github.com/user-attachments/assets/1470db8c-dd1d-4aed-8085-424f6565057a
 
 
 
-https://github.com/user-attachments/assets/378a7e38-fa37-47e2-a76d-c713220badde
+https://github.com/user-attachments/assets/c0d17961-75ee-4f14-821e-4009d2c5b754
+
