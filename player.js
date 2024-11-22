@@ -480,8 +480,7 @@ function analyse() {
 
         document.getElementById("navbar").style.backgroundColor = rgba;
 
-        document.getElementById("upload1").style.backgroundColor = rgba;
-        document.getElementById("upload2").style.backgroundColor = rgba;
+        document.getElementById("upload").style.backgroundColor = rgba;
         document.getElementById("settings").style.backgroundColor = rgba;
 
         document.getElementById("play").style.backgroundColor = rgba;
@@ -509,8 +508,7 @@ function analyse() {
 
       document.getElementById("navbar").style.backgroundColor = rgbaSelectedColour;
 
-      document.getElementById("upload1").style.backgroundColor = rgbaSelectedColour;
-      document.getElementById("upload2").style.backgroundColor = rgbaSelectedColour;
+      document.getElementById("upload").style.backgroundColor = rgbaSelectedColour;
       document.getElementById("settings").style.backgroundColor = rgbaSelectedColour;
 
       document.getElementById("play").style.backgroundColor = rgbaSelectedColour;
@@ -748,8 +746,7 @@ function uploadFile() {
                   document.getElementById("navbar").style.backgroundColor = generateRGBA(palette.accent, 0.25);
 
                   document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                  document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                  document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  document.getElementById("upload").style.backgroundColor = generateRGBA(palette.accent, 0.25);
 
                   document.getElementById("tooltip").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   document.getElementById("progress-container").style.backgroundColor = generateRGBA(palette.accent, 0.25);
@@ -767,20 +764,12 @@ function uploadFile() {
                     document.getElementById("settings").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   })
 
-                  document.getElementById("upload1").addEventListener("mouseover", () => {
-                    document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.5);
+                  document.getElementById("upload").addEventListener("mouseover", () => {
+                    document.getElementById("upload").style.backgroundColor = generateRGBA(palette.accent, 0.5);
                   })
 
-                  document.getElementById("upload1").addEventListener("mouseout", () => {
-                    document.getElementById("upload1").style.backgroundColor = generateRGBA(palette.accent, 0.25);
-                  })
-
-                  document.getElementById("upload2").addEventListener("mouseover", () => {
-                    document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.5);
-                  })
-
-                  document.getElementById("upload2").addEventListener("mouseout", () => {
-                    document.getElementById("upload2").style.backgroundColor = generateRGBA(palette.accent, 0.25);
+                  document.getElementById("upload").addEventListener("mouseout", () => {
+                    document.getElementById("upload").style.backgroundColor = generateRGBA(palette.accent, 0.25);
                   })
 
                   document.getElementById("play").addEventListener("mouseover", () => {
@@ -814,8 +803,7 @@ function uploadFile() {
                   document.getElementById("navbar").style.backgroundColor = generateRGBA(medianColor, 0.25);
 
                   document.getElementById("settings").style.backgroundColor = generateRGBA(medianColor, 0.25);
-                  document.getElementById("upload1").style.backgroundColor = generateRGBA(medianColor, 0.25);
-                  document.getElementById("upload2").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                  document.getElementById("upload").style.backgroundColor = generateRGBA(medianColor, 0.25);
 
                   document.getElementById("tooltip").style.backgroundColor = generateRGBA(medianColor, 0.25);
                   document.getElementById("progress-container").style.backgroundColor = generateRGBA(medianColor, 0.25);
@@ -833,20 +821,12 @@ function uploadFile() {
                     document.getElementById("settings").style.backgroundColor = generateRGBA(medianColor, 0.25);
                   })
 
-                  document.getElementById("upload1").addEventListener("mouseover", () => {
-                    document.getElementById("upload1").style.backgroundColor = generateRGBA(medianColor, 0.5);
+                  document.getElementById("upload").addEventListener("mouseover", () => {
+                    document.getElementById("upload").style.backgroundColor = generateRGBA(medianColor, 0.5);
                   })
 
-                  document.getElementById("upload1").addEventListener("mouseout", () => {
-                    document.getElementById("upload1").style.backgroundColor = generateRGBA(medianColor, 0.25);
-                  })
-
-                  document.getElementById("upload2").addEventListener("mouseover", () => {
-                    document.getElementById("upload2").style.backgroundColor = generateRGBA(medianColor, 0.5);
-                  })
-
-                  document.getElementById("upload2").addEventListener("mouseout", () => {
-                    document.getElementById("upload2").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                  document.getElementById("upload").addEventListener("mouseout", () => {
+                    document.getElementById("upload").style.backgroundColor = generateRGBA(medianColor, 0.25);
                   })
 
                   document.getElementById("play").addEventListener("mouseover", () => {
@@ -983,27 +963,6 @@ function uploadFile() {
   input.click();
 }
 
-function uploadLink() {
-  var url = prompt("URL:");
-
-  if (url.includes("https://www.youtube.com") || url.includes("https://music.youtube.com") || url.includes("https://youtu.be")) {
-    alert("Downloading or streaming from YouTube is against YouTube Terms of Service. Use a file URL instead.");
-  }
-
-  else {
-    document.getElementById("audio").src = url;
-    document.getElementById("audio").play();
-
-    document.getElementById("title").innerText = "Loading...";
-    document.title = `Loading... - Music Player`;
-
-    document.getElementById("audio").addEventListener("loadedmetadata", () => {
-      document.getElementById("title").innerText = "Music Player";
-      document.title = "Music Player";
-    });
-  }
-}
-
 function applyColour() {
   var colour = localStorage.getItem("colour");
 
@@ -1054,7 +1013,7 @@ function applyColour() {
         background-color: ${colour.replace("0.25", "0.5")};
       }
 
-      #settings:hover, #upload1:hover, #upload2:hover, #play:hover, #stop:hover, #repeat:hover {
+      #settings:hover, #upload:hover, #play:hover, #stop:hover, #repeat:hover {
         background-color: ${colour.replace("0.25", "0.5")};
       }
 
@@ -1146,13 +1105,11 @@ function stop() {
 
   document.getElementById("navbar").style.transition = "1s ease"
   document.getElementById("settings").style.transition = "1s ease";
-  document.getElementById("upload1").style.transition = "1s ease";
-  document.getElementById("upload2").style.transition = "1s ease";
+  document.getElementById("upload").style.transition = "1s ease";
 
   document.getElementById("navbar").style.backgroundColor = localStorage.getItem("colour");
   document.getElementById("settings").style.backgroundColor = localStorage.getItem("colour");
-  document.getElementById("upload1").style.backgroundColor = localStorage.getItem("colour");
-  document.getElementById("upload2").style.backgroundColor = localStorage.getItem("colour");
+  document.getElementById("upload").style.backgroundColor = localStorage.getItem("colour");
 
   if (document.getElementById("glow")) {
     document.getElementById("glow").style.transition = "1s ease";
