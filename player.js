@@ -1280,7 +1280,7 @@ function showTooltip(event) {
   const currentTime = (percentage / 100) * duration;
 
   const formattedTime = formatTime(currentTime);
-    
+
   tooltip.style.opacity = "1";
   tooltip.style.top = `${progressContainer.offsetTop - 16}px`;
   tooltip.style.left = `${event.pageX - progressContainer.getBoundingClientRect().left}px`;
@@ -1360,10 +1360,6 @@ document.addEventListener("keyup", (e) => {
 
   else if (e.key == "u" && notEditingTitle) {
     uploadFile();
-  }
-
-  else if (e.key == "l" && notEditingTitle) {
-    uploadLink();
   }
 
   else if (e.key == "ArrowRight" && notEditingTitle) {
