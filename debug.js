@@ -35,12 +35,12 @@ setInterval(() => {
 
   if (localStorage.getItem("debug-freq") == "enabled" || !localStorage.getItem("debug-freq")) {
     document.getElementById("freq-icon").innerText = "check_box";
-    document.getElementById("freq-text").innerText = "Frequency breakdown enabled (computationally intensive)";
+    document.getElementById("freq-text").innerText = "Frequency breakdown enabled";
   }
   
   else {
     document.getElementById("freq-icon").innerText = "check_box_outline_blank";
-    document.getElementById("freq-text").innerText = "Frequency breakdown disabled (computationally intensive)";
+    document.getElementById("freq-text").innerText = "Frequency breakdown disabled";
   }
 });
 
@@ -69,11 +69,11 @@ if (colour) {
 }
 
 function toggle(option) {
-  if (localStorage.getItem(option) == "disabled") {
+  if (localStorage.getItem(option) == "disabled" || !localStorage.getItem(option)) {
     localStorage.setItem(option, "enabled");
   }
 
-  else if (localStorage.getItem(option) == "enabled" || !localStorage.getItem(option)) {
+  else if (localStorage.getItem(option) == "enabled") {
     localStorage.setItem(option, "disabled");
   }
 
