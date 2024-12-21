@@ -1140,7 +1140,10 @@ function stop() {
 
   setInterval(() => {
     audioElement.volume = volume;
-    volume -= 0.01;
+
+    if (volume > 0) {
+      volume -= 0.01;
+    }
   }, 10);
 
   if (localStorage.getItem("stop-effect") == "enabled") {
@@ -1148,7 +1151,10 @@ function stop() {
 
     setInterval(() => {
       audioElement.playbackRate = speed;
-      speed -= 0.01;
+
+      if (speed > 0) {
+        speed -= 0.01;
+      }
     }, 10);
   }
 
