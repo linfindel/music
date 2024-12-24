@@ -724,7 +724,7 @@ function uploadFile() {
 
                   let rgbValues = medianColor.match(/\d+/g).map(Number);
 
-                  if (rgbValues[0] < 50 && rgbValues[1] < 50 && rgbValues[2] < 50) {
+                  if (rgbValues.every(value => value < 50)) {
                     rgbValues[0] = 50;
                     rgbValues[1] = 50;
                     rgbValues[2] = 50;
