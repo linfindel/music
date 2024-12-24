@@ -916,52 +916,52 @@ function uploadFile() {
         document.getElementById("audio").play();
 
         document.getElementById("audio").addEventListener("loadedmetadata", () => {
-        document.getElementById("title").style.cursor = "pointer";
+          document.getElementById("title").style.cursor = "pointer";
 
-        document.getElementById("title").style.transition = "0.5s ease";
-        document.getElementById("title").style.opacity = "0";
-      
-        setTimeout(() => {
-          document.getElementById("title").innerText = fileName;
-          document.getElementById("title").style.opacity = "1";
+          document.getElementById("title").style.transition = "0.5s ease";
+          document.getElementById("title").style.opacity = "0";
+        
+          setTimeout(() => {
+            document.getElementById("title").innerText = fileName;
+            document.getElementById("title").style.opacity = "1";
 
-          document.getElementById("title").contentEditable = "true";
-          document.getElementById("title").style.outline = "none";
-        }, 500);
+            document.getElementById("title").contentEditable = "true";
+            document.getElementById("title").style.outline = "none";
+          }, 500);
 
-        document.title = `${fileName} - Music Player`;
+          document.title = `${fileName} - Music Player`;
 
-        if ("mediaSession" in navigator) {
-          navigator.mediaSession.metadata = new MediaMetadata({
-            title: fileName,
-            artist: artist,
-            artwork: [{ src: base64 }],
-          });
+          if ("mediaSession" in navigator) {
+            navigator.mediaSession.metadata = new MediaMetadata({
+              title: fileName,
+              artist: artist,
+              artwork: [{ src: base64 }],
+            });
+          }
+
+          if (customTitles[fileName]) {
+            document.getElementById("title").innerText = customTitles[fileName];
+            document.title = `${customTitles[fileName]} - Music Player`;
+          }
+        });
+      };
+
+      reader.onprogress = function (e) {
+        if (e.lengthComputable) {
+          let percentLoaded = (e.loaded / e.total) * 100;
+
+          document.getElementById("title").innerText = `${percentLoaded.toFixed(2)}%`;
+          document.title = `${percentLoaded.toFixed(2)}% - Music Player`;
+
+          if (percentLoaded == 100) {
+            document.getElementById("title").innerText = "Analysing...";
+            document.title = "Analysing... - Music Player";
+          }
         }
+      };
 
-        if (customTitles[fileName]) {
-          document.getElementById("title").innerText = customTitles[fileName];
-          document.title = `${customTitles[fileName]} - Music Player`;
-        }
-      });
-    };
-
-    reader.onprogress = function (e) {
-      if (e.lengthComputable) {
-        let percentLoaded = (e.loaded / e.total) * 100;
-
-        document.getElementById("title").innerText = `${percentLoaded.toFixed(2)}%`;
-        document.title = `${percentLoaded.toFixed(2)}% - Music Player`;
-
-        if (percentLoaded == 100) {
-          document.getElementById("title").innerText = "Analysing...";
-          document.title = "Analysing... - Music Player";
-        }
-      }
-    };
-
-    reader.readAsDataURL(file);
-  }};
+      reader.readAsDataURL(file);
+    }};
   input.click();
 }
 
