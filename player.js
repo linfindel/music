@@ -54,7 +54,7 @@ else if (skew == "rgba(255, 0, 255, 0.25)") {
   }
 }
 
-let analysisInterval, setupComplete, audioContext, analyser, audioSource, fileName, biquadFilter, base64, medianColor, image, artist, lastRGBA, globalAccent, rgbColour, selectedColour, rgbSelectedColour, rgbaSelectedColour, lowFrequencies, midFrequencies, highFrequencies;
+let analysisInterval, setupComplete, audioContext, analyser, audioSource, fileName, biquadFilter, base64, medianColour, image, artist, lastRGBA, globalAccent, rgbColour, selectedColour, rgbSelectedColour, rgbaSelectedColour, lowFrequencies, midFrequencies, highFrequencies;
 
 let audioElement = document.getElementById('audio');
 audioElement.preservesPitch = false;
@@ -516,7 +516,7 @@ function analyse() {
     }
 
     if (localStorage.getItem("kandinsky") == "hybrid" || localStorage.getItem("kandinsky") == "disabled") {
-      selectedColour = globalAccent || medianColor;
+      selectedColour = globalAccent || medianColour;
       rgbSelectedColour = hexToRgb(selectedColour);
       rgbaSelectedColour = `rgba(${rgbSelectedColour.r}, ${rgbSelectedColour.g}, ${rgbSelectedColour.b}, ${alpha}`;
     }
@@ -705,24 +705,24 @@ function uploadFile() {
                   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                   const pixels = imageData.data;
                 
-                  const pixelColors = [];
+                  const pixelColours = [];
                     
                   for (let i = 0; i < pixels.length; i += 4) {
                     const red = pixels[i];
                     const green = pixels[i + 1];
                     const blue = pixels[i + 2];
                 
-                    const color = `rgb(${red}, ${green}, ${blue})`;
-                    pixelColors.push(color);
+                    const colour = `rgb(${red}, ${green}, ${blue})`;
+                    pixelColours.push(colour);
                   }
                 
-                  const totalCount = pixelColors.length;
+                  const totalCount = pixelColours.length;
 
-                  pixelColors.sort();
-                  const medianColorIndex = Math.floor(totalCount / 2);
-                  medianColor = pixelColors[medianColorIndex];
+                  pixelColours.sort();
+                  const medianColourIndex = Math.floor(totalCount / 2);
+                  medianColour = pixelColours[medianColourIndex];
 
-                  let rgbValues = medianColor.match(/\d+/g).map(Number);
+                  let rgbValues = medianColour.match(/\d+/g).map(Number);
 
                   if (rgbValues.every(value => value < 50)) {
                     rgbValues[0] = 50;
@@ -732,11 +732,11 @@ function uploadFile() {
                     console.warn("Median colour is black, falling back on rgba(50, 50, 50, 0.25)...");
                   }
 
-                  medianColor = "#";
+                  medianColour = "#";
 
                   for (let i = 0; i < 3; i++) {
                     let hexPart = rgbValues[i].toString(16);
-                    medianColor += hexPart.length == 1 ? "0" + hexPart : hexPart;
+                    medianColour += hexPart.length == 1 ? "0" + hexPart : hexPart;
                   }
                 }
 
@@ -800,59 +800,59 @@ function uploadFile() {
                 }
 
                 else {
-                  document.getElementById("cover-art").style.boxShadow = `0px 0px 25vw 0px ${generateRGBA(medianColor, 0.5)}`;
+                  document.getElementById("cover-art").style.boxShadow = `0px 0px 25vw 0px ${generateRGBA(medianColour, 0.5)}`;
 
-                  document.getElementById("navbar").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                  document.getElementById("navbar").style.backgroundColor = generateRGBA(medianColour, 0.25);
 
-                  document.getElementById("settings").style.backgroundColor = generateRGBA(medianColor, 0.25);
-                  document.getElementById("upload").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                  document.getElementById("settings").style.backgroundColor = generateRGBA(medianColour, 0.25);
+                  document.getElementById("upload").style.backgroundColor = generateRGBA(medianColour, 0.25);
 
-                  document.getElementById("tooltip").style.backgroundColor = generateRGBA(medianColor, 0.25);
-                  document.getElementById("progress-container").style.backgroundColor = generateRGBA(medianColor, 0.25);
-                  document.getElementById("progress-bar").style.backgroundColor = medianColor;
+                  document.getElementById("tooltip").style.backgroundColor = generateRGBA(medianColour, 0.25);
+                  document.getElementById("progress-container").style.backgroundColor = generateRGBA(medianColour, 0.25);
+                  document.getElementById("progress-bar").style.backgroundColor = medianColour;
 
-                  document.getElementById("play").style.backgroundColor = generateRGBA(medianColor, 0.25);
-                  document.getElementById("stop").style.backgroundColor = generateRGBA(medianColor, 0.25);
-                  document.getElementById("repeat").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                  document.getElementById("play").style.backgroundColor = generateRGBA(medianColour, 0.25);
+                  document.getElementById("stop").style.backgroundColor = generateRGBA(medianColour, 0.25);
+                  document.getElementById("repeat").style.backgroundColor = generateRGBA(medianColour, 0.25);
 
                   document.getElementById("settings").addEventListener("mouseover", () => {
-                    document.getElementById("settings").style.backgroundColor = generateRGBA(medianColor, 0.5);
+                    document.getElementById("settings").style.backgroundColor = generateRGBA(medianColour, 0.5);
                   })
 
                   document.getElementById("settings").addEventListener("mouseout", () => {
-                    document.getElementById("settings").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                    document.getElementById("settings").style.backgroundColor = generateRGBA(medianColour, 0.25);
                   })
 
                   document.getElementById("upload").addEventListener("mouseover", () => {
-                    document.getElementById("upload").style.backgroundColor = generateRGBA(medianColor, 0.5);
+                    document.getElementById("upload").style.backgroundColor = generateRGBA(medianColour, 0.5);
                   })
 
                   document.getElementById("upload").addEventListener("mouseout", () => {
-                    document.getElementById("upload").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                    document.getElementById("upload").style.backgroundColor = generateRGBA(medianColour, 0.25);
                   })
 
                   document.getElementById("play").addEventListener("mouseover", () => {
-                    document.getElementById("play").style.backgroundColor = generateRGBA(medianColor, 0.5);
+                    document.getElementById("play").style.backgroundColor = generateRGBA(medianColour, 0.5);
                   })
 
                   document.getElementById("play").addEventListener("mouseout", () => {
-                    document.getElementById("play").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                    document.getElementById("play").style.backgroundColor = generateRGBA(medianColour, 0.25);
                   })
 
                   document.getElementById("stop").addEventListener("mouseover", () => {
-                    document.getElementById("stop").style.backgroundColor = generateRGBA(medianColor, 0.5);
+                    document.getElementById("stop").style.backgroundColor = generateRGBA(medianColour, 0.5);
                   })
 
                   document.getElementById("stop").addEventListener("mouseout", () => {
-                    document.getElementById("stop").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                    document.getElementById("stop").style.backgroundColor = generateRGBA(medianColour, 0.25);
                   })
 
                   document.getElementById("repeat").addEventListener("mouseover", () => {
-                    document.getElementById("repeat").style.backgroundColor = generateRGBA(medianColor, 0.5);
+                    document.getElementById("repeat").style.backgroundColor = generateRGBA(medianColour, 0.5);
                   })
 
                   document.getElementById("repeat").addEventListener("mouseout", () => {
-                    document.getElementById("repeat").style.backgroundColor = generateRGBA(medianColor, 0.25);
+                    document.getElementById("repeat").style.backgroundColor = generateRGBA(medianColour, 0.25);
                   })
                 }
               });
