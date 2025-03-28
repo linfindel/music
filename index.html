@@ -195,6 +195,19 @@
         <p>20 kHz</p>
       </div>
     </div>
+    
+    <div id="amp" style="width: 100%;">
+      <div class="progress" style="background-color: rgba(100, 100, 100, 0.5); height: 2.5rem;">
+        <div id="loudness-value" class="progress" style="width: 0%; background-color: rgba(255, 255, 255, 0.5); height: 2.5rem;"></div>
+        <p id="loudness-text" style="position: absolute; transform: translateY(-3rem); text-align: center; width: 100%; text-shadow: 1px 1px black;">0 dB</p>
+      </div>
+  
+      <div class="row" style="width: 100%; justify-content: space-between;">
+        <p id="minimum-loudness">0 dB</p>
+        <p>43 dB</p>
+        <p id="maximum-loudness">48 dB</p>
+      </div>
+    </div>
   </div>
 
   <img class="absolute-centre" id="cover-art" style="display: none; width: 25vw; height: 25vw; object-fit: cover;">

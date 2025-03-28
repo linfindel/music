@@ -42,6 +42,16 @@ setInterval(() => {
     document.getElementById("freq-icon").innerText = "check_box_outline_blank";
     document.getElementById("freq-text").innerText = "Frequency breakdown disabled";
   }
+
+  if (localStorage.getItem("debug-amp") == "enabled" || !localStorage.getItem("debug-amp")) {
+    document.getElementById("amp-icon").innerText = "check_box";
+    document.getElementById("amp-text").innerText = "Amplitude visualisation enabled";
+  }
+  
+  else {
+    document.getElementById("amp-icon").innerText = "check_box_outline_blank";
+    document.getElementById("amp-text").innerText = "Amplitude visualisation disabled";
+  }
 });
 
 var colour = localStorage.getItem("colour");
@@ -54,7 +64,7 @@ if (colour) {
       background-color: ${colour};
     }
 
-    #back:hover, #debug:hover, #makeup:hover, #compare:hover, #freq:hover {
+    #back:hover, #debug:hover, #makeup:hover, #compare:hover, #freq:hover, #amp:hover {
       background-color: ${colour.replace("0.25", "0.5")};
     }
   `;
