@@ -178,16 +178,12 @@ function analyse() {
 
     rms = Math.sqrt(rms / frequencyData.length);
     const generalVolume = rms;
-    let db = 20 * Math.log10(rms, 1);
 
     const alpha = 0.1 + (generalVolume / 255) * 0.9;
 
     if (localStorage.getItem("debug") == "enabled") { 
       document.getElementById("a-value").style.height = `${alpha * 100}%`;
       document.getElementById("a-text").innerText = alpha.toFixed(2);
-
-      document.getElementById("loudness-value").style.width = `${(alpha - 0.1) * 100}%`;
-      document.getElementById("loudness-text").innerText = `${db.toFixed(2)} dB`;
     }
 
 	  const mapTo255 = (value) => (value / 255) * 255;
@@ -1443,8 +1439,4 @@ if (localStorage.getItem("debug-compare") == "disabled") {
 
 if (localStorage.getItem("debug-freq") == "disabled") {
   document.getElementById("freq").style.display = "none";
-}
-
-if (localStorage.getItem("debug-amp") == "disabled") {
-  document.getElementById("amp").style.display = "none";
 }
